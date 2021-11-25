@@ -47,6 +47,7 @@ struct ReportFormViewModel {
     let realmService: RealmServiceProtocol
     
     let tapDatePickerViewButton = PublishRelay<Void>()
+    let tapReturn = PublishRelay<Void>()
     
     var state: Observable<State> {
         let allFields = [date, student, subject, book, range, content]
@@ -59,7 +60,8 @@ struct ReportFormViewModel {
             student.focus.map { .focus(field: student, suggestionViewModels: [])},
             subject.focus.map { .focus(field: subject, suggestionViewModels: [])},
             book.focus.map { .focus(field: book, suggestionViewModels: [])},
-            searchStudentFromRealm(for: student)
+            searchStudentFromRealm(for: student),
+            tapReturn.map { .initial(fields: allFields, button: button) }
         )
     }
     
@@ -267,6 +269,26 @@ class ReportFormViewModelTests: XCTestCase {
             state.values, [
                 .initial(fields: fileds.all, button: button),
                 .focus(field: fileds.student, suggestionViewModels: viewModels)
+            ]
+        )
+    }
+    
+    func test_student_textChangeState_tapReturnOnKeyboardChangeState() {
+        let realmService = RealmServiceStub()
+        let (sut, fileds, button) = makeSUT(realmService: realmService)
+        let state = StateSpy(sut.state)
+        
+        fileds.student.text.accept(realmService.studentStub.studentName)
+        let viewModels = realmService.studentStub.students.map { SuggestionViewModel.student(.init($0))}
+        
+        sut.tapReturn.accept(())
+        
+        XCTAssertEqual(
+            state.values, [
+                .initial(fields: fileds.all, button: button),
+                .focus(field: fileds.student, suggestionViewModels: viewModels),
+                .initial(fields: fileds.all, button: button)
+                    
             ]
         )
     }
