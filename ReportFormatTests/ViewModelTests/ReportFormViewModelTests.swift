@@ -16,17 +16,24 @@ class StudentObject: Object {
 }
 
 protocol RealmServiceProtocol {
-    func getStudent(with name: String) -> Single<StudentObject?>
+    func getStudent(with name: String) -> Single<[StudentObject]>
 }
 
 class RealmService: RealmServiceProtocol {
     let localRealm = try! Realm()
 
-    func getStudent(with name: String) -> Single<StudentObject?> {
-        let studentObject = localRealm.objects(StudentObject.self).filter("name CONTAINS %@", "\(name)").first
-        return .just(studentObject)
+    func getStudent(with name: String) -> Single<[StudentObject]> {
+        let studentObjects = localRealm.objects(StudentObject.self).filter("name CONTAINS %@", "\(name)")
+    
+        return .just(studentObjects.toArray())
     }
+}
 
+extension Results {
+    func toArray() -> Array<Self.Element> {
+        self.map { $0 }
+    }
+        
 }
 
 struct ReportFormViewModel {
@@ -37,6 +44,7 @@ struct ReportFormViewModel {
     let range: FieldViewModel
     let content: FieldViewModel
     let button: ButtonViewModel
+    let realmService: RealmServiceProtocol
     
     var state: Observable<State> {
         let allFields = [date, student, subject, book, range, content]
@@ -47,14 +55,30 @@ struct ReportFormViewModel {
             date.focus.map { .focusDate(field: date, datePickerVM: datePickerViewModel) },
             student.focus.map { .focus(field: student, suggestionViewModels: [])},
             subject.focus.map { .focus(field: subject, suggestionViewModels: [])},
-            book.focus.map { .focus(field: book, suggestionViewModels: [])}
+            book.focus.map { .focus(field: book, suggestionViewModels: [])},
+            student.text
+                .skip(while: { $0.isEmpty })
+                .distinctUntilChanged()
+                .flatMap { [realmService] (text) in
+                    realmService.getStudent(with: text)
+                        .asObservable()
+                }
+                .map { students in
+                    let viewModels = students.map { SuggestionViewModel.student(.init($0)) }
+                    return .focus(field: student, suggestionViewModels: viewModels)
+                }
         )
     }
     
 }
 
 struct FieldViewModel: Equatable {
+    let title: String = ""
+    
+    let text = PublishRelay<String>()
     let focus = PublishRelay<Void>()
+    
+    
     
     static func ==(lhs: FieldViewModel, rhs: FieldViewModel) -> Bool {
         return true
@@ -74,9 +98,9 @@ struct StudentSuggestionViewModel: Equatable {
     let name = ""
 //    let select: PublishRelay<Void>
     
-//    init(name: String) {
-//
-//    }
+    init(_ studentObject: StudentObject) {
+        
+    }
     
     static func ==(lhs: StudentSuggestionViewModel, rhs: StudentSuggestionViewModel) -> Bool {
         true
@@ -204,69 +228,93 @@ class ReportFormViewModelTests: XCTestCase {
         )
     }
     
-
-
-    
-}
-
-
-private func makeSUT() -> (
-    sut: ReportFormViewModel,
-    fields: (
-        date: FieldViewModel,
-        student: FieldViewModel,
-        subject: FieldViewModel,
-        book: FieldViewModel,
-        range: FieldViewModel,
-        content: FieldViewModel,
-        all: [FieldViewModel]
-    ),
-    button: ButtonViewModel
-) {
-    let date = FieldViewModel()
-    let student = FieldViewModel()
-    let subject = FieldViewModel()
-    let book = FieldViewModel()
-    let range = FieldViewModel()
-    let content = FieldViewModel()
-    
-    let button = ButtonViewModel()
-    
-    let sut = ReportFormViewModel(date: date, student: student, subject: subject, book: book, range: range, content: content, button: button)
-    
-    return (
-        sut,
-        (
-            date,
-            student,
-            subject,
-            book,
-            range,
-            content,
-            [date, student, subject, book, range, content]
-        ),
-        button
-    )
-}
-
-class StateSpy {
-    private(set) var values: [State] = []
-    private let bag = DisposeBag()
-    
-    init(_ observable: Observable<State>) {
-        observable
-            .subscribe(onNext: { [weak self] state in
-                self?.values.append(state)
-            })
-            .disposed(by: bag)
-    }
-}
-
-class RealmServiceStub: RealmService {
-    let stub = (name: "abc", student: StudentObject())
-    
-    override func getStudent(with name: String) -> Single<StudentObject?> {
-        stub.name == name ? .just(stub.student) : .just(nil)
-    }
+    func test_student_textChangeState_providesStudentSuggestion_basedOnText() {
+        let realmService = RealmServiceStub()
+        let (sut, fileds, button) = makeSUT(realmService: realmService)
+        let state = StateSpy(sut.state)
         
+        fileds.student.text.accept(realmService.studentStub.studentName)
+        let viewModels = realmService.studentStub.students.map { SuggestionViewModel.student(.init($0))}
+        
+        XCTAssertEqual(
+            state.values, [
+                .initial(fields: fileds.all, button: button),
+                .focus(field: fileds.student, suggestionViewModels: viewModels)
+            ]
+        )
+    }
+    
+    
+    
+    private func makeSUT(realmService: RealmServiceStub = .init()) -> (
+        sut: ReportFormViewModel,
+        fields: (
+            date: FieldViewModel,
+            student: FieldViewModel,
+            subject: FieldViewModel,
+            book: FieldViewModel,
+            range: FieldViewModel,
+            content: FieldViewModel,
+            all: [FieldViewModel]
+        ),
+        button: ButtonViewModel
+    ) {
+        let date = FieldViewModel()
+        let student = FieldViewModel()
+        let subject = FieldViewModel()
+        let book = FieldViewModel()
+        let range = FieldViewModel()
+        let content = FieldViewModel()
+        
+        let button = ButtonViewModel()
+        
+        let sut = ReportFormViewModel(date: date, student: student, subject: subject, book: book, range: range, content: content, button: button, realmService: realmService)
+        
+        return (
+            sut,
+            (
+                date,
+                student,
+                subject,
+                book,
+                range,
+                content,
+                [date, student, subject, book, range, content]
+            ),
+            button
+        )
+    }
+
+    class StateSpy {
+        private(set) var values: [State] = []
+        private let bag = DisposeBag()
+        
+        init(_ observable: Observable<State>) {
+            observable
+                .subscribe(onNext: { [weak self] state in
+                    self?.values.append(state)
+                })
+                .disposed(by: bag)
+        }
+    }
+
+    class RealmServiceStub: RealmServiceProtocol {
+        
+        let localRealm = try! Realm()
+                        
+        lazy var studentStub = (studentName: "abc", students: [StudentObject(), StudentObject()])
+        
+        func getStudent(with name: String) -> Single<[StudentObject]> {
+            let studentArr = Array<StudentObject>.init(repeating: StudentObject(), count: 2)
+            
+            return studentStub.studentName == name ? .just(studentArr) : .just([])
+        }
+            
+    }
+
+
+
+    
 }
+
+
