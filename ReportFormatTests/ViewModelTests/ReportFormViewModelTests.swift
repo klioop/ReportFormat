@@ -56,18 +56,22 @@ struct ReportFormViewModel {
             student.focus.map { .focus(field: student, suggestionViewModels: [])},
             subject.focus.map { .focus(field: subject, suggestionViewModels: [])},
             book.focus.map { .focus(field: book, suggestionViewModels: [])},
-            student.text
-                .skip(while: { $0.isEmpty })
-                .distinctUntilChanged()
-                .flatMap { [realmService] (text) in
-                    realmService.getStudent(with: text)
-                        .asObservable()
-                }
-                .map { students in
-                    let viewModels = students.map { SuggestionViewModel.student(.init($0)) }
-                    return .focus(field: student, suggestionViewModels: viewModels)
-                }
+            searchStudentFromRealm(for: student)
         )
+    }
+    
+    private func searchStudentFromRealm(for field: FieldViewModel) -> Observable<State> {
+        field.text
+            .skip(while: { $0.isEmpty })
+            .distinctUntilChanged()
+            .flatMap { [realmService] (text) in
+                realmService.getStudent(with: text)
+                    .asObservable()
+            }
+            .map { students in
+                let viewModels = students.map { SuggestionViewModel.student(.init($0)) }
+                return .focus(field: student, suggestionViewModels: viewModels)
+            }
     }
     
 }
@@ -243,8 +247,6 @@ class ReportFormViewModelTests: XCTestCase {
             ]
         )
     }
-    
-    
     
     private func makeSUT(realmService: RealmServiceStub = .init()) -> (
         sut: ReportFormViewModel,
