@@ -13,6 +13,13 @@ import RealmSwift
 class StudentObject: Object {
     @Persisted(primaryKey: true) var _id: ObjectId
     @Persisted var name: String
+    @Persisted var dateCreated: Date
+}
+
+class SubjectObject: Object {
+    @Persisted(primaryKey: true) var _id: ObjectId
+    @Persisted var name: String
+    @Persisted var dateCreated: Date
 }
 
 protocol RealmServiceProtocol {
@@ -48,6 +55,7 @@ struct ReportFormViewModel {
     
     let tapDatePickerViewButton = PublishRelay<Void>()
     let tapReturn = PublishRelay<Void>()
+    let select = PublishRelay<Void>()
     
     var state: Observable<State> {
         let allFields = [date, student, subject, book, range, content]
@@ -61,7 +69,8 @@ struct ReportFormViewModel {
             subject.focus.map { .focus(field: subject, suggestionViewModels: [])},
             book.focus.map { .focus(field: book, suggestionViewModels: [])},
             searchStudentFromRealm(for: student),
-            tapReturn.map { .initial(fields: allFields, button: button) }
+            tapReturn.map { .initial(fields: allFields, button: button) },
+            select.map {  .initial(fields: allFields, button: button) }
         )
     }
     
@@ -74,7 +83,7 @@ struct ReportFormViewModel {
                     .asObservable()
             }
             .map { students in
-                let viewModels = students.map { SuggestionViewModel.student(.init($0)) }
+                let viewModels = students.map { [select] in SuggestionViewModel.student(.init($0, select: select)) }
                 return .focus(field: student, suggestionViewModels: viewModels)
             }
     }
@@ -120,12 +129,19 @@ struct DatePickerViewModel: Equatable {
 
 
 struct StudentSuggestionViewModel: Equatable {
-    let name = ""
-//    let select: PublishRelay<Void>
+    let name: String
+    let select: PublishRelay<Void>
+    
+    init(_ studentObject: StudentObject, select: PublishRelay<Void>) {
+        self.name = studentObject.name
+        self.select = select
+    }
     
     init(_ studentObject: StudentObject) {
-        
+        self.name = studentObject.name
+        self.select = PublishRelay<Void>()
     }
+    
     
     static func ==(lhs: StudentSuggestionViewModel, rhs: StudentSuggestionViewModel) -> Bool {
         true
@@ -156,6 +172,7 @@ enum State: Equatable {
 
 enum SuggestionViewModel: Equatable {
     case student(StudentSuggestionViewModel)
+    case subject(SubjectSuggestionViewModel)
     
 }
 
@@ -293,6 +310,26 @@ class ReportFormViewModelTests: XCTestCase {
         )
     }
     
+    func test_student_textChangeState_selectSuggestionChangeState() throws {
+        let realmService = RealmServiceStub()
+        let (sut, fileds, button) = makeSUT(realmService: realmService)
+        let state = StateSpy(sut.state)
+        
+        fileds.student.text.accept(realmService.studentStub.studentName)
+        let viewModels = realmService.studentStub.students.map { SuggestionViewModel.student(.init($0))}
+        
+        let studentSuggestionVM = try XCTUnwrap(state.values.last?.firstRealmSuggestionViewModel)
+        studentSuggestionVM.select.accept(())
+        
+        XCTAssertEqual(
+            state.values, [
+                .initial(fields: fileds.all, button: button),
+                .focus(field: fileds.student, suggestionViewModels: viewModels),
+                .initial(fields: fileds.all, button: button)
+            ]
+        )
+    }
+    
     private func makeSUT(realmService: RealmServiceStub = .init()) -> (
         sut: ReportFormViewModel,
         fields: (
@@ -370,6 +407,23 @@ private extension State {
         default:
             return nil
         }
+    }
+    
+    var firstRealmSuggestionViewModel: StudentSuggestionViewModel? {
+        switch self {
+        case let .focus(field: _, suggestionViewModels: suggestionVMs):
+            if let vm = suggestionVMs.first {
+                switch vm {
+                case let .student(studentSuggestionVM):
+                    return studentSuggestionVM
+                default:
+                    return nil
+                }
+            }
+        default:
+            return nil
+        }
+        return nil
     }
 }
 
