@@ -45,7 +45,9 @@ struct ReportFormViewModel {
         return Observable.merge(
             .just(.initial(fields: allFields, button: button)),
             date.focus.map { .focusDate(field: date, datePickerVM: datePickerViewModel) },
-            student.focus.map { .focus(field: student, suggestionViewModels: [])}
+            student.focus.map { .focus(field: student, suggestionViewModels: [])},
+            subject.focus.map { .focus(field: subject, suggestionViewModels: [])},
+            book.focus.map { .focus(field: book, suggestionViewModels: [])}
         )
     }
     
@@ -78,6 +80,14 @@ struct StudentSuggestionViewModel: Equatable {
     
     static func ==(lhs: StudentSuggestionViewModel, rhs: StudentSuggestionViewModel) -> Bool {
         true
+    }
+}
+
+struct SubjectSuggestionViewModel: Equatable {
+    let name = ""
+    
+    static func ==(lhs: SubjectSuggestionViewModel, rhs: SubjectSuggestionViewModel) -> Bool {
+        return true
     }
 }
 
@@ -153,6 +163,36 @@ class ReportFormViewModelTests: XCTestCase {
         )
     }
     
+    func test_focus_subject_changeState_includeOneField() {
+        let (sut, fileds, button) = makeSUT()
+        let state = StateSpy(sut.state)
+        
+        fileds.subject.focus.accept(())
+        
+        XCTAssertEqual(
+            state.values, [
+                .initial(fields: fileds.all, button: button),
+                .focus(field: fileds.subject, suggestionViewModels: [])
+            ]
+        )
+    }
+    
+    func test_focus_book_changeState_includeOneField() {
+        let (sut, fileds, button) = makeSUT()
+        let state = StateSpy(sut.state)
+        
+        fileds.book.focus.accept(())
+        
+        XCTAssertEqual(
+            state.values, [
+                .initial(fields: fileds.all, button: button),
+                .focus(field: fileds.book, suggestionViewModels: [])
+            ]
+        )
+    }
+    
+    
+
 
     
 }
