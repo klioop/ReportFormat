@@ -52,7 +52,7 @@ struct ReportFormViewModel {
         
         return Observable.merge(
             .just(.initial(fields: allFields, button: button)),
-            date.focus.map { .focusDate(field: date, datePickerVM: datePickerViewModel) },
+            date.focus.map { .focusDate(datePickerVM: datePickerViewModel) },
             student.focus.map { .focus(field: student, suggestionViewModels: [])},
             subject.focus.map { .focus(field: subject, suggestionViewModels: [])},
             book.focus.map { .focus(field: book, suggestionViewModels: [])},
@@ -94,7 +94,12 @@ struct ButtonViewModel: Equatable {
 }
 
 struct DatePickerViewModel: Equatable {
+    let dateString: PublishRelay<String> = PublishRelay()
+    let date = BehaviorRelay<Date>(value: Date())
     
+    static func == (lhs: DatePickerViewModel, rhs: DatePickerViewModel) -> Bool {
+        true
+    }
 }
 
 
@@ -129,7 +134,7 @@ struct BookSuggestion {
     
 enum State: Equatable {
         case initial(fields: [FieldViewModel], button: ButtonViewModel)
-        case focusDate(field: FieldViewModel, datePickerVM: DatePickerViewModel)
+        case focusDate(datePickerVM: DatePickerViewModel)
         case focus(field: FieldViewModel, suggestionViewModels: [SuggestionViewModel])
     }
 
@@ -149,7 +154,7 @@ class ReportFormViewModelTests: XCTestCase {
         XCTAssertEqual(state.values, [.initial(fields: fileds.all, button: button)])
     }
     
-    func test_focusDate_changeState_includePickerAndPickerButton() {
+    func test_focusDate_changeState_includeDatePickerViewModel() {
         let (sut, fileds, button) = makeSUT()
         let state = StateSpy(sut.state)
         
@@ -158,25 +163,11 @@ class ReportFormViewModelTests: XCTestCase {
         XCTAssertEqual(
             state.values, [
                 .initial(fields: fileds.all, button: button),
-                .focusDate(field: fileds.date, datePickerVM: DatePickerViewModel())
+                .focusDate(datePickerVM: DatePickerViewModel())
             ]
         )
     }
-    
-    func test_focusFields_changeState_includeOneField() {
-        let (sut, fileds, button) = makeSUT()
-        let state = StateSpy(sut.state)
         
-        fileds.date.focus.accept(())
-        
-        XCTAssertEqual(
-            state.values, [
-                .initial(fields: fileds.all, button: button),
-                .focusDate(field: fileds.date, datePickerVM: DatePickerViewModel())
-            ]
-        )
-    }
-    
     func test_focus_studentField_changeState_includeOneField() {
         let (sut, fileds, button) = makeSUT()
         let state = StateSpy(sut.state)
