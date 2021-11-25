@@ -6,6 +6,7 @@
 //
 
 import XCTest
+import RxSwift
 
 
 struct ReportFormViewModel {
@@ -17,26 +18,36 @@ struct ReportFormViewModel {
     let content: FieldViewModel
     let button: ButtonViewModel
     
-}
-
-struct FieldViewModel {
+    var state: Observable<State> {
+        let allFields = [date, student, subject, book, range, content]
+        
+        return Observable.merge(
+            .just(.initial(fields: allFields, button: button))
+        )
+    }
     
 }
 
-struct ButtonViewModel {
+struct FieldViewModel: Equatable {
+    
+}
+
+struct ButtonViewModel: Equatable {
     
 }
 
 class ReportFormViewModelTests: XCTestCase {
             
     func test_initialState_includeAllFieldsAndButton() {
+        let (sut, fileds, button) = makeSUT()
+        let state = StateSpy(sut.state)
         
-        
+        XCTAssertEqual(state.values, [.initial(fields: fileds.all, button: button)])
     }
     
 }
 
-enum State {
+enum State: Equatable {
     case initial(fields: [FieldViewModel], button: ButtonViewModel)
 }
 
@@ -77,4 +88,17 @@ private func makeSUT() -> (
         ),
         button
     )
+}
+
+class StateSpy {
+    private(set) var values: [State] = []
+    private let bag = DisposeBag()
+    
+    init(_ observable: Observable<State>) {
+        observable
+            .subscribe(onNext: { [weak self] state in
+                self?.values.append(state)
+            })
+            .disposed(by: bag)
+    }
 }
