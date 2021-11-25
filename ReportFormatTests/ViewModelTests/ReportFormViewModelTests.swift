@@ -7,6 +7,7 @@
 
 import XCTest
 import RxSwift
+import RxRelay
 
 
 struct ReportFormViewModel {
@@ -22,17 +23,26 @@ struct ReportFormViewModel {
         let allFields = [date, student, subject, book, range, content]
         
         return Observable.merge(
-            .just(.initial(fields: allFields, button: button))
+            .just(.initial(fields: allFields, button: button)),
+            date.focus.map { .focus(field: date, datePickerVM: DatePickerViewModel()) }
         )
     }
     
 }
 
 struct FieldViewModel: Equatable {
+    let focus = PublishRelay<Void>()
     
+    static func ==(lhs: FieldViewModel, rhs: FieldViewModel) -> Bool {
+        return true
+    }
 }
 
 struct ButtonViewModel: Equatable {
+    
+}
+
+struct DatePickerViewModel: Equatable {
     
 }
 
@@ -45,10 +55,25 @@ class ReportFormViewModelTests: XCTestCase {
         XCTAssertEqual(state.values, [.initial(fields: fileds.all, button: button)])
     }
     
+    func test_focusDate_includePickerAndPickerButton() {
+        let (sut, fileds, button) = makeSUT()
+        let state = StateSpy(sut.state)
+        
+        fileds.date.focus.accept(())
+        
+        XCTAssertEqual(
+            state.values, [
+                .initial(fields: fileds.all, button: button),
+                .focus(field: fileds.date, datePickerVM: DatePickerViewModel())
+            ]
+        )
+    }
+    
 }
 
 enum State: Equatable {
     case initial(fields: [FieldViewModel], button: ButtonViewModel)
+    case focus(field: FieldViewModel, datePickerVM: DatePickerViewModel)
 }
 
 private func makeSUT() -> (
