@@ -8,7 +8,26 @@
 import XCTest
 import RxSwift
 import RxRelay
+import RealmSwift
 
+class StudentObject: Object {
+    @Persisted(primaryKey: true) var _id: ObjectId
+    @Persisted var name: String
+}
+
+protocol RealmServiceProtocol {
+    func getStudent(with name: String) -> Single<StudentObject?>
+}
+
+class RealmService: RealmServiceProtocol {
+    let localRealm = try! Realm()
+
+    func getStudent(with name: String) -> Single<StudentObject?> {
+        let studentObject = localRealm.objects(StudentObject.self).filter("name CONTAINS %@", "\(name)").first
+        return .just(studentObject)
+    }
+
+}
 
 struct ReportFormViewModel {
     let date: FieldViewModel
@@ -21,10 +40,12 @@ struct ReportFormViewModel {
     
     var state: Observable<State> {
         let allFields = [date, student, subject, book, range, content]
+        let datePickerViewModel = DatePickerViewModel()
         
         return Observable.merge(
             .just(.initial(fields: allFields, button: button)),
-            date.focus.map { .focus(field: date, datePickerVM: DatePickerViewModel()) }
+            date.focus.map { .focusDate(field: date, datePickerVM: datePickerViewModel) },
+            student.focus.map { .focus(field: student, suggestionViewModels: [])}
         )
     }
     
@@ -46,6 +67,41 @@ struct DatePickerViewModel: Equatable {
     
 }
 
+
+struct StudentSuggestionViewModel: Equatable {
+    let name = ""
+//    let select: PublishRelay<Void>
+    
+//    init(name: String) {
+//
+//    }
+    
+    static func ==(lhs: StudentSuggestionViewModel, rhs: StudentSuggestionViewModel) -> Bool {
+        true
+    }
+}
+
+struct BookSuggestion {
+    let title: String
+    
+    init(title: String) {
+        self.title = title
+    }
+}
+    
+enum State: Equatable {
+        case initial(fields: [FieldViewModel], button: ButtonViewModel)
+        case focusDate(field: FieldViewModel, datePickerVM: DatePickerViewModel)
+        case focus(field: FieldViewModel, suggestionViewModels: [SuggestionViewModel])
+    }
+
+enum SuggestionViewModel: Equatable {
+    case student(StudentSuggestionViewModel)
+    
+}
+
+
+
 class ReportFormViewModelTests: XCTestCase {
             
     func test_initialState_includeAllFieldsAndButton() {
@@ -55,7 +111,7 @@ class ReportFormViewModelTests: XCTestCase {
         XCTAssertEqual(state.values, [.initial(fields: fileds.all, button: button)])
     }
     
-    func test_focusDate_includePickerAndPickerButton() {
+    func test_focusDate_changeState_includePickerAndPickerButton() {
         let (sut, fileds, button) = makeSUT()
         let state = StateSpy(sut.state)
         
@@ -64,17 +120,43 @@ class ReportFormViewModelTests: XCTestCase {
         XCTAssertEqual(
             state.values, [
                 .initial(fields: fileds.all, button: button),
-                .focus(field: fileds.date, datePickerVM: DatePickerViewModel())
+                .focusDate(field: fileds.date, datePickerVM: DatePickerViewModel())
             ]
         )
     }
     
+    func test_focusFields_changeState_includeOneField() {
+        let (sut, fileds, button) = makeSUT()
+        let state = StateSpy(sut.state)
+        
+        fileds.date.focus.accept(())
+        
+        XCTAssertEqual(
+            state.values, [
+                .initial(fields: fileds.all, button: button),
+                .focusDate(field: fileds.date, datePickerVM: DatePickerViewModel())
+            ]
+        )
+    }
+    
+    func test_focus_studentField_changeState_includeOneField() {
+        let (sut, fileds, button) = makeSUT()
+        let state = StateSpy(sut.state)
+        
+        fileds.student.focus.accept(())
+        
+        XCTAssertEqual(
+            state.values, [
+                .initial(fields: fileds.all, button: button),
+                .focus(field: fileds.student, suggestionViewModels: [])
+            ]
+        )
+    }
+    
+
+    
 }
 
-enum State: Equatable {
-    case initial(fields: [FieldViewModel], button: ButtonViewModel)
-    case focus(field: FieldViewModel, datePickerVM: DatePickerViewModel)
-}
 
 private func makeSUT() -> (
     sut: ReportFormViewModel,
@@ -126,4 +208,13 @@ class StateSpy {
             })
             .disposed(by: bag)
     }
+}
+
+class RealmServiceStub: RealmService {
+    let stub = (name: "abc", student: StudentObject())
+    
+    override func getStudent(with name: String) -> Single<StudentObject?> {
+        stub.name == name ? .just(stub.student) : .just(nil)
+    }
+        
 }
