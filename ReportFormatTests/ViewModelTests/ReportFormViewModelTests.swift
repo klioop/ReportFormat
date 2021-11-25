@@ -191,6 +191,18 @@ class ReportFormViewModelTests: XCTestCase {
         )
     }
     
+    func test_focus_range_notChangeState() {
+        let (sut, fileds, button) = makeSUT()
+        let state = StateSpy(sut.state)
+        
+        fileds.range.focus.accept(())
+        
+        XCTAssertEqual(
+            state.values, [
+                .initial(fields: fileds.all, button: button),
+            ]
+        )
+    }
     
 
 
