@@ -46,13 +46,16 @@ struct ReportFormViewModel {
     let button: ButtonViewModel
     let realmService: RealmServiceProtocol
     
+    let tapDatePickerViewButton = PublishRelay<Void>()
+    
     var state: Observable<State> {
         let allFields = [date, student, subject, book, range, content]
-        let datePickerViewModel = DatePickerViewModel()
+        let datePickerViewModel = DatePickerViewModel(tapButton: tapDatePickerViewButton)
         
         return Observable.merge(
             .just(.initial(fields: allFields, button: button)),
             date.focus.map { .focusDate(datePickerVM: datePickerViewModel) },
+            tapDatePickerViewButton.map {.initial(fields: allFields, button: button) },
             student.focus.map { .focus(field: student, suggestionViewModels: [])},
             subject.focus.map { .focus(field: subject, suggestionViewModels: [])},
             book.focus.map { .focus(field: book, suggestionViewModels: [])},
@@ -96,10 +99,21 @@ struct ButtonViewModel: Equatable {
 struct DatePickerViewModel: Equatable {
     let dateString: PublishRelay<String> = PublishRelay()
     let date = BehaviorRelay<Date>(value: Date())
+    let tapButton: PublishRelay<Void>
+    
+    init(tapButton: PublishRelay<Void>) {
+        self.tapButton = tapButton
+    }
+    
+    init() {
+        self.tapButton = PublishRelay<Void>()
+    }
     
     static func == (lhs: DatePickerViewModel, rhs: DatePickerViewModel) -> Bool {
         true
     }
+    
+    
 }
 
 
@@ -164,6 +178,24 @@ class ReportFormViewModelTests: XCTestCase {
             state.values, [
                 .initial(fields: fileds.all, button: button),
                 .focusDate(datePickerVM: DatePickerViewModel())
+            ]
+        )
+    }
+    
+    func test_selectDate_AndTapButton_changeState() throws {
+        let (sut, fileds, button) = makeSUT()
+        let state = StateSpy(sut.state)
+        
+        fileds.date.focus.accept(())
+        
+        let datePickerVM = try XCTUnwrap(state.values.last?.datePickerViewModel, "Expected State has to return datePickerViewModel")
+        datePickerVM.tapButton.accept(())
+        
+        XCTAssertEqual(
+            state.values, [
+                .initial(fields: fileds.all, button: button),
+                .focusDate(datePickerVM: DatePickerViewModel()),
+                .initial(fields: fileds.all, button: button)
             ]
         )
     }
@@ -305,9 +337,18 @@ class ReportFormViewModelTests: XCTestCase {
             
     }
 
-
-
     
+}
+
+private extension State {
+    var datePickerViewModel: DatePickerViewModel? {
+        switch self {
+        case let .focusDate(datePickerVM: vm):
+            return vm
+        default:
+            return nil
+        }
+    }
 }
 
 
