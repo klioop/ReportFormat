@@ -410,9 +410,6 @@ class ReportFormViewModelTests: XCTestCase {
         )
     }
     
-    
-
-    
     private func makeSUT(realmService: RealmServiceStub = .init()) -> (
         sut: ReportFormViewModel,
         fields: (
