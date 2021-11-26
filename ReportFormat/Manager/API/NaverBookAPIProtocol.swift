@@ -9,5 +9,5 @@ import Foundation
 import RxSwift
 
 protocol NaverBookAPIProtocol {
-    func fetchBooks() -> Single<BookResponse>
+    func fetchBooks() -> Single<BookApiResponse>
 }

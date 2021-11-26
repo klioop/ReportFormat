@@ -7,3 +7,17 @@
 
 import Foundation
 
+enum APIError: Error {
+    case invalidUrl
+    case failedToParseJSON
+    
+    var errorMessage: String {
+        switch self {
+        case .invalidUrl:
+            return "Invalid Url"
+        case .failedToParseJSON:
+            return "Failed to parse JSON from network"
+        }
+    
+    }
+}

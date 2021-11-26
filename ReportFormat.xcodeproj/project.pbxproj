@@ -25,6 +25,7 @@
 		31CC750F2750F66E00A3F03D /* NaverAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CC750E2750F66E00A3F03D /* NaverAPIService.swift */; };
 		31CC75122750F71800A3F03D /* NaverBookAPIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CC75112750F71800A3F03D /* NaverBookAPIProtocol.swift */; };
 		31CC75142750F79800A3F03D /* BookResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CC75132750F79800A3F03D /* BookResponse.swift */; };
+		31CC75172750FA7100A3F03D /* BookAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CC75162750FA7100A3F03D /* BookAPIManager.swift */; };
 		31D428972750BD2A00C9D09E /* HttpService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D428962750BD2A00C9D09E /* HttpService.swift */; };
 		31D428992750BDC600C9D09E /* HttpRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D428982750BDC600C9D09E /* HttpRouter.swift */; };
 		31D4289B2750BF6400C9D09E /* CustomErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D4289A2750BF6400C9D09E /* CustomErrors.swift */; };
@@ -56,6 +57,7 @@
 		31CC750E2750F66E00A3F03D /* NaverAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverAPIService.swift; sourceTree = "<group>"; };
 		31CC75112750F71800A3F03D /* NaverBookAPIProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverBookAPIProtocol.swift; sourceTree = "<group>"; };
 		31CC75132750F79800A3F03D /* BookResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookResponse.swift; sourceTree = "<group>"; };
+		31CC75162750FA7100A3F03D /* BookAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookAPIManager.swift; sourceTree = "<group>"; };
 		31D428962750BD2A00C9D09E /* HttpService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpService.swift; sourceTree = "<group>"; };
 		31D428982750BDC600C9D09E /* HttpRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpRouter.swift; sourceTree = "<group>"; };
 		31D4289A2750BF6400C9D09E /* CustomErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomErrors.swift; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 				31CC750C2750F2F700A3F03D /* NaverAPIRouter.swift */,
 				31CC750E2750F66E00A3F03D /* NaverAPIService.swift */,
 				31CC75112750F71800A3F03D /* NaverBookAPIProtocol.swift */,
+				31CC75162750FA7100A3F03D /* BookAPIManager.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -310,6 +313,7 @@
 				31D428992750BDC600C9D09E /* HttpRouter.swift in Sources */,
 				31CC75142750F79800A3F03D /* BookResponse.swift in Sources */,
 				31D4289E2750C27200C9D09E /* Secret.swift in Sources */,
+				31CC75172750FA7100A3F03D /* BookAPIManager.swift in Sources */,
 				31D4289B2750BF6400C9D09E /* CustomErrors.swift in Sources */,
 				31A7AEE5274E564A006C087C /* AppDelegate.swift in Sources */,
 				31CC75122750F71800A3F03D /* NaverBookAPIProtocol.swift in Sources */,
