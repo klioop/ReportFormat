@@ -160,8 +160,7 @@ struct StudentSuggestionViewModel: Equatable, SuggestionViewModelProtocol {
         self.name = studentObject.name
         self.select = PublishRelay<Void>()
     }
-    
-    
+        
     static func ==(lhs: StudentSuggestionViewModel, rhs: StudentSuggestionViewModel) -> Bool {
         true
     }
@@ -362,7 +361,7 @@ class ReportFormViewModelTests: XCTestCase {
         )
     }
     
-    func test_subject_textChangeState_providesStudentSuggestion_basedOnText() {
+    func test_subject_textChangeState_provideSubjectSuggestion_basedOnText() {
         let realmService = RealmServiceStub()
         let (sut, fileds, button) = makeSUT(realmService: realmService)
         let state = StateSpy(sut.state)
@@ -398,6 +397,21 @@ class ReportFormViewModelTests: XCTestCase {
         )
     }
     
+    func test_book_textChangeState_providesBookSuggestion_basedOnText() {
+        
+        let (sut, fileds, button) = makeSUT()
+        let state = StateSpy(sut.state)
+        
+        XCTAssertEqual(
+            state.values, [
+                .initial(fields: fileds.all, button: button),
+                
+            ]
+        )
+    }
+    
+    
+
     
     private func makeSUT(realmService: RealmServiceStub = .init()) -> (
         sut: ReportFormViewModel,
