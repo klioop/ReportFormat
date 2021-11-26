@@ -70,7 +70,7 @@ struct ReportFormViewModel {
             book.focus.map { .focus(field: book, suggestionViewModels: [])},
             searchStudentFromRealm(for: student),
             tapReturn.map { .initial(fields: allFields, button: button) },
-            select.map {  .initial(fields: allFields, button: button) }
+            select.map { .initial(fields: allFields, button: button) }
         )
     }
     
@@ -83,7 +83,7 @@ struct ReportFormViewModel {
                     .asObservable()
             }
             .map { students in
-                let viewModels = students.map { [select] in SuggestionViewModel.student(.init($0, select: select)) }
+                let viewModels = students.map { [select] in StudentSuggestionViewModel.init($0, select: select) }
                 return .focus(field: student, suggestionViewModels: viewModels)
             }
     }
@@ -95,8 +95,6 @@ struct FieldViewModel: Equatable {
     
     let text = PublishRelay<String>()
     let focus = PublishRelay<Void>()
-    
-    
     
     static func ==(lhs: FieldViewModel, rhs: FieldViewModel) -> Bool {
         return true
@@ -128,7 +126,7 @@ struct DatePickerViewModel: Equatable {
 }
 
 
-struct StudentSuggestionViewModel: Equatable {
+struct StudentSuggestionViewModel: Equatable, SuggestionViewModelProtocol {
     let name: String
     let select: PublishRelay<Void>
     
@@ -148,8 +146,14 @@ struct StudentSuggestionViewModel: Equatable {
     }
 }
 
-struct SubjectSuggestionViewModel: Equatable {
-    let name = ""
+struct SubjectSuggestionViewModel: Equatable, SuggestionViewModelProtocol {
+    let name: String
+    let select: PublishRelay<Void>
+    
+    init(_ subjectObject: SubjectObject, select: PublishRelay<Void>) {
+        self.name = subjectObject.name
+        self.select = select
+    }
     
     static func ==(lhs: SubjectSuggestionViewModel, rhs: SubjectSuggestionViewModel) -> Bool {
         return true
@@ -165,15 +169,17 @@ struct BookSuggestion {
 }
     
 enum State: Equatable {
-        case initial(fields: [FieldViewModel], button: ButtonViewModel)
-        case focusDate(datePickerVM: DatePickerViewModel)
-        case focus(field: FieldViewModel, suggestionViewModels: [SuggestionViewModel])
-    }
-
-enum SuggestionViewModel: Equatable {
-    case student(StudentSuggestionViewModel)
-    case subject(SubjectSuggestionViewModel)
+    case initial(fields: [FieldViewModel], button: ButtonViewModel)
+    case focusDate(datePickerVM: DatePickerViewModel)
+    case focus(field: FieldViewModel, suggestionViewModels: [SuggestionViewModelProtocol])
     
+    static func == (lhs: State, rhs: State) -> Bool{
+        return true
+    }
+}
+
+protocol SuggestionViewModelProtocol {
+    var select: PublishRelay<Void> { get }
 }
 
 
@@ -280,7 +286,7 @@ class ReportFormViewModelTests: XCTestCase {
         let state = StateSpy(sut.state)
         
         fileds.student.text.accept(realmService.studentStub.studentName)
-        let viewModels = realmService.studentStub.students.map { SuggestionViewModel.student(.init($0))}
+        let viewModels = realmService.studentStub.students.map { StudentSuggestionViewModel.init($0) }
         
         XCTAssertEqual(
             state.values, [
@@ -296,7 +302,7 @@ class ReportFormViewModelTests: XCTestCase {
         let state = StateSpy(sut.state)
         
         fileds.student.text.accept(realmService.studentStub.studentName)
-        let viewModels = realmService.studentStub.students.map { SuggestionViewModel.student(.init($0))}
+        let viewModels = realmService.studentStub.students.map { StudentSuggestionViewModel.init($0)}
         
         sut.tapReturn.accept(())
         
@@ -316,7 +322,7 @@ class ReportFormViewModelTests: XCTestCase {
         let state = StateSpy(sut.state)
         
         fileds.student.text.accept(realmService.studentStub.studentName)
-        let viewModels = realmService.studentStub.students.map { SuggestionViewModel.student(.init($0))}
+        let viewModels = realmService.studentStub.students.map(StudentSuggestionViewModel.init)
         
         let studentSuggestionVM = try XCTUnwrap(state.values.last?.firstRealmSuggestionViewModel)
         studentSuggestionVM.select.accept(())
@@ -409,21 +415,13 @@ private extension State {
         }
     }
     
-    var firstRealmSuggestionViewModel: StudentSuggestionViewModel? {
+    var firstRealmSuggestionViewModel: SuggestionViewModelProtocol? {
         switch self {
-        case let .focus(field: _, suggestionViewModels: suggestionVMs):
-            if let vm = suggestionVMs.first {
-                switch vm {
-                case let .student(studentSuggestionVM):
-                    return studentSuggestionVM
-                default:
-                    return nil
-                }
-            }
+        case let .focus(field: _, suggestionViewModels: viewModels):
+            return viewModels.first
         default:
             return nil
         }
-        return nil
     }
 }
 
