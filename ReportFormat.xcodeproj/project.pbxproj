@@ -22,6 +22,7 @@
 		31A7AF20274E5898006C087C /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 31A7AF1F274E5898006C087C /* RxSwift */; };
 		31A7AF23274E58AE006C087C /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = 31A7AF22274E58AE006C087C /* RxDataSources */; };
 		31CC750D2750F2F700A3F03D /* NaverAPIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CC750C2750F2F700A3F03D /* NaverAPIRouter.swift */; };
+		31CC750F2750F66E00A3F03D /* NaverAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CC750E2750F66E00A3F03D /* NaverAPIService.swift */; };
 		31D428972750BD2A00C9D09E /* HttpService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D428962750BD2A00C9D09E /* HttpService.swift */; };
 		31D428992750BDC600C9D09E /* HttpRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D428982750BDC600C9D09E /* HttpRouter.swift */; };
 		31D4289B2750BF6400C9D09E /* CustomErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D4289A2750BF6400C9D09E /* CustomErrors.swift */; };
@@ -50,6 +51,7 @@
 		31A7AEF7274E564C006C087C /* ReportFormatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReportFormatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		31A7AEFB274E564C006C087C /* ReportFormatTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportFormatTests.swift; sourceTree = "<group>"; };
 		31CC750C2750F2F700A3F03D /* NaverAPIRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverAPIRouter.swift; sourceTree = "<group>"; };
+		31CC750E2750F66E00A3F03D /* NaverAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverAPIService.swift; sourceTree = "<group>"; };
 		31D428962750BD2A00C9D09E /* HttpService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpService.swift; sourceTree = "<group>"; };
 		31D428982750BDC600C9D09E /* HttpRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpRouter.swift; sourceTree = "<group>"; };
 		31D4289A2750BF6400C9D09E /* CustomErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomErrors.swift; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 				31D428962750BD2A00C9D09E /* HttpService.swift */,
 				31D428982750BDC600C9D09E /* HttpRouter.swift */,
 				31CC750C2750F2F700A3F03D /* NaverAPIRouter.swift */,
+				31CC750E2750F66E00A3F03D /* NaverAPIService.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -305,6 +308,7 @@
 				31A7AEE7274E564A006C087C /* SceneDelegate.swift in Sources */,
 				31CC750D2750F2F700A3F03D /* NaverAPIRouter.swift in Sources */,
 				31D428972750BD2A00C9D09E /* HttpService.swift in Sources */,
+				31CC750F2750F66E00A3F03D /* NaverAPIService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
