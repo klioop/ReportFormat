@@ -24,6 +24,7 @@ class SubjectObject: Object {
 
 protocol RealmServiceProtocol {
     func getStudent(with name: String) -> Single<[StudentObject]>
+    func getSubject(with name: String) -> Single<[SubjectObject]>
 }
 
 class RealmService: RealmServiceProtocol {
@@ -31,9 +32,14 @@ class RealmService: RealmServiceProtocol {
 
     func getStudent(with name: String) -> Single<[StudentObject]> {
         let studentObjects = localRealm.objects(StudentObject.self).filter("name CONTAINS %@", "\(name)")
-    
         return .just(studentObjects.toArray())
     }
+    
+    func getSubject(with name: String) -> Single<[SubjectObject]> {
+        let subjectObjects = localRealm.objects(SubjectObject.self).filter("name CONTAINS %@", "\(name)")
+        return .just(subjectObjects.toArray())
+    }
+    
 }
 
 extension Results {
@@ -68,13 +74,14 @@ struct ReportFormViewModel {
             student.focus.map { .focus(field: student, suggestionViewModels: [])},
             subject.focus.map { .focus(field: subject, suggestionViewModels: [])},
             book.focus.map { .focus(field: book, suggestionViewModels: [])},
-            searchStudentFromRealm(for: student),
+            getStudentFromRealm(for: student),
             tapReturn.map { .initial(fields: allFields, button: button) },
-            select.map { .initial(fields: allFields, button: button) }
+            select.map { .initial(fields: allFields, button: button) },
+            getSubjectFromRealm(for: subject)
         )
     }
     
-    private func searchStudentFromRealm(for field: FieldViewModel) -> Observable<State> {
+    private func getStudentFromRealm(for field: FieldViewModel) -> Observable<State> {
         field.text
             .skip(while: { $0.isEmpty })
             .distinctUntilChanged()
@@ -84,7 +91,21 @@ struct ReportFormViewModel {
             }
             .map { students in
                 let viewModels = students.map { [select] in StudentSuggestionViewModel.init($0, select: select) }
-                return .focus(field: student, suggestionViewModels: viewModels)
+                return .focus(field: field, suggestionViewModels: viewModels)
+            }
+    }
+    
+    private func getSubjectFromRealm(for field: FieldViewModel) -> Observable<State> {
+        field.text
+            .skip(while: { $0.isEmpty })
+            .distinctUntilChanged()
+            .flatMap { [realmService] (text) in
+                realmService.getSubject(with: text)
+                    .asObservable()
+            }
+            .map { subjects in
+                let viewModels = subjects.map { [select] in SubjectSuggestionViewModel.init($0, select: select) }
+                return .focus(field: field, suggestionViewModels: viewModels)
             }
     }
     
@@ -153,6 +174,11 @@ struct SubjectSuggestionViewModel: Equatable, SuggestionViewModelProtocol {
     init(_ subjectObject: SubjectObject, select: PublishRelay<Void>) {
         self.name = subjectObject.name
         self.select = select
+    }
+    
+    init(_ subjectObject: SubjectObject) {
+        self.name = subjectObject.name
+        self.select = PublishRelay<Void>()
     }
     
     static func ==(lhs: SubjectSuggestionViewModel, rhs: SubjectSuggestionViewModel) -> Bool {
@@ -336,6 +362,43 @@ class ReportFormViewModelTests: XCTestCase {
         )
     }
     
+    func test_subject_textChangeState_providesStudentSuggestion_basedOnText() {
+        let realmService = RealmServiceStub()
+        let (sut, fileds, button) = makeSUT(realmService: realmService)
+        let state = StateSpy(sut.state)
+        
+        fileds.subject.text.accept(realmService.subjectStub.subjectName)
+        let viewModels = realmService.subjectStub.subjects.map(SubjectSuggestionViewModel.init)
+        
+        XCTAssertEqual(
+            state.values, [
+                .initial(fields: fileds.all, button: button),
+                .focus(field: fileds.subject, suggestionViewModels: viewModels)
+            ]
+        )
+    }
+    
+    func test_subject_textChangeState_selectSuggestionChangeState() throws {
+        let realmService = RealmServiceStub()
+        let (sut, fileds, button) = makeSUT(realmService: realmService)
+        let state = StateSpy(sut.state)
+        
+        fileds.subject.text.accept(realmService.subjectStub.subjectName)
+        let viewModels = realmService.subjectStub.subjects.map(SubjectSuggestionViewModel.init)
+        
+        let studentSuggestionVM = try XCTUnwrap(state.values.last?.firstRealmSuggestionViewModel)
+        studentSuggestionVM.select.accept(())
+        
+        XCTAssertEqual(
+            state.values, [
+                .initial(fields: fileds.all, button: button),
+                .focus(field: fileds.subject, suggestionViewModels: viewModels),
+                .initial(fields: fileds.all, button: button)
+            ]
+        )
+    }
+    
+    
     private func makeSUT(realmService: RealmServiceStub = .init()) -> (
         sut: ReportFormViewModel,
         fields: (
@@ -393,11 +456,14 @@ class ReportFormViewModelTests: XCTestCase {
         let localRealm = try! Realm()
                         
         lazy var studentStub = (studentName: "abc", students: [StudentObject(), StudentObject()])
+        lazy var subjectStub = (subjectName: "math", subjects: [SubjectObject(), SubjectObject()])
         
         func getStudent(with name: String) -> Single<[StudentObject]> {
-            let studentArr = Array<StudentObject>.init(repeating: StudentObject(), count: 2)
-            
-            return studentStub.studentName == name ? .just(studentArr) : .just([])
+            return studentStub.studentName == name ? .just(studentStub.students) : .just([])
+        }
+        
+        func getSubject(with name: String) -> Single<[SubjectObject]> {
+            return subjectStub.subjectName == name ? .just(subjectStub.subjects) : .just([])
         }
             
     }
