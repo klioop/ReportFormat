@@ -204,9 +204,6 @@ enum State: Equatable {
     }
 }
 
-protocol SuggestionViewModelProtocol {
-    var select: PublishRelay<Void> { get }
-}
 
 
 
@@ -408,7 +405,10 @@ class ReportFormViewModelTests: XCTestCase {
         XCTAssertEqual(
             state.values, [
                 .initial(fields: fields.all, button: button),
-                .focus(field: fields.book, suggestionViewModels: apiService.stub.books),
+                .focus(
+                    field: fields.book,
+                    suggestionViewModels: apiService.stub.books.map(BookSuggestionViewModel.init)
+                ),
             ]
         )
     }

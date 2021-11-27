@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		319899E9275252E80027234E /* NaverBookAPIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CC75112750F71800A3F03D /* NaverBookAPIProtocol.swift */; };
+		319899EA27525BDA0027234E /* BookSuggestionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CC75192751064F00A3F03D /* BookSuggestionViewModel.swift */; };
+		319899EE27525C170027234E /* SuggestionViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319899ED27525C170027234E /* SuggestionViewModelProtocol.swift */; };
+		319899EF27525C310027234E /* SuggestionViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319899ED27525C170027234E /* SuggestionViewModelProtocol.swift */; };
+		319899F127525CDB0027234E /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319899F027525CDB0027234E /* Book.swift */; };
+		319899F227525D0A0027234E /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319899F027525CDB0027234E /* Book.swift */; };
 		319B67E9274F3BCF000AABFA /* ReportFormViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319B67E8274F3BCF000AABFA /* ReportFormViewModelTests.swift */; };
 		319CFD5A274F24EE008EC96F /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 319CFD59274F24EE008EC96F /* Realm */; };
 		319CFD5C274F24EE008EC96F /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 319CFD5B274F24EE008EC96F /* RealmSwift */; };
@@ -46,6 +51,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		319899ED27525C170027234E /* SuggestionViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionViewModelProtocol.swift; sourceTree = "<group>"; };
+		319899F027525CDB0027234E /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		319B67E8274F3BCF000AABFA /* ReportFormViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportFormViewModelTests.swift; sourceTree = "<group>"; };
 		31A7AEE1274E564A006C087C /* ReportFormat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReportFormat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31A7AEE4274E564A006C087C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -94,6 +101,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		319899EC27525BFD0027234E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				319899ED27525C170027234E /* SuggestionViewModelProtocol.swift */,
+				31CC75192751064F00A3F03D /* BookSuggestionViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		319B67EA274F3F83000AABFA /* ViewModelTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -160,6 +176,7 @@
 			children = (
 				31D4289A2750BF6400C9D09E /* CustomErrors.swift */,
 				31CC75132750F79800A3F03D /* BookResponse.swift */,
+				319899F027525CDB0027234E /* Book.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -182,8 +199,8 @@
 		31CC7518275105F000A3F03D /* ReportForm */ = {
 			isa = PBXGroup;
 			children = (
+				319899EC27525BFD0027234E /* ViewModel */,
 				31CC751B27510CB200A3F03D /* View */,
-				31CC75192751064F00A3F03D /* BookSuggestionViewModel.swift */,
 			);
 			path = ReportForm;
 			sourceTree = "<group>";
@@ -339,7 +356,9 @@
 				31CC751A2751064F00A3F03D /* BookSuggestionViewModel.swift in Sources */,
 				31CC75172750FA7100A3F03D /* BookAPIManager.swift in Sources */,
 				31D4289B2750BF6400C9D09E /* CustomErrors.swift in Sources */,
+				319899EE27525C170027234E /* SuggestionViewModelProtocol.swift in Sources */,
 				31A7AEE5274E564A006C087C /* AppDelegate.swift in Sources */,
+				319899F127525CDB0027234E /* Book.swift in Sources */,
 				31CC75122750F71800A3F03D /* NaverBookAPIProtocol.swift in Sources */,
 				31CC751D27510CC200A3F03D /* ViewController.swift in Sources */,
 				31A7AEE7274E564A006C087C /* SceneDelegate.swift in Sources */,
@@ -353,9 +372,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				319899EF27525C310027234E /* SuggestionViewModelProtocol.swift in Sources */,
 				319B67E9274F3BCF000AABFA /* ReportFormViewModelTests.swift in Sources */,
+				319899F227525D0A0027234E /* Book.swift in Sources */,
 				319899E9275252E80027234E /* NaverBookAPIProtocol.swift in Sources */,
 				31A7AEFC274E564C006C087C /* ReportFormatTests.swift in Sources */,
+				319899EA27525BDA0027234E /* BookSuggestionViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
