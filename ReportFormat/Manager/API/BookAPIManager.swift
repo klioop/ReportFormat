@@ -11,38 +11,39 @@ import Alamofire
 
 final class BookAPIManager {
     
-    private var apiService = NaverAPIService()
-    public let shared: BookAPIManager = .init()
+    private lazy var apiService = NaverAPIService()
+    static let shared: BookAPIManager = .init()
     
 }
 
 extension BookAPIManager: NaverBookAPIProtocol {
     
-    func fetchBooks() -> Single<BookApiResponse> {
-        Single<BookApiResponse>.create { [apiService] single in
+    func fetchBooks(with query: [String: String]) -> Single<ResponseOfBooks> {
+        Single<ResponseOfBooks>.create { [apiService] single in
             do {
                 try NaverAPIRouter.getBooks
-                    .request(with: apiService)
-                    .responseJSON(completionHandler: { result in
+                    .request(with: apiService, parameters: query)
+                    .responseJSON { result in
                         do {
-                            let books = try BookAPIManager.parseJSON(from: result)
-                            single(.success(books))
+                            let books = try BookAPIManager.parseBooks(from: result)
+                            single(.success(books.items))
                         } catch {
-                            single(.failure(error))
+                            single(.failure(APIError.failedToParseJSON))
                         }
-                    })
+                    }
             } catch {
                 single(.failure(APIError.invalidUrl))
             }
+            
             return Disposables.create()
         }
     }
     
-    static func parseJSON(from result: AFDataResponse<Any>) throws -> BookApiResponse {
+    static func parseBooks(from result: AFDataResponse<Any>) throws -> BookResponse {
         let decoder = JSONDecoder()
         guard
             let data = result.data,
-            let dataParsed = try? decoder.decode(BookApiResponse.self, from: data)
+            let dataParsed = try? decoder.decode(BookResponse.self, from: data)
         else {
             throw APIError.failedToParseJSON
         }

@@ -10,10 +10,14 @@ import Alamofire
 
 class NaverAPIService: HttpService {
     
-    var sessionManager: Session = .default
-    
     func request(urlRequest: URLRequestConvertible) -> DataRequest {
-        sessionManager.request(urlRequest).validate(statusCode: 200..<400)
+        return AF.request(urlRequest).validate()
+    }
+    
+    func request(url: URLConvertible, method: HTTPMethod, headers: HTTPHeaders, parameters: Parameters?) -> DataRequest {
+        return AF.request(url, method: method, parameters: parameters, headers: headers)
+            .validate(statusCode: 200..<400)
+            
     }
     
 }

@@ -33,15 +33,18 @@ extension NaverAPIRouter: HttpRouter {
     }
     
     var headers: HTTPHeaders {
-        switch self {
-        case .getBooks:
-            return .init(
-                dictionaryLiteral:
-                    ("X-Naver-Client-Id", Secret.clientID),
-                    ("X-Naver-Client-Secret", Secret.clientSecret)
-            )
-        }
+        var headers = HTTPHeaders()
+        headers.add(.init(name: "X-Naver-Client-Id", value: "b9k_fmXD5I0489ym9jxL"))
+        headers.add(.init(name: "X-Naver-Client-Secret", value: "_whh_4dX6Y"))
+        return headers
     }
+    
+    func request(with service: NaverAPIService, parameters: [String: String]) throws -> DataRequest {
+        var url = try baseURL.asURL()
+        url = url.appendingPathComponent(path)
+        return service.request(url: url, method: method, headers: headers, parameters: parameters)
+    }
+    
     
 }
 

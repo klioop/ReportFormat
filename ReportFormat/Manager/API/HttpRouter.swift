@@ -17,12 +17,14 @@ protocol HttpRouter {
 }
 
 extension HttpRouter {
+    
     var headers: HTTPHeaders? { nil }
-    var parameter: Parameters? { nil }
+    
+    var parameters: Parameters? { nil }
     
     func body() throws -> Data? { return nil }
     
-    func asURLRequest() throws -> URLRequest {
+    func asUrlRequest() throws -> URLRequest {
         var url = try baseURL.asURL()
         url = url.appendingPathComponent(path)
         var request = try URLRequest(url: url, method: method, headers: headers)
@@ -32,7 +34,7 @@ extension HttpRouter {
     }
     
     func request(with service: HttpService) throws -> DataRequest {
-        try service.request(urlRequest: asURLRequest())
+        return try service.request(urlRequest: asUrlRequest())
     }
     
 }

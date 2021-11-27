@@ -9,6 +9,7 @@ import XCTest
 import RxSwift
 import RxRelay
 import RealmSwift
+@testable import ReportFormat
 
 class StudentObject: Object {
     @Persisted(primaryKey: true) var _id: ObjectId
@@ -477,6 +478,14 @@ class ReportFormViewModelTests: XCTestCase {
             return subjectStub.subjectName == name ? .just(subjectStub.subjects) : .just([])
         }
             
+    }
+    
+    class BookAPIManagerStub: NaverBookAPIProtocol {
+        
+        func fetchBooks() -> Single<BookApiResponse> {
+            <#code#>
+        }
+        
     }
 
     

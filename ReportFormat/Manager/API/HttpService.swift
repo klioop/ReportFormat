@@ -6,9 +6,8 @@
 //
 
 import Alamofire
+import Foundation
 
 protocol HttpService {
-    var sessionManager: Session { get set }
-    
     func request(urlRequest: URLRequestConvertible) -> DataRequest
 }

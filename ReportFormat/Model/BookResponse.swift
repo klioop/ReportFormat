@@ -19,4 +19,5 @@ struct BookResponse: Codable {
     
 }
 
-typealias BookApiResponse = [BookResponse.Item]
+typealias ResponseOfBooks = [BookResponse.Item]
+
