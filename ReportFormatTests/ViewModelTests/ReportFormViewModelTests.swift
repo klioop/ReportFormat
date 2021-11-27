@@ -399,19 +399,24 @@ class ReportFormViewModelTests: XCTestCase {
     }
     
     func test_book_textChangeState_providesBookSuggestion_basedOnText() {
-        
-        let (sut, fileds, button) = makeSUT()
+        let apiService = BookAPIManagerStub()
+        let (sut, fields, button) = makeSUT(apiService: apiService)
         let state = StateSpy(sut.state)
+        
+        fields.book.text.accept(apiService.stub.query)
         
         XCTAssertEqual(
             state.values, [
-                .initial(fields: fileds.all, button: button),
-                
+                .initial(fields: fields.all, button: button),
+                .focus(field: fields.book, suggestionViewModels: apiService.stub.books),
             ]
         )
     }
     
-    private func makeSUT(realmService: RealmServiceStub = .init()) -> (
+    private func makeSUT(
+        realmService: RealmServiceStub = .init(),
+        apiService: BookAPIManagerStub = .init()
+    ) -> (
         sut: ReportFormViewModel,
         fields: (
             date: FieldViewModel,
@@ -482,9 +487,13 @@ class ReportFormViewModelTests: XCTestCase {
     
     class BookAPIManagerStub: NaverBookAPIProtocol {
         
-        func fetchBooks() -> Single<BookApiResponse> {
-            <#code#>
+        let stub = (query: "book", books: [BookResponse.Item(), BookResponse.Item()])
+        
+        func fetchBooks(with query: [String : String]) -> Single<ResponseOfBooks> {
+            let query = query["query"] ?? "?"
+            return stub.query == query ? .just(stub.books) : .just([])
         }
+        
         
     }
 

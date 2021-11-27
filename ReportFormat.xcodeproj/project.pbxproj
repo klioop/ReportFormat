@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		319899E9275252E80027234E /* NaverBookAPIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CC75112750F71800A3F03D /* NaverBookAPIProtocol.swift */; };
 		319B67E9274F3BCF000AABFA /* ReportFormViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319B67E8274F3BCF000AABFA /* ReportFormViewModelTests.swift */; };
 		319CFD5A274F24EE008EC96F /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 319CFD59274F24EE008EC96F /* Realm */; };
 		319CFD5C274F24EE008EC96F /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 319CFD5B274F24EE008EC96F /* RealmSwift */; };
@@ -353,6 +354,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				319B67E9274F3BCF000AABFA /* ReportFormViewModelTests.swift in Sources */,
+				319899E9275252E80027234E /* NaverBookAPIProtocol.swift in Sources */,
 				31A7AEFC274E564C006C087C /* ReportFormatTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

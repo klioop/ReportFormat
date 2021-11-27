@@ -17,7 +17,16 @@ struct BookResponse: Codable {
         let publisher: String
     }
     
+    
 }
 
 typealias ResponseOfBooks = [BookResponse.Item]
 
+extension BookResponse.Item {
+    init () {
+        self.title = ""
+        self.image = ""
+        self.pubdate = ""
+        self.publisher = ""
+    }
+}
