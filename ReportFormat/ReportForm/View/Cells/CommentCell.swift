@@ -10,6 +10,8 @@ import UIKit
 class CommentCell: UITableViewCell {
 
     
+    @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var commentTextView: UITextView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

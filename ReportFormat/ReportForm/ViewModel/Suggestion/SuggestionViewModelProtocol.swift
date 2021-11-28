@@ -8,7 +8,14 @@
 
 import RxCocoa
 
+enum SuggestionType {
+    case book
+    case student
+    case subject
+}
+
 protocol SuggestionViewModelProtocol {
     var select: PublishRelay<Void> { get }
     var identity: String { get }
+    var `type`: SuggestionType { get }
 }

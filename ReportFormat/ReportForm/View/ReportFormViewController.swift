@@ -39,6 +39,8 @@ class ReportFormViewController: UIViewController, StoryBoarded {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var writeButton: UIButton!
     
+    var viewModel: ReportFormViewModel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -61,12 +63,16 @@ class ReportFormViewController: UIViewController, StoryBoarded {
                 return cell
             case let .suggestion(vm):
                 let cell = UITableViewCell()
-                if let studentVM = vm as? StudentSuggestionViewModel {
-                    cell.textLabel?.text = studentVM.name
-                } else if let subjectVM = vm as? SubjectSuggestionViewModel {
-                    cell.textLabel?.text = subjectVM.name
-                } else if let bookVM = vm as? BookSuggestionViewModel {
+                switch vm.type {
+                case .book:
+                    let bookVM = vm as! BookSuggestionViewModel
                     cell.textLabel?.text = bookVM.text
+                case .subject:
+                    let subjetVM = vm as! SubjectSuggestionViewModel
+                    cell.textLabel?.text = subjetVM.name
+                case .student:
+                    let studentVM = vm as! StudentSuggestionViewModel
+                    cell.textLabel?.text = studentVM.name
                 }
                 return cell
             case let .datePicker(vm):
@@ -79,6 +85,45 @@ class ReportFormViewController: UIViewController, StoryBoarded {
                 return cell
             }
         }
+        let sections: Observable<[ReportFormSection]> = viewModel.state
+            .map { state in
+                switch state {
+                case let .initial(fields: fields, button: _):
+                    return [
+                        AnimatableSectionModel(
+                            model: "Fields",
+                            items: fields.map(CellViewModel.fields)
+                            )
+                    ]
+                case let .focusDate(datePickerVM: dateVM):
+                    return [
+                        AnimatableSectionModel(
+                            model: "DatePicker",
+                            items: [ .datePicker(dateVM) ]
+                        )
+                    ]
+                case let .focus(field: field, suggestionViewModels: suggestions):
+                    return [
+                        AnimatableSectionModel(
+                            model: "Field",
+                            items: [.fields(field)]
+                        ),
+                        AnimatableSectionModel(
+                            model: "Suggestions",
+                            items: suggestions.map(CellViewModel.suggestion)
+                        )
+                    ]
+                case let .focusComment(vm):
+                    return [
+                        AnimatableSectionModel(
+                            model: "Comment",
+                            items: [.comment(vm)]
+                        )
+                    ]
+                }
+            
+            }
+        
     }
 }
 

@@ -14,6 +14,7 @@ struct BookSuggestionViewModel: SuggestionViewModelProtocol {
     
     var text: String
     var select: PublishRelay<Void>
+    var type: SuggestionType = .book
     
     init(_ book: Book, select: PublishRelay<Void>) {
         self.select = select

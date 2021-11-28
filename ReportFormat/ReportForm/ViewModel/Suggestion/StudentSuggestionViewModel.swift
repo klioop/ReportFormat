@@ -15,6 +15,7 @@ struct StudentSuggestionViewModel: SuggestionViewModelProtocol {
     
     let name: String
     let select: PublishRelay<Void>
+    var type: SuggestionType = .student
     
     init(_ studentObject: StudentObject, select: PublishRelay<Void>) {
         self.name = studentObject.name

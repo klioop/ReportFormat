@@ -12,6 +12,7 @@ import RxDataSources
 struct SubjectSuggestionViewModel: SuggestionViewModelProtocol {
     let name: String
     let select: PublishRelay<Void>
+    var type: SuggestionType = .subject
     
     init(_ subjectObject: SubjectObject, select: PublishRelay<Void>) {
         self.name = subjectObject.name
