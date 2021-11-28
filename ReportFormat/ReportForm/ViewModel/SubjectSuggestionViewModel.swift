@@ -16,12 +16,14 @@ struct SubjectSuggestionViewModel: SuggestionViewModelProtocol {
         self.name = subjectObject.name
         self.select = select
     }
-    
+
+}
+
+extension SubjectSuggestionViewModel {
     init(_ subjectObject: SubjectObject) {
         self.name = subjectObject.name
         self.select = PublishRelay<Void>()
     }
-   
 }
 
 extension SubjectSuggestionViewModel: Equatable {
