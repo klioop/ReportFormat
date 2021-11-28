@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DatePickerCell" rowHeight="235" id="KGk-i7-Jjw" customClass="DatePickerCell" customModule="ReportFormat" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="372" height="235"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="372" height="235"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="tPO-qP-Hdq">
+                        <rect key="frame" x="0.0" y="0.0" width="372" height="162"/>
+                    </datePicker>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IOh-Ha-dvl">
+                        <rect key="frame" x="110" y="182" width="151" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="YfW-DJ-Gaq"/>
+                        </constraints>
+                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                        <state key="normal" title="선택"/>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="IOh-Ha-dvl" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="90" id="Tt1-O4-4Hy"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="IOh-Ha-dvl" secondAttribute="trailing" constant="91" id="ZdV-7P-6xc"/>
+                    <constraint firstItem="tPO-qP-Hdq" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="aDX-E2-Xoq"/>
+                    <constraint firstAttribute="trailing" secondItem="tPO-qP-Hdq" secondAttribute="trailing" id="dsg-pS-lnK"/>
+                    <constraint firstItem="tPO-qP-Hdq" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="o0t-DR-s6f"/>
+                    <constraint firstItem="IOh-Ha-dvl" firstAttribute="top" secondItem="tPO-qP-Hdq" secondAttribute="bottom" constant="20" id="qxL-Rf-WUV"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="datePicker" destination="tPO-qP-Hdq" id="4id-n8-tV3"/>
+                <outlet property="selectionButton" destination="IOh-Ha-dvl" id="RR3-uv-GfV"/>
+            </connections>
+            <point key="canvasLocation" x="169.56521739130437" y="188.50446428571428"/>
+        </tableViewCell>
+    </objects>
+</document>
