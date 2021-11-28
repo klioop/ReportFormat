@@ -89,7 +89,6 @@ class ReportFormViewController: UIViewController, StoryBoarded {
             }
         }
         let sections = createSections(with: viewModel.state)
-        
         sections
             .bind(to: self.tableView.rx.items(dataSource: dataSource))
             .disposed(by: bag)

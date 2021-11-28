@@ -34,8 +34,8 @@ extension NaverAPIRouter: HttpRouter {
     
     var headers: HTTPHeaders {
         var headers = HTTPHeaders()
-        headers.add(.init(name: "X-Naver-Client-Id", value: "b9k_fmXD5I0489ym9jxL"))
-        headers.add(.init(name: "X-Naver-Client-Secret", value: "_whh_4dX6Y"))
+        headers.add(.init(name: "X-Naver-Client-Id", value: Secret.clientID))
+        headers.add(.init(name: "X-Naver-Client-Secret", value: Secret.clientSecret))
         return headers
     }
     
