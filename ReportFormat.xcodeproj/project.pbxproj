@@ -71,6 +71,8 @@
 		31D1B8D127536C7400F5ABF7 /* Drawble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B8CB27536C7400F5ABF7 /* Drawble.swift */; };
 		31D1B8D327536CBD00F5ABF7 /* StoryBoarded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B8D227536CBD00F5ABF7 /* StoryBoarded.swift */; };
 		31D1B8D427536CBD00F5ABF7 /* StoryBoarded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B8D227536CBD00F5ABF7 /* StoryBoarded.swift */; };
+		31D1B8D6275371A900F5ABF7 /* ReportFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B8D5275371A900F5ABF7 /* ReportFormViewController.swift */; };
+		31D1B8D7275371A900F5ABF7 /* ReportFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B8D5275371A900F5ABF7 /* ReportFormViewController.swift */; };
 		31D428972750BD2A00C9D09E /* HttpService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D428962750BD2A00C9D09E /* HttpService.swift */; };
 		31D428992750BDC600C9D09E /* HttpRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D428982750BDC600C9D09E /* HttpRouter.swift */; };
 		31D4289B2750BF6400C9D09E /* CustomErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D4289A2750BF6400C9D09E /* CustomErrors.swift */; };
@@ -125,6 +127,7 @@
 		31D1B8CA27536C7400F5ABF7 /* RouterProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouterProtocol.swift; sourceTree = "<group>"; };
 		31D1B8CB27536C7400F5ABF7 /* Drawble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Drawble.swift; sourceTree = "<group>"; };
 		31D1B8D227536CBD00F5ABF7 /* StoryBoarded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryBoarded.swift; sourceTree = "<group>"; };
+		31D1B8D5275371A900F5ABF7 /* ReportFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportFormViewController.swift; sourceTree = "<group>"; };
 		31D428962750BD2A00C9D09E /* HttpService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpService.swift; sourceTree = "<group>"; };
 		31D428982750BDC600C9D09E /* HttpRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpRouter.swift; sourceTree = "<group>"; };
 		31D4289A2750BF6400C9D09E /* CustomErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomErrors.swift; sourceTree = "<group>"; };
@@ -201,8 +204,8 @@
 		31A7AEE3274E564A006C087C /* ReportFormat */ = {
 			isa = PBXGroup;
 			children = (
-				31D1B8BE2753687100F5ABF7 /* CoordinatorSetting */,
 				31D4289C2750C26100C9D09E /* Secret */,
+				31D1B8BE2753687100F5ABF7 /* CoordinatorSetting */,
 				31A7AF26274E58FD006C087C /* Utilities */,
 				31A7AF25274E58F7006C087C /* Manager */,
 				31A7AF24274E58E7006C087C /* Model */,
@@ -275,6 +278,7 @@
 			isa = PBXGroup;
 			children = (
 				31CC751C27510CC200A3F03D /* ViewController.swift */,
+				31D1B8D5275371A900F5ABF7 /* ReportFormViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -471,6 +475,7 @@
 				31D1B8D327536CBD00F5ABF7 /* StoryBoarded.swift in Sources */,
 				319899F127525CDB0027234E /* Book.swift in Sources */,
 				31D1B8BB2753613600F5ABF7 /* ReportFormState.swift in Sources */,
+				31D1B8D6275371A900F5ABF7 /* ReportFormViewController.swift in Sources */,
 				31D1B8B22753605100F5ABF7 /* StudentSuggestionViewModel.swift in Sources */,
 				31D1B8CC27536C7400F5ABF7 /* Router.swift in Sources */,
 				31CC75122750F71800A3F03D /* NaverBookAPIProtocol.swift in Sources */,
@@ -507,6 +512,7 @@
 				31D1B8A327535E7400F5ABF7 /* ButtonViewModel.swift in Sources */,
 				31D1B8AD27535F9E00F5ABF7 /* RealmService.swift in Sources */,
 				319899E9275252E80027234E /* NaverBookAPIProtocol.swift in Sources */,
+				31D1B8D7275371A900F5ABF7 /* ReportFormViewController.swift in Sources */,
 				31D1B8C427536BCB00F5ABF7 /* BaseCoordinator.swift in Sources */,
 				31A7AEFC274E564C006C087C /* ReportFormatTests.swift in Sources */,
 				31D1B8BC2753613600F5ABF7 /* ReportFormState.swift in Sources */,
