@@ -35,6 +35,28 @@
 		31CC751A2751064F00A3F03D /* BookSuggestionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CC75192751064F00A3F03D /* BookSuggestionViewModel.swift */; };
 		31CC751D27510CC200A3F03D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CC751C27510CC200A3F03D /* ViewController.swift */; };
 		31D1B89A275349DC00F5ABF7 /* BookResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CC75132750F79800A3F03D /* BookResponse.swift */; };
+		31D1B89C27535DBF00F5ABF7 /* ReportFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B89B27535DBF00F5ABF7 /* ReportFormViewModel.swift */; };
+		31D1B89D27535DBF00F5ABF7 /* ReportFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B89B27535DBF00F5ABF7 /* ReportFormViewModel.swift */; };
+		31D1B89F27535E1900F5ABF7 /* FieldViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B89E27535E1800F5ABF7 /* FieldViewModel.swift */; };
+		31D1B8A027535E1900F5ABF7 /* FieldViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B89E27535E1800F5ABF7 /* FieldViewModel.swift */; };
+		31D1B8A227535E7400F5ABF7 /* ButtonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B8A127535E7400F5ABF7 /* ButtonViewModel.swift */; };
+		31D1B8A327535E7400F5ABF7 /* ButtonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B8A127535E7400F5ABF7 /* ButtonViewModel.swift */; };
+		31D1B8A527535E9E00F5ABF7 /* DatePickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B8A427535E9E00F5ABF7 /* DatePickerViewModel.swift */; };
+		31D1B8A627535E9E00F5ABF7 /* DatePickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B8A427535E9E00F5ABF7 /* DatePickerViewModel.swift */; };
+		31D1B8A927535F7400F5ABF7 /* RealmServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B8A827535F7400F5ABF7 /* RealmServiceProtocol.swift */; };
+		31D1B8AA27535F7400F5ABF7 /* RealmServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B8A827535F7400F5ABF7 /* RealmServiceProtocol.swift */; };
+		31D1B8AC27535F9E00F5ABF7 /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B8AB27535F9E00F5ABF7 /* RealmService.swift */; };
+		31D1B8AD27535F9E00F5ABF7 /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B8AB27535F9E00F5ABF7 /* RealmService.swift */; };
+		31D1B8AF27535FF800F5ABF7 /* Objects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B8AE27535FF800F5ABF7 /* Objects.swift */; };
+		31D1B8B22753605100F5ABF7 /* StudentSuggestionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B8B12753605100F5ABF7 /* StudentSuggestionViewModel.swift */; };
+		31D1B8B32753605100F5ABF7 /* StudentSuggestionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B8B12753605100F5ABF7 /* StudentSuggestionViewModel.swift */; };
+		31D1B8B5275360AD00F5ABF7 /* SubjectSuggestionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B8B4275360AD00F5ABF7 /* SubjectSuggestionViewModel.swift */; };
+		31D1B8B6275360AD00F5ABF7 /* SubjectSuggestionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B8B4275360AD00F5ABF7 /* SubjectSuggestionViewModel.swift */; };
+		31D1B8B8275360EE00F5ABF7 /* CommentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B8B7275360EE00F5ABF7 /* CommentViewModel.swift */; };
+		31D1B8B9275360EE00F5ABF7 /* CommentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B8B7275360EE00F5ABF7 /* CommentViewModel.swift */; };
+		31D1B8BB2753613600F5ABF7 /* ReportFormState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B8BA2753613600F5ABF7 /* ReportFormState.swift */; };
+		31D1B8BC2753613600F5ABF7 /* ReportFormState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B8BA2753613600F5ABF7 /* ReportFormState.swift */; };
+		31D1B8BD2753651400F5ABF7 /* Objects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B8AE27535FF800F5ABF7 /* Objects.swift */; };
 		31D428972750BD2A00C9D09E /* HttpService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D428962750BD2A00C9D09E /* HttpService.swift */; };
 		31D428992750BDC600C9D09E /* HttpRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D428982750BDC600C9D09E /* HttpRouter.swift */; };
 		31D4289B2750BF6400C9D09E /* CustomErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D4289A2750BF6400C9D09E /* CustomErrors.swift */; };
@@ -71,6 +93,17 @@
 		31CC75162750FA7100A3F03D /* BookAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookAPIManager.swift; sourceTree = "<group>"; };
 		31CC75192751064F00A3F03D /* BookSuggestionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookSuggestionViewModel.swift; sourceTree = "<group>"; };
 		31CC751C27510CC200A3F03D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		31D1B89B27535DBF00F5ABF7 /* ReportFormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportFormViewModel.swift; sourceTree = "<group>"; };
+		31D1B89E27535E1800F5ABF7 /* FieldViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldViewModel.swift; sourceTree = "<group>"; };
+		31D1B8A127535E7400F5ABF7 /* ButtonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonViewModel.swift; sourceTree = "<group>"; };
+		31D1B8A427535E9E00F5ABF7 /* DatePickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewModel.swift; sourceTree = "<group>"; };
+		31D1B8A827535F7400F5ABF7 /* RealmServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmServiceProtocol.swift; sourceTree = "<group>"; };
+		31D1B8AB27535F9E00F5ABF7 /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
+		31D1B8AE27535FF800F5ABF7 /* Objects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Objects.swift; sourceTree = "<group>"; };
+		31D1B8B12753605100F5ABF7 /* StudentSuggestionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentSuggestionViewModel.swift; sourceTree = "<group>"; };
+		31D1B8B4275360AD00F5ABF7 /* SubjectSuggestionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectSuggestionViewModel.swift; sourceTree = "<group>"; };
+		31D1B8B7275360EE00F5ABF7 /* CommentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewModel.swift; sourceTree = "<group>"; };
+		31D1B8BA2753613600F5ABF7 /* ReportFormState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportFormState.swift; sourceTree = "<group>"; };
 		31D428962750BD2A00C9D09E /* HttpService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpService.swift; sourceTree = "<group>"; };
 		31D428982750BDC600C9D09E /* HttpRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpRouter.swift; sourceTree = "<group>"; };
 		31D4289A2750BF6400C9D09E /* CustomErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomErrors.swift; sourceTree = "<group>"; };
@@ -107,6 +140,13 @@
 			children = (
 				319899ED27525C170027234E /* SuggestionViewModelProtocol.swift */,
 				31CC75192751064F00A3F03D /* BookSuggestionViewModel.swift */,
+				31D1B89B27535DBF00F5ABF7 /* ReportFormViewModel.swift */,
+				31D1B89E27535E1800F5ABF7 /* FieldViewModel.swift */,
+				31D1B8A127535E7400F5ABF7 /* ButtonViewModel.swift */,
+				31D1B8A427535E9E00F5ABF7 /* DatePickerViewModel.swift */,
+				31D1B8B12753605100F5ABF7 /* StudentSuggestionViewModel.swift */,
+				31D1B8B4275360AD00F5ABF7 /* SubjectSuggestionViewModel.swift */,
+				31D1B8B7275360EE00F5ABF7 /* CommentViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -185,6 +225,7 @@
 		31A7AF25274E58F7006C087C /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				31D1B8A727535F5400F5ABF7 /* Realm */,
 				31D428952750BCE400C9D09E /* API */,
 			);
 			path = Manager;
@@ -200,6 +241,7 @@
 		31CC7518275105F000A3F03D /* ReportForm */ = {
 			isa = PBXGroup;
 			children = (
+				31D1B8BA2753613600F5ABF7 /* ReportFormState.swift */,
 				319899EC27525BFD0027234E /* ViewModel */,
 				31CC751B27510CB200A3F03D /* View */,
 			);
@@ -212,6 +254,16 @@
 				31CC751C27510CC200A3F03D /* ViewController.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		31D1B8A727535F5400F5ABF7 /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				31D1B8A827535F7400F5ABF7 /* RealmServiceProtocol.swift */,
+				31D1B8AB27535F9E00F5ABF7 /* RealmService.swift */,
+				31D1B8AE27535FF800F5ABF7 /* Objects.swift */,
+			);
+			path = Realm;
 			sourceTree = "<group>";
 		};
 		31D428952750BCE400C9D09E /* API */ = {
@@ -351,17 +403,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				31D1B89C27535DBF00F5ABF7 /* ReportFormViewModel.swift in Sources */,
+				31D1B89F27535E1900F5ABF7 /* FieldViewModel.swift in Sources */,
+				31D1B8AF27535FF800F5ABF7 /* Objects.swift in Sources */,
+				31D1B8B8275360EE00F5ABF7 /* CommentViewModel.swift in Sources */,
 				31D428992750BDC600C9D09E /* HttpRouter.swift in Sources */,
 				31CC75142750F79800A3F03D /* BookResponse.swift in Sources */,
 				31D4289E2750C27200C9D09E /* Secret.swift in Sources */,
+				31D1B8B5275360AD00F5ABF7 /* SubjectSuggestionViewModel.swift in Sources */,
 				31CC751A2751064F00A3F03D /* BookSuggestionViewModel.swift in Sources */,
+				31D1B8A227535E7400F5ABF7 /* ButtonViewModel.swift in Sources */,
 				31CC75172750FA7100A3F03D /* BookAPIManager.swift in Sources */,
 				31D4289B2750BF6400C9D09E /* CustomErrors.swift in Sources */,
+				31D1B8A927535F7400F5ABF7 /* RealmServiceProtocol.swift in Sources */,
 				319899EE27525C170027234E /* SuggestionViewModelProtocol.swift in Sources */,
+				31D1B8A527535E9E00F5ABF7 /* DatePickerViewModel.swift in Sources */,
 				31A7AEE5274E564A006C087C /* AppDelegate.swift in Sources */,
 				319899F127525CDB0027234E /* Book.swift in Sources */,
+				31D1B8BB2753613600F5ABF7 /* ReportFormState.swift in Sources */,
+				31D1B8B22753605100F5ABF7 /* StudentSuggestionViewModel.swift in Sources */,
 				31CC75122750F71800A3F03D /* NaverBookAPIProtocol.swift in Sources */,
 				31CC751D27510CC200A3F03D /* ViewController.swift in Sources */,
+				31D1B8AC27535F9E00F5ABF7 /* RealmService.swift in Sources */,
 				31A7AEE7274E564A006C087C /* SceneDelegate.swift in Sources */,
 				31CC750D2750F2F700A3F03D /* NaverAPIRouter.swift in Sources */,
 				31D428972750BD2A00C9D09E /* HttpService.swift in Sources */,
@@ -373,12 +436,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				31D1B8B32753605100F5ABF7 /* StudentSuggestionViewModel.swift in Sources */,
+				31D1B8B9275360EE00F5ABF7 /* CommentViewModel.swift in Sources */,
+				31D1B8A627535E9E00F5ABF7 /* DatePickerViewModel.swift in Sources */,
+				31D1B89D27535DBF00F5ABF7 /* ReportFormViewModel.swift in Sources */,
+				31D1B8BD2753651400F5ABF7 /* Objects.swift in Sources */,
 				319899EF27525C310027234E /* SuggestionViewModelProtocol.swift in Sources */,
+				31D1B8A027535E1900F5ABF7 /* FieldViewModel.swift in Sources */,
 				319B67E9274F3BCF000AABFA /* ReportFormViewModelTests.swift in Sources */,
+				31D1B8AA27535F7400F5ABF7 /* RealmServiceProtocol.swift in Sources */,
 				31D1B89A275349DC00F5ABF7 /* BookResponse.swift in Sources */,
 				319899F227525D0A0027234E /* Book.swift in Sources */,
+				31D1B8A327535E7400F5ABF7 /* ButtonViewModel.swift in Sources */,
+				31D1B8AD27535F9E00F5ABF7 /* RealmService.swift in Sources */,
 				319899E9275252E80027234E /* NaverBookAPIProtocol.swift in Sources */,
 				31A7AEFC274E564C006C087C /* ReportFormatTests.swift in Sources */,
+				31D1B8BC2753613600F5ABF7 /* ReportFormState.swift in Sources */,
+				31D1B8B6275360AD00F5ABF7 /* SubjectSuggestionViewModel.swift in Sources */,
 				319899EA27525BDA0027234E /* BookSuggestionViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
