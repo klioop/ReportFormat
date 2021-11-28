@@ -41,9 +41,12 @@ class ReportFormViewController: UIViewController, StoryBoarded {
     
     var viewModel: ReportFormViewModel!
     
+    private let bag = DisposeBag()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        binding()
     }
     
     private func setupUI() {
@@ -85,7 +88,16 @@ class ReportFormViewController: UIViewController, StoryBoarded {
                 return cell
             }
         }
-        let sections: Observable<[ReportFormSection]> = viewModel.state
+        let sections = createSections(with: viewModel.state)
+        
+        sections
+            .bind(to: self.tableView.rx.items(dataSource: dataSource))
+            .disposed(by: bag)
+        
+    }
+    
+    private func createSections(with state: Observable<State>) -> Observable<[ReportFormSection]> {
+        return state
             .map { state in
                 switch state {
                 case let .initial(fields: fields, button: _):
@@ -93,7 +105,7 @@ class ReportFormViewController: UIViewController, StoryBoarded {
                         AnimatableSectionModel(
                             model: "Fields",
                             items: fields.map(CellViewModel.fields)
-                            )
+                        )
                     ]
                 case let .focusDate(datePickerVM: dateVM):
                     return [
@@ -121,9 +133,7 @@ class ReportFormViewController: UIViewController, StoryBoarded {
                         )
                     ]
                 }
-            
             }
-        
     }
 }
 

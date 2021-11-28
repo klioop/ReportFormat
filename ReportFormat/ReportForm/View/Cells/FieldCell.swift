@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class FieldCell: UITableViewCell {
 
@@ -13,13 +15,25 @@ class FieldCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var textField: UITextField!
     
+    let focusButton = UIButton()
+    let bag = DisposeBag()
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        contentView.addSubview(focusButton)
     }
     
-    func configure(with viewModel: FieldViewModel) {
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        focusButton.frame = textField.frame
+    }
+    
+    func configure(with viewModel: FieldViewModel) -> Void {
         titleLabel.text = viewModel.title
+        
+        focusButton.rx.tap
+            .bind(to: viewModel.focus)
+            .disposed(by: bag)
     }
     
 }
