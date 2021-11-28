@@ -56,23 +56,24 @@ struct ReportFormViewModel {
     let subject: FieldViewModel
     let book: FieldViewModel
     let range: FieldViewModel
-    let content: FieldViewModel
+    let comment: FieldViewModel
     let button: ButtonViewModel
     let realmService: RealmServiceProtocol
     let bookService: NaverBookAPIProtocol
     
-    let tapDatePickerViewButton = PublishRelay<Void>()
+    let tapButton = PublishRelay<Void>()
     let tapReturn = PublishRelay<Void>()
     let select = PublishRelay<Void>()
     
     var state: Observable<State> {
-        let allFields = [date, student, subject, book, range, content]
-        let datePickerViewModel = DatePickerViewModel(tapButton: tapDatePickerViewButton)
+        let allFields = [date, student, subject, book, range, comment]
+        let datePickerViewModel = DatePickerViewModel(tapButton: tapButton)
+        let commentViewModel = CommentViewModel(tapButton: tapButton)
         
         return Observable.merge(
             .just(.initial(fields: allFields, button: button)),
             date.focus.map { .focusDate(datePickerVM: datePickerViewModel) },
-            tapDatePickerViewButton.map {.initial(fields: allFields, button: button) },
+            tapButton.map {.initial(fields: allFields, button: button) },
             student.focus.map { .focus(field: student, suggestionViewModels: [])},
             subject.focus.map { .focus(field: subject, suggestionViewModels: [])},
             book.focus.map { .focus(field: book, suggestionViewModels: [])},
@@ -80,14 +81,15 @@ struct ReportFormViewModel {
             tapReturn.map { .initial(fields: allFields, button: button) },
             select.map { .initial(fields: allFields, button: button) },
             getSubjectFromRealm(for: subject),
-            searchBooksFromNetwork(for: book)
+            searchBooksFromNetwork(for: book),
+            comment.focus.map { .focusComment(commentViewModel) }
         )
     }
     
     private func searchBooksFromNetwork(for field: FieldViewModel) -> Observable<State> {
         field.text
-            .skip(while: { $0.isEmpty })
             .distinctUntilChanged()
+            .skip(while: { $0.isEmpty })
             .flatMap { [bookService] query in
                 bookService.fetchBooks(with: ["query": "book"])
                     .asObservable()
@@ -100,8 +102,8 @@ struct ReportFormViewModel {
  
     private func getStudentFromRealm(for field: FieldViewModel) -> Observable<State> {
         field.text
-            .skip(while: { $0.isEmpty })
             .distinctUntilChanged()
+            .skip(while: { $0.isEmpty })
             .flatMap { [realmService] (text) in
                 realmService.getStudent(with: text)
                     .asObservable()
@@ -114,8 +116,8 @@ struct ReportFormViewModel {
     
     private func getSubjectFromRealm(for field: FieldViewModel) -> Observable<State> {
         field.text
-            .skip(while: { $0.isEmpty })
             .distinctUntilChanged()
+            .skip(while: { $0.isEmpty })
             .flatMap { [realmService] (text) in
                 realmService.getSubject(with: text)
                     .asObservable()
@@ -131,7 +133,7 @@ struct ReportFormViewModel {
 struct FieldViewModel: Equatable {
     let title: String = ""
     
-    let text = PublishRelay<String>()
+    let text = BehaviorRelay<String>(value: "")
     let focus = PublishRelay<Void>()
     
     static func ==(lhs: FieldViewModel, rhs: FieldViewModel) -> Bool {
@@ -202,10 +204,28 @@ struct SubjectSuggestionViewModel: Equatable, SuggestionViewModelProtocol {
     }
 }
 
+struct CommentViewModel: Equatable {
+    let tapButton: PublishRelay<Void>
+    let commentText = BehaviorRelay<String>(value: "")
+    
+    init(tapButton: PublishRelay<Void>) {
+        self.tapButton = tapButton
+    }
+    
+    init() {
+        self.tapButton = PublishRelay<Void>()
+    }
+    
+    static func ==(lhs: CommentViewModel, rhs: CommentViewModel) -> Bool {
+        return true
+    }
+}
+
 enum State: Equatable {
     case initial(fields: [FieldViewModel], button: ButtonViewModel)
     case focusDate(datePickerVM: DatePickerViewModel)
     case focus(field: FieldViewModel, suggestionViewModels: [SuggestionViewModelProtocol])
+    case focusComment(CommentViewModel)
     
     static func == (lhs: State, rhs: State) -> Bool{
         return true
@@ -441,6 +461,21 @@ class ReportFormViewModelTests: XCTestCase {
         )
     }
     
+    func test_focus_commentField_ChangeState() {
+        let (sut, fields, button) = makeSUT()
+        let state = StateSpy(sut.state)
+        
+        fields.comment.focus.accept(())
+        
+        XCTAssertEqual(
+            state.values, [
+                .initial(fields: fields.all, button: button),
+                .focusComment(CommentViewModel())
+            ]
+        )
+        
+    }
+    
     private func makeSUT(
         realmService: RealmServiceStub = .init(),
         apiService: BookAPIManagerStub = .init()
@@ -452,7 +487,7 @@ class ReportFormViewModelTests: XCTestCase {
             subject: FieldViewModel,
             book: FieldViewModel,
             range: FieldViewModel,
-            content: FieldViewModel,
+            comment: FieldViewModel,
             all: [FieldViewModel]
         ),
         button: ButtonViewModel
@@ -462,11 +497,11 @@ class ReportFormViewModelTests: XCTestCase {
         let subject = FieldViewModel()
         let book = FieldViewModel()
         let range = FieldViewModel()
-        let content = FieldViewModel()
+        let comment = FieldViewModel()
         
         let button = ButtonViewModel()
         
-        let sut = ReportFormViewModel(date: date, student: student, subject: subject, book: book, range: range, content: content, button: button, realmService: realmService, bookService: apiService)
+        let sut = ReportFormViewModel(date: date, student: student, subject: subject, book: book, range: range, comment: comment, button: button, realmService: realmService, bookService: apiService)
         
         return (
             sut,
@@ -476,8 +511,8 @@ class ReportFormViewModelTests: XCTestCase {
                 subject,
                 book,
                 range,
-                content,
-                [date, student, subject, book, range, content]
+                comment,
+                [date, student, subject, book, range, comment]
             ),
             button
         )
