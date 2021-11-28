@@ -62,6 +62,10 @@
                             <constraint firstItem="LTn-KP-0LY" firstAttribute="leading" secondItem="2Mi-Th-dJ6" secondAttribute="leading" id="evI-uj-tR7"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="LTn-KP-0LY" id="aJP-IC-vlg"/>
+                        <outlet property="writeButton" destination="fPq-Xn-2ra" id="2jc-SE-ONx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GQe-lP-8e6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

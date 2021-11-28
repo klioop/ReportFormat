@@ -183,14 +183,11 @@
 		319899EC27525BFD0027234E /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				31D1B8EE27539B4B00F5ABF7 /* Suggestion */,
 				31D1B89B27535DBF00F5ABF7 /* ReportFormViewModel.swift */,
 				31D1B89E27535E1800F5ABF7 /* FieldViewModel.swift */,
-				319899ED27525C170027234E /* SuggestionViewModelProtocol.swift */,
-				31CC75192751064F00A3F03D /* BookSuggestionViewModel.swift */,
 				31D1B8A127535E7400F5ABF7 /* ButtonViewModel.swift */,
 				31D1B8A427535E9E00F5ABF7 /* DatePickerViewModel.swift */,
-				31D1B8B12753605100F5ABF7 /* StudentSuggestionViewModel.swift */,
-				31D1B8B4275360AD00F5ABF7 /* SubjectSuggestionViewModel.swift */,
 				31D1B8B7275360EE00F5ABF7 /* CommentViewModel.swift */,
 			);
 			path = ViewModel;
@@ -348,6 +345,17 @@
 				31D1B8E927538B9E00F5ABF7 /* CommentCell.xib */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		31D1B8EE27539B4B00F5ABF7 /* Suggestion */ = {
+			isa = PBXGroup;
+			children = (
+				319899ED27525C170027234E /* SuggestionViewModelProtocol.swift */,
+				31CC75192751064F00A3F03D /* BookSuggestionViewModel.swift */,
+				31D1B8B12753605100F5ABF7 /* StudentSuggestionViewModel.swift */,
+				31D1B8B4275360AD00F5ABF7 /* SubjectSuggestionViewModel.swift */,
+			);
+			path = Suggestion;
 			sourceTree = "<group>";
 		};
 		31D428952750BCE400C9D09E /* API */ = {

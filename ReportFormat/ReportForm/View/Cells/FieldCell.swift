@@ -18,4 +18,8 @@ class FieldCell: UITableViewCell {
         // Initialization code
     }
     
+    func configure(with viewModel: FieldViewModel) {
+        titleLabel.text = viewModel.title
+    }
+    
 }

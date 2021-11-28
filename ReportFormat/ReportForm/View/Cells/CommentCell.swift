@@ -15,6 +15,10 @@ class CommentCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
+    
+    func configure(with viewModel: CommentViewModel) {
+        
+    }
 
     
     

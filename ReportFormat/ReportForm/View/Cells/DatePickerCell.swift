@@ -17,4 +17,8 @@ class DatePickerCell: UITableViewCell {
         // Initialization code
     }
     
+    func configure(with viewModel: DatePickerViewModel) {
+        
+    }
+    
 }
