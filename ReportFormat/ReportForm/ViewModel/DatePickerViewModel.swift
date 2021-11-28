@@ -7,6 +7,7 @@
 
 import Foundation
 import RxCocoa
+import RxDataSources
 
 struct DatePickerViewModel {
     let dateString: PublishRelay<String> = PublishRelay()
@@ -15,6 +16,13 @@ struct DatePickerViewModel {
     
     init(tapButton: PublishRelay<Void>) {
         self.tapButton = tapButton
+    }
+}
+
+extension DatePickerViewModel: IdentifiableType {
+    
+    var identity: String {
+        "DatePickerViewModel"
     }
 }
 

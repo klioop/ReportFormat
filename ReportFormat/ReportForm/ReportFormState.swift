@@ -7,12 +7,15 @@
 
 import Foundation
 
-enum State: Equatable {
+enum State {
     case initial(fields: [FieldViewModel], button: ButtonViewModel)
     case focusDate(datePickerVM: DatePickerViewModel)
     case focus(field: FieldViewModel, suggestionViewModels: [SuggestionViewModelProtocol])
     case focusComment(CommentViewModel)
     
+}
+
+extension State: Equatable {
     static func == (lhs: State, rhs: State) -> Bool{
         return true
     }

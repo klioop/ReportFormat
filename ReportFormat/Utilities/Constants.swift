@@ -16,5 +16,6 @@ struct Identifier {
     struct TableViewCellId {
         static let FieldCell = "FieldCell"
         static let DatePickerCell = "DatePickerCell"
+        static let CommentCell = "CommentCell"
     }
 }

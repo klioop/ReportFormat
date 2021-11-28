@@ -7,6 +7,7 @@
 
 import Foundation
 import RxCocoa
+import RxDataSources
 
 struct SubjectSuggestionViewModel: SuggestionViewModelProtocol {
     let name: String
@@ -17,6 +18,12 @@ struct SubjectSuggestionViewModel: SuggestionViewModelProtocol {
         self.select = select
     }
 
+}
+
+extension SubjectSuggestionViewModel: IdentifiableType {
+    var identity: String {
+        "\(self.name)"
+    }
 }
 
 extension SubjectSuggestionViewModel {

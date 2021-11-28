@@ -7,6 +7,7 @@
 
 import Foundation
 import RxCocoa
+import RxDataSources
 
 struct CommentViewModel {
     let tapButton: PublishRelay<Void>
@@ -16,6 +17,12 @@ struct CommentViewModel {
         self.tapButton = tapButton
     }
     
+}
+
+extension CommentViewModel: IdentifiableType {
+    var identity: String {
+        "CommentViewModel"
+    }
 }
 
 extension CommentViewModel {

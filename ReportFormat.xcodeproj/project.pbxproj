@@ -83,6 +83,10 @@
 		31D1B8E52753754200F5ABF7 /* DatePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B8E22753754200F5ABF7 /* DatePickerCell.swift */; };
 		31D1B8E62753754200F5ABF7 /* DatePickerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31D1B8E32753754200F5ABF7 /* DatePickerCell.xib */; };
 		31D1B8E72753754200F5ABF7 /* DatePickerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31D1B8E32753754200F5ABF7 /* DatePickerCell.xib */; };
+		31D1B8EA27538B9E00F5ABF7 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B8E827538B9E00F5ABF7 /* CommentCell.swift */; };
+		31D1B8EB27538B9E00F5ABF7 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B8E827538B9E00F5ABF7 /* CommentCell.swift */; };
+		31D1B8EC27538B9E00F5ABF7 /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31D1B8E927538B9E00F5ABF7 /* CommentCell.xib */; };
+		31D1B8ED27538B9E00F5ABF7 /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31D1B8E927538B9E00F5ABF7 /* CommentCell.xib */; };
 		31D428972750BD2A00C9D09E /* HttpService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D428962750BD2A00C9D09E /* HttpService.swift */; };
 		31D428992750BDC600C9D09E /* HttpRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D428982750BDC600C9D09E /* HttpRouter.swift */; };
 		31D4289B2750BF6400C9D09E /* CustomErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D4289A2750BF6400C9D09E /* CustomErrors.swift */; };
@@ -143,6 +147,8 @@
 		31D1B8DF275372CC00F5ABF7 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		31D1B8E22753754200F5ABF7 /* DatePickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerCell.swift; sourceTree = "<group>"; };
 		31D1B8E32753754200F5ABF7 /* DatePickerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DatePickerCell.xib; sourceTree = "<group>"; };
+		31D1B8E827538B9E00F5ABF7 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
+		31D1B8E927538B9E00F5ABF7 /* CommentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentCell.xib; sourceTree = "<group>"; };
 		31D428962750BD2A00C9D09E /* HttpService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpService.swift; sourceTree = "<group>"; };
 		31D428982750BDC600C9D09E /* HttpRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpRouter.swift; sourceTree = "<group>"; };
 		31D4289A2750BF6400C9D09E /* CustomErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomErrors.swift; sourceTree = "<group>"; };
@@ -338,6 +344,8 @@
 				31D1B8DA275372B200F5ABF7 /* FieldCell.xib */,
 				31D1B8E22753754200F5ABF7 /* DatePickerCell.swift */,
 				31D1B8E32753754200F5ABF7 /* DatePickerCell.xib */,
+				31D1B8E827538B9E00F5ABF7 /* CommentCell.swift */,
+				31D1B8E927538B9E00F5ABF7 /* CommentCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -462,6 +470,7 @@
 				31A7AEF1274E564C006C087C /* LaunchScreen.storyboard in Resources */,
 				31A7AEEE274E564C006C087C /* Assets.xcassets in Resources */,
 				31D1B8E62753754200F5ABF7 /* DatePickerCell.xib in Resources */,
+				31D1B8EC27538B9E00F5ABF7 /* CommentCell.xib in Resources */,
 				31D1B8DD275372B200F5ABF7 /* FieldCell.xib in Resources */,
 				31A7AEEC274E564A006C087C /* Main.storyboard in Resources */,
 			);
@@ -471,6 +480,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				31D1B8ED27538B9E00F5ABF7 /* CommentCell.xib in Resources */,
 				31D1B8DE275372B200F5ABF7 /* FieldCell.xib in Resources */,
 				31D1B8E72753754200F5ABF7 /* DatePickerCell.xib in Resources */,
 			);
@@ -502,6 +512,7 @@
 				31D1B8C327536BCB00F5ABF7 /* BaseCoordinator.swift in Sources */,
 				31CC75172750FA7100A3F03D /* BookAPIManager.swift in Sources */,
 				31D4289B2750BF6400C9D09E /* CustomErrors.swift in Sources */,
+				31D1B8EA27538B9E00F5ABF7 /* CommentCell.swift in Sources */,
 				31D1B8A927535F7400F5ABF7 /* RealmServiceProtocol.swift in Sources */,
 				319899EE27525C170027234E /* SuggestionViewModelProtocol.swift in Sources */,
 				31D1B8A527535E9E00F5ABF7 /* DatePickerViewModel.swift in Sources */,
@@ -532,6 +543,7 @@
 				31D1B8B32753605100F5ABF7 /* StudentSuggestionViewModel.swift in Sources */,
 				31D1B8B9275360EE00F5ABF7 /* CommentViewModel.swift in Sources */,
 				31D1B8A627535E9E00F5ABF7 /* DatePickerViewModel.swift in Sources */,
+				31D1B8EB27538B9E00F5ABF7 /* CommentCell.swift in Sources */,
 				31D1B89D27535DBF00F5ABF7 /* ReportFormViewModel.swift in Sources */,
 				31D1B8BD2753651400F5ABF7 /* Objects.swift in Sources */,
 				31D1B8E52753754200F5ABF7 /* DatePickerCell.swift in Sources */,
