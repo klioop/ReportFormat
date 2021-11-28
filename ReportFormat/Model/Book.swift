@@ -16,6 +16,15 @@ struct Book {
 }
 
 extension Book {
+    init() {
+        self.title = ""
+        self.imageUrl = ""
+        self.pubdate = ""
+        self.publisher = ""
+    }
+}
+
+extension Book {
     static func toBook(from response: BookResponse.Item) -> Book {
         return Book(
             title: response.title,

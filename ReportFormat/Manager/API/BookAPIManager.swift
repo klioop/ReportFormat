@@ -18,15 +18,16 @@ final class BookAPIManager {
 
 extension BookAPIManager: NaverBookAPIProtocol {
     
-    func fetchBooks(with query: [String: String]) -> Single<ResponseOfBooks> {
-        Single<ResponseOfBooks>.create { [apiService] single in
+    func fetchBooks(with query: [String: String]) -> Single<[Book]> {
+        Single<[Book]>.create { [apiService] single in
             do {
                 try NaverAPIRouter.getBooks
                     .request(with: apiService, parameters: query)
                     .responseJSON { result in
                         do {
-                            let books = try BookAPIManager.parseBooks(from: result)
-                            single(.success(books.items))
+                            let response = try BookAPIManager.parseBooks(from: result)
+                            let books = response.items.map { Book.toBook(from: $0) }
+                            single(.success(books))
                         } catch {
                             single(.failure(APIError.failedToParseJSON))
                         }

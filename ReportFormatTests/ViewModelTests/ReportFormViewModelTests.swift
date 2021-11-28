@@ -59,6 +59,7 @@ struct ReportFormViewModel {
     let content: FieldViewModel
     let button: ButtonViewModel
     let realmService: RealmServiceProtocol
+    let bookService: NaverBookAPIProtocol
     
     let tapDatePickerViewButton = PublishRelay<Void>()
     let tapReturn = PublishRelay<Void>()
@@ -78,10 +79,25 @@ struct ReportFormViewModel {
             getStudentFromRealm(for: student),
             tapReturn.map { .initial(fields: allFields, button: button) },
             select.map { .initial(fields: allFields, button: button) },
-            getSubjectFromRealm(for: subject)
+            getSubjectFromRealm(for: subject),
+            searchBooksFromNetwork(for: book)
         )
     }
     
+    private func searchBooksFromNetwork(for field: FieldViewModel) -> Observable<State> {
+        field.text
+            .skip(while: { $0.isEmpty })
+            .distinctUntilChanged()
+            .flatMap { [bookService] query in
+                bookService.fetchBooks(with: ["query": "book"])
+                    .asObservable()
+            }
+            .map({ books in
+                let viewModels = books.map { [select] in BookSuggestionViewModel($0, select: select) }
+                return .focus(field: field, suggestionViewModels: viewModels)
+            })
+    }
+ 
     private func getStudentFromRealm(for field: FieldViewModel) -> Observable<State> {
         field.text
             .skip(while: { $0.isEmpty })
@@ -186,14 +202,6 @@ struct SubjectSuggestionViewModel: Equatable, SuggestionViewModelProtocol {
     }
 }
 
-struct BookSuggestion {
-    let title: String
-    
-    init(title: String) {
-        self.title = title
-    }
-}
-    
 enum State: Equatable {
     case initial(fields: [FieldViewModel], button: ButtonViewModel)
     case focusDate(datePickerVM: DatePickerViewModel)
@@ -203,8 +211,6 @@ enum State: Equatable {
         return true
     }
 }
-
-
 
 
 class ReportFormViewModelTests: XCTestCase {
@@ -438,7 +444,7 @@ class ReportFormViewModelTests: XCTestCase {
         
         let button = ButtonViewModel()
         
-        let sut = ReportFormViewModel(date: date, student: student, subject: subject, book: book, range: range, content: content, button: button, realmService: realmService)
+        let sut = ReportFormViewModel(date: date, student: student, subject: subject, book: book, range: range, content: content, button: button, realmService: realmService, bookService: apiService)
         
         return (
             sut,
@@ -487,9 +493,9 @@ class ReportFormViewModelTests: XCTestCase {
     
     class BookAPIManagerStub: NaverBookAPIProtocol {
         
-        let stub = (query: "book", books: [BookResponse.Item(), BookResponse.Item()])
+        let stub = (query: "book", books: [Book(), Book()])
         
-        func fetchBooks(with query: [String : String]) -> Single<ResponseOfBooks> {
+        func fetchBooks(with query: [String : String]) -> Single<[Book]> {
             let query = query["query"] ?? "?"
             return stub.query == query ? .just(stub.books) : .just([])
         }

@@ -9,5 +9,5 @@ import Foundation
 import RxSwift
 
 protocol NaverBookAPIProtocol {
-    func fetchBooks(with query: [String: String]) -> Single<ResponseOfBooks>
+    func fetchBooks(with query: [String: String]) -> Single<[Book]>
 }

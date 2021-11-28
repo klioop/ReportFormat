@@ -19,14 +19,3 @@ struct BookResponse: Codable {
     
     
 }
-
-typealias ResponseOfBooks = [BookResponse.Item]
-
-extension BookResponse.Item {
-    init () {
-        self.title = ""
-        self.image = ""
-        self.pubdate = ""
-        self.publisher = ""
-    }
-}

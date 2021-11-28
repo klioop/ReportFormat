@@ -13,7 +13,7 @@ import RxRelay
 class ViewController: UIViewController {
     
     let temp = BookAPIManager.shared
-    let tt = PublishRelay<[BookResponse.Item]>()
+    let tt = PublishRelay<[Book]>()
     let bag = DisposeBag()
     
     override func viewDidLoad() {

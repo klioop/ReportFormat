@@ -19,3 +19,9 @@ struct BookSuggestionViewModel: SuggestionViewModelProtocol {
     }
     
 }
+
+extension BookSuggestionViewModel {
+    init(_ book: Book) {
+        self.select = PublishRelay<Void>()
+    }
+}
