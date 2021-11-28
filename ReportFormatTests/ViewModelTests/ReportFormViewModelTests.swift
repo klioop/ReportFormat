@@ -475,20 +475,14 @@ class ReportFormViewModelTests: XCTestCase {
         )
     }
     
-    func test_commentView_tapButton_ChangeStateIntoInitial() {
+    func test_commentView_tapButton_ChangeStateIntoInitial() throws {
         let (sut, fields, button) = makeSUT()
         let state = StateSpy(sut.state)
         
         fields.comment.focus.accept(())
         
-        if let commentFocusedState = state.values.last {
-            switch commentFocusedState {
-            case let .focusComment(vm):
-                vm.tapButton.accept(())
-            default:
-                break
-            }
-        }
+        let viewModel = try XCTUnwrap(state.values.last?.commentViewModel)
+        viewModel.tapButton.accept(())
         
         XCTAssertEqual(
             state.values, [
@@ -600,6 +594,15 @@ private extension State {
         switch self {
         case let .focus(field: _, suggestionViewModels: viewModels):
             return viewModels.first
+        default:
+            return nil
+        }
+    }
+    
+    var commentViewModel: CommentViewModel? {
+        switch self{
+        case let .focusComment(vm):
+            return vm
         default:
             return nil
         }
