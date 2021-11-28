@@ -353,7 +353,7 @@ class ReportFormViewModelTests: XCTestCase {
         fileds.student.text.accept(realmService.studentStub.studentName)
         let viewModels = realmService.studentStub.students.map(StudentSuggestionViewModel.init)
         
-        let studentSuggestionVM = try XCTUnwrap(state.values.last?.firstRealmSuggestionViewModel)
+        let studentSuggestionVM = try XCTUnwrap(state.values.last?.firstSuggestionViewModel)
         studentSuggestionVM.select.accept(())
         
         XCTAssertEqual(
@@ -389,7 +389,7 @@ class ReportFormViewModelTests: XCTestCase {
         fileds.subject.text.accept(realmService.subjectStub.subjectName)
         let viewModels = realmService.subjectStub.subjects.map(SubjectSuggestionViewModel.init)
         
-        let studentSuggestionVM = try XCTUnwrap(state.values.last?.firstRealmSuggestionViewModel)
+        let studentSuggestionVM = try XCTUnwrap(state.values.last?.firstSuggestionViewModel)
         studentSuggestionVM.select.accept(())
         
         XCTAssertEqual(
@@ -415,6 +415,28 @@ class ReportFormViewModelTests: XCTestCase {
                     field: fields.book,
                     suggestionViewModels: apiService.stub.books.map(BookSuggestionViewModel.init)
                 ),
+            ]
+        )
+    }
+    
+    func test_selectBook_changeStateIntoInitial() throws {
+        let apiService = BookAPIManagerStub()
+        let (sut, fields, button) = makeSUT(apiService: apiService)
+        let state = StateSpy(sut.state)
+        
+        fields.book.text.accept(apiService.stub.query)
+        
+        let viewModel = try XCTUnwrap(state.values.last?.firstSuggestionViewModel)
+        viewModel.select.accept(())
+        
+        XCTAssertEqual(
+            state.values, [
+                .initial(fields: fields.all, button: button),
+                .focus(
+                    field: fields.book,
+                    suggestionViewModels: apiService.stub.books.map(BookSuggestionViewModel.init)
+                ),
+                .initial(fields: fields.all, button: button)
             ]
         )
     }
@@ -516,7 +538,7 @@ private extension State {
         }
     }
     
-    var firstRealmSuggestionViewModel: SuggestionViewModelProtocol? {
+    var firstSuggestionViewModel: SuggestionViewModelProtocol? {
         switch self {
         case let .focus(field: _, suggestionViewModels: viewModels):
             return viewModels.first
