@@ -50,6 +50,10 @@ extension FieldViewModel {
         FieldViewModel(title: "책")
     }
     
+    static func range() -> FieldViewModel {
+        FieldViewModel(title: "범위")
+    }
+    
     static func comment() -> FieldViewModel {
         FieldViewModel(title: "코맨트")
     }

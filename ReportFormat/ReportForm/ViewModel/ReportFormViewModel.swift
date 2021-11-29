@@ -9,7 +9,9 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-struct ReportFormViewModel {
+typealias ReportFormViewModelBuilder = () -> ReportFormViewModel
+
+struct ReportFormViewModel{
     let date: FieldViewModel
     let student: FieldViewModel
     let subject: FieldViewModel
@@ -49,8 +51,10 @@ struct ReportFormViewModel {
         field.text
             .distinctUntilChanged()
             .skip(while: { $0.isEmpty })
+            .debounce(.milliseconds(300), scheduler: MainScheduler.asyncInstance)
+            .filter{ !$0.isEmpty }
             .flatMap { [bookService] query in
-                bookService.fetchBooks(with: ["query": "\(query)"])
+                return bookService.fetchBooks(with: ["query": "\(query)"])
                     .asObservable()
             }
             .map({ books in

@@ -10,7 +10,8 @@ import RealmSwift
 import RxSwift
 
 class RealmService: RealmServiceProtocol {
-    let localRealm = try! Realm()
+    static let shared: RealmServiceProtocol = RealmService()
+    private let localRealm = try! Realm()
 
     func getStudent(with name: String) -> Single<[StudentObject]> {
         let studentObjects = localRealm.objects(StudentObject.self).filter("name CONTAINS %@", "\(name)")

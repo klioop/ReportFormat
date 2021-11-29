@@ -6,7 +6,14 @@
 //
 
 import Foundation
+import RxCocoa
 
-struct ButtonViewModel: Equatable {
-    
+struct ButtonViewModel {
+    let isEnabled: Bool = false
+}
+
+extension ButtonViewModel: Equatable {
+    static func ==(lhs: ButtonViewModel, rhs: ButtonViewModel) -> Bool {
+        return true
+    }
 }

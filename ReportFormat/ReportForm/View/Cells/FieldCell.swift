@@ -15,7 +15,12 @@ class FieldCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var textField: UITextField!
     
-    let focusButton = UIButton()
+    let focusButton: UIButton = {
+       let button = UIButton()
+        button.addTarget(self, action: #selector(focusAction), for: .touchUpInside)
+        
+        return button
+    }()
     let bag = DisposeBag()
     
     override func awakeFromNib() {
@@ -44,6 +49,11 @@ class FieldCell: UITableViewCell {
         focusButton.rx.tap
             .bind(to: viewModel.focus)
             .disposed(by: bag)
+    }
+    
+    @objc
+    func focusAction() {
+        textField.becomeFirstResponder()
     }
     
 }

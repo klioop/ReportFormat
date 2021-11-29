@@ -39,12 +39,15 @@ class ReportFormViewController: UIViewController, StoryBoarded {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var writeButton: UIButton!
     
-    var viewModel: ReportFormViewModel!
+    private var viewModel: ReportFormViewModel!
+    
+    var viewModelBuilder: ReportFormViewModelBuilder!
     
     private let bag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.viewModel = viewModelBuilder()
         setupUI()
         binding()
     }
@@ -88,6 +91,12 @@ class ReportFormViewController: UIViewController, StoryBoarded {
                 return cell
             }
         }
+        dataSource.animationConfiguration = .init(
+            insertAnimation: .fade,
+            reloadAnimation: .automatic,
+            deleteAnimation: .fade
+        )
+        
         let sections = createSections(with: viewModel.state)
         sections
             .bind(to: self.tableView.rx.items(dataSource: dataSource))
