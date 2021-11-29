@@ -70,10 +70,12 @@ struct ReportFormViewModel{
     }
         
     private func focusDate(with viewModel: DatePickerViewModel) -> Observable<State> {
-        date.focus.map { [button] in
-            button.isHidden.accept(true)
-            return .focusDate(datePickerVM: viewModel)
-        }
+        date.focus
+            .map { [button, date] in
+                button.isHidden.accept(true)
+                viewModel.bind(to: date)
+                return .focusDate(datePickerVM: viewModel)
+            }
     }
     
     private func searchBooksFromNetwork(for field: FieldViewModel) -> Observable<State> {

@@ -109,8 +109,7 @@ extension ReportFormViewController {
                 case .student:
                     let studentVM = vm as! StudentSuggestionViewModel
                     cell.textLabel?.text = studentVM.name
-                }
-                
+                }                
                 return cell
             case let .datePicker(vm):
                 let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.TableViewCellId.DatePickerCell) as! DatePickerCell

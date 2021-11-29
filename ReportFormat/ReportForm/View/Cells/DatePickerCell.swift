@@ -27,6 +27,10 @@ class DatePickerCell: UITableViewCell {
         selectionButton.rx.tap
             .bind(to: viewModel.tapButton)
             .disposed(by: bag)
+        
+        datePicker.rx.value
+            .bind(to: viewModel.date)
+            .disposed(by: bag)
     }
     
     
