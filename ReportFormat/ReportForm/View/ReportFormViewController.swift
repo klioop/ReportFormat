@@ -105,7 +105,6 @@ extension ReportFormViewController {
             case let .datePicker(vm):
                 let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.TableViewCellId.DatePickerCell) as! DatePickerCell
                 cell.configure(with: vm)
-                tableView.rowHeight = 300
                 return cell
             case let .comment(vm):
                 let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.TableViewCellId.CommentCell) as! CommentCell
@@ -160,9 +159,6 @@ extension ReportFormViewController {
 
 extension ReportFormViewController: UITableViewDelegate {
     
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        UITableView.automaticDimension
-    }
 
     
     

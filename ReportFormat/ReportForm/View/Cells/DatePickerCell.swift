@@ -6,11 +6,14 @@
 //
 
 import UIKit
+import RxSwift
 
 class DatePickerCell: UITableViewCell {
 
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var selectionButton: UIButton!
+    
+    private let bag = DisposeBag()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -21,7 +24,10 @@ class DatePickerCell: UITableViewCell {
     }
     
     func configure(with viewModel: DatePickerViewModel) {
-        
+        selectionButton.rx.tap
+            .bind(to: viewModel.tapButton)
+            .disposed(by: bag)
     }
+    
     
 }
