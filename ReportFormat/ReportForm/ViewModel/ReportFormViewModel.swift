@@ -34,12 +34,12 @@ struct ReportFormViewModel{
         return Observable.merge(
             .just(.initial(fields: allFields, button: button)),
             focusDate(with: datePickerViewModel),
-            tapButtonAction(allFields),
+            toInitial(for: tapButton, fields: allFields),
             focus(for: student),
             focus(for: subject),
             focus(for: book),
             getStudentFromRealm(for: student),
-            tapReturnAction(allFields),
+            toInitial(for: tapReturn, fields: allFields),
             toInitial(for: select, fields: allFields),
             getSubjectFromRealm(for: subject),
             searchBooksFromNetwork(for: book),
@@ -49,20 +49,6 @@ struct ReportFormViewModel{
     
     private func toInitial(for action: PublishRelay<Void>, fields: [FieldViewModel]) -> Observable<State> {
         action.map { [button] in
-            button.isHidden.accept(false)
-            return .initial(fields: fields, button: button)
-        }
-    }
-    
-    private func tapReturnAction(_ fields: [FieldViewModel]) -> Observable<State> {
-        tapReturn.map { [button] in
-            button.isHidden.accept(false)
-            return .initial(fields: fields, button: button)
-        }
-    }
-    
-    private func tapButtonAction(_ fields: [FieldViewModel]) -> Observable<State> {
-        tapButton.map { [button] in
             button.isHidden.accept(false)
             return .initial(fields: fields, button: button)
         }
