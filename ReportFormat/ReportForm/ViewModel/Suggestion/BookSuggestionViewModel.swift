@@ -18,7 +18,7 @@ struct BookSuggestionViewModel: SuggestionViewModelProtocol {
     
     init(_ book: Book, select: PublishRelay<Void>) {
         self.select = select
-        self.text = "제목: \(book.title) | 출판일: \(book.pubdate)"
+        self.text = "\(book.title) | \(book.pubdate)"
     }
     
 }

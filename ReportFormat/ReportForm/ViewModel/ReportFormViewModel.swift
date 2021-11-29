@@ -34,20 +34,20 @@ struct ReportFormViewModel{
         return Observable.merge(
             .just(.initial(fields: allFields, button: button)),
             focusDate(with: datePickerViewModel),
-            toInitial(for: tapButton, fields: allFields),
+            toInitial(by: tapButton, fields: allFields),
             focus(for: student),
             focus(for: subject),
             focus(for: book),
             getStudentFromRealm(for: student),
-            toInitial(for: tapReturn, fields: allFields),
-            toInitial(for: select, fields: allFields),
+            toInitial(by: tapReturn, fields: allFields),
+            toInitial(by: select, fields: allFields),
             getSubjectFromRealm(for: subject),
             searchBooksFromNetwork(for: book),
             focusComment(with: commentViewModel)
         )
     }
     
-    private func toInitial(for action: PublishRelay<Void>, fields: [FieldViewModel]) -> Observable<State> {
+    private func toInitial(by action: PublishRelay<Void>, fields: [FieldViewModel]) -> Observable<State> {
         action.map { [button] in
             button.isHidden.accept(false)
             return .initial(fields: fields, button: button)
@@ -93,15 +93,33 @@ struct ReportFormViewModel{
     }
  
     private func getStudentFromRealm(for field: FieldViewModel) -> Observable<State> {
-        field.text
+        let students = field.text
+            .debounce(.milliseconds(300), scheduler: MainScheduler.asyncInstance)
             .distinctUntilChanged()
             .skip(while: { $0.isEmpty })
-            .flatMap { [realmService] (text) in
-                realmService.getStudent(with: text)
-                    .asObservable()
+            .flatMap { [realmService] (text) -> Observable<[StudentObject]> in
+                let students = realmService.getStudent(with: text)
+                return students.asObservable()
             }
-            .map { students in
-                let viewModels = students.map { [select] in StudentSuggestionViewModel.init($0, select: select) }
+        
+        return students
+            .withLatestFrom(field.text.asObservable()) { ($0, $1) }
+            .map { [realmService] (students, text) -> [StudentObject] in
+                if students.isEmpty {
+                    do {
+                        try realmService.addStudent(with: text)
+                    } catch {
+                        throw RealmError.failedToAddObject
+                    }
+                    return []
+                } else {
+                    return students
+                }
+            }
+            .map { students -> State in
+                let viewModels = students.map { [select] in
+                    StudentSuggestionViewModel.init($0, select: select)
+                }
                 return .focus(field: field, suggestionViewModels: viewModels)
             }
     }
