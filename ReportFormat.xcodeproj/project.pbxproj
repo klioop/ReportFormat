@@ -16,6 +16,8 @@
 		319B67E9274F3BCF000AABFA /* ReportFormViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319B67E8274F3BCF000AABFA /* ReportFormViewModelTests.swift */; };
 		319CFD5A274F24EE008EC96F /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 319CFD59274F24EE008EC96F /* Realm */; };
 		319CFD5C274F24EE008EC96F /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 319CFD5B274F24EE008EC96F /* RealmSwift */; };
+		319F66DE2754C48E0030C46C /* ReportFormCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319F66DD2754C48E0030C46C /* ReportFormCoordinator.swift */; };
+		319F66DF2754C48E0030C46C /* ReportFormCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319F66DD2754C48E0030C46C /* ReportFormCoordinator.swift */; };
 		31A7AEE5274E564A006C087C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A7AEE4274E564A006C087C /* AppDelegate.swift */; };
 		31A7AEE7274E564A006C087C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A7AEE6274E564A006C087C /* SceneDelegate.swift */; };
 		31A7AEEC274E564A006C087C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31A7AEEA274E564A006C087C /* Main.storyboard */; };
@@ -107,6 +109,7 @@
 		319899ED27525C170027234E /* SuggestionViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionViewModelProtocol.swift; sourceTree = "<group>"; };
 		319899F027525CDB0027234E /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		319B67E8274F3BCF000AABFA /* ReportFormViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportFormViewModelTests.swift; sourceTree = "<group>"; };
+		319F66DD2754C48E0030C46C /* ReportFormCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportFormCoordinator.swift; sourceTree = "<group>"; };
 		31A7AEE1274E564A006C087C /* ReportFormat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReportFormat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31A7AEE4274E564A006C087C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		31A7AEE6274E564A006C087C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -201,6 +204,14 @@
 			path = ViewModelTests;
 			sourceTree = "<group>";
 		};
+		319F66DC2754C4780030C46C /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				319F66DD2754C48E0030C46C /* ReportFormCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
 		31A7AED8274E564A006C087C = {
 			isa = PBXGroup;
 			children = (
@@ -287,6 +298,7 @@
 			isa = PBXGroup;
 			children = (
 				31D1B8BA2753613600F5ABF7 /* ReportFormState.swift */,
+				319F66DC2754C4780030C46C /* Coordinator */,
 				319899EC27525BFD0027234E /* ViewModel */,
 				31CC751B27510CB200A3F03D /* View */,
 			);
@@ -525,6 +537,7 @@
 				319899EE27525C170027234E /* SuggestionViewModelProtocol.swift in Sources */,
 				31D1B8A527535E9E00F5ABF7 /* DatePickerViewModel.swift in Sources */,
 				31A7AEE5274E564A006C087C /* AppDelegate.swift in Sources */,
+				319F66DE2754C48E0030C46C /* ReportFormCoordinator.swift in Sources */,
 				31D1B8D327536CBD00F5ABF7 /* StoryBoarded.swift in Sources */,
 				319899F127525CDB0027234E /* Book.swift in Sources */,
 				31D1B8BB2753613600F5ABF7 /* ReportFormState.swift in Sources */,
@@ -551,6 +564,7 @@
 				31D1B8B32753605100F5ABF7 /* StudentSuggestionViewModel.swift in Sources */,
 				31D1B8B9275360EE00F5ABF7 /* CommentViewModel.swift in Sources */,
 				31D1B8A627535E9E00F5ABF7 /* DatePickerViewModel.swift in Sources */,
+				319F66DF2754C48E0030C46C /* ReportFormCoordinator.swift in Sources */,
 				31D1B8EB27538B9E00F5ABF7 /* CommentCell.swift in Sources */,
 				31D1B89D27535DBF00F5ABF7 /* ReportFormViewModel.swift in Sources */,
 				31D1B8BD2753651400F5ABF7 /* Objects.swift in Sources */,

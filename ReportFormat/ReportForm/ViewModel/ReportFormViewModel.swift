@@ -50,7 +50,7 @@ struct ReportFormViewModel {
             .distinctUntilChanged()
             .skip(while: { $0.isEmpty })
             .flatMap { [bookService] query in
-                bookService.fetchBooks(with: ["query": "book"])
+                bookService.fetchBooks(with: ["query": "\(query)"])
                     .asObservable()
             }
             .map({ books in

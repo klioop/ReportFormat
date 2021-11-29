@@ -31,6 +31,16 @@ class FieldCell: UITableViewCell {
     func configure(with viewModel: FieldViewModel) -> Void {
         titleLabel.text = viewModel.title
         
+        viewModel.text
+            .bind(to: textField.rx.text)
+            .disposed(by: bag)
+        
+        textField.rx.text
+            .orEmpty
+            .skip(1)
+            .bind(to: viewModel.text)
+            .disposed(by: bag)
+        
         focusButton.rx.tap
             .bind(to: viewModel.focus)
             .disposed(by: bag)
