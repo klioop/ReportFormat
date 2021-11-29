@@ -23,6 +23,20 @@ class RealmService: RealmServiceProtocol {
         return .just(subjectObjects.toArray())
     }
     
+    func addStudent(with name: String) throws {
+        do {
+            try localRealm.write {
+                let student = StudentObject(value: ["name": name, "dateCreated": Date()])
+                localRealm.add(student)
+            }
+        } catch {
+            let error = RealmError.failedToAddObject
+            print(error.errorMessage)
+            throw error
+            
+        }
+    }
+    
 }
 
 extension Results {

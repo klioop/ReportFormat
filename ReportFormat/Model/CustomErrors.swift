@@ -18,6 +18,16 @@ enum APIError: Error {
         case .failedToParseJSON:
             return "Failed to parse JSON from network"
         }
+    }
+}
+
+enum RealmError: Error {
+    case failedToAddObject
     
+    var errorMessage: String {
+        switch self {
+        case .failedToAddObject:
+            return "Failed to add a new object"
+        }
     }
 }
