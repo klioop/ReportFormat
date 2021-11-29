@@ -33,7 +33,19 @@ class RealmService: RealmServiceProtocol {
             let error = RealmError.failedToAddObject
             print(error.errorMessage)
             throw error
-            
+        }
+    }
+    
+    func addSubject(with name: String) throws {
+        do {
+            try localRealm.write {
+                let subject = SubjectObject(value: ["name": name, "dateCreated": Date()])
+                localRealm.add(subject)
+            }
+        } catch {
+            let error = RealmError.failedToAddObject
+            print(error.errorMessage)
+            throw error
         }
     }
     
