@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		319899E9275252E80027234E /* NaverBookAPIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CC75112750F71800A3F03D /* NaverBookAPIProtocol.swift */; };
 		319899EA27525BDA0027234E /* BookSuggestionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CC75192751064F00A3F03D /* BookSuggestionViewModel.swift */; };
 		319899EE27525C170027234E /* SuggestionViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319899ED27525C170027234E /* SuggestionViewModelProtocol.swift */; };
 		319899EF27525C310027234E /* SuggestionViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319899ED27525C170027234E /* SuggestionViewModelProtocol.swift */; };
@@ -17,7 +16,9 @@
 		319CFD5A274F24EE008EC96F /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 319CFD59274F24EE008EC96F /* Realm */; };
 		319CFD5C274F24EE008EC96F /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 319CFD5B274F24EE008EC96F /* RealmSwift */; };
 		319F66DE2754C48E0030C46C /* ReportFormCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319F66DD2754C48E0030C46C /* ReportFormCoordinator.swift */; };
-		319F66DF2754C48E0030C46C /* ReportFormCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319F66DD2754C48E0030C46C /* ReportFormCoordinator.swift */; };
+		319F66E72754F5030030C46C /* Objects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B8AE27535FF800F5ABF7 /* Objects.swift */; };
+		319F66E82754F5060030C46C /* RealmServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B8A827535F7400F5ABF7 /* RealmServiceProtocol.swift */; };
+		319F66EA2754F5220030C46C /* NaverBookAPIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CC75112750F71800A3F03D /* NaverBookAPIProtocol.swift */; };
 		31A7AEE5274E564A006C087C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A7AEE4274E564A006C087C /* AppDelegate.swift */; };
 		31A7AEE7274E564A006C087C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A7AEE6274E564A006C087C /* SceneDelegate.swift */; };
 		31A7AEEC274E564A006C087C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31A7AEEA274E564A006C087C /* Main.storyboard */; };
@@ -46,9 +47,7 @@
 		31D1B8A527535E9E00F5ABF7 /* DatePickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B8A427535E9E00F5ABF7 /* DatePickerViewModel.swift */; };
 		31D1B8A627535E9E00F5ABF7 /* DatePickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B8A427535E9E00F5ABF7 /* DatePickerViewModel.swift */; };
 		31D1B8A927535F7400F5ABF7 /* RealmServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B8A827535F7400F5ABF7 /* RealmServiceProtocol.swift */; };
-		31D1B8AA27535F7400F5ABF7 /* RealmServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B8A827535F7400F5ABF7 /* RealmServiceProtocol.swift */; };
 		31D1B8AC27535F9E00F5ABF7 /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B8AB27535F9E00F5ABF7 /* RealmService.swift */; };
-		31D1B8AD27535F9E00F5ABF7 /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B8AB27535F9E00F5ABF7 /* RealmService.swift */; };
 		31D1B8AF27535FF800F5ABF7 /* Objects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B8AE27535FF800F5ABF7 /* Objects.swift */; };
 		31D1B8B22753605100F5ABF7 /* StudentSuggestionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B8B12753605100F5ABF7 /* StudentSuggestionViewModel.swift */; };
 		31D1B8B32753605100F5ABF7 /* StudentSuggestionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B8B12753605100F5ABF7 /* StudentSuggestionViewModel.swift */; };
@@ -58,37 +57,21 @@
 		31D1B8B9275360EE00F5ABF7 /* CommentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B8B7275360EE00F5ABF7 /* CommentViewModel.swift */; };
 		31D1B8BB2753613600F5ABF7 /* ReportFormState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B8BA2753613600F5ABF7 /* ReportFormState.swift */; };
 		31D1B8BC2753613600F5ABF7 /* ReportFormState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B8BA2753613600F5ABF7 /* ReportFormState.swift */; };
-		31D1B8BD2753651400F5ABF7 /* Objects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B8AE27535FF800F5ABF7 /* Objects.swift */; };
 		31D1B8C0275368B000F5ABF7 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B8BF275368B000F5ABF7 /* Coordinator.swift */; };
-		31D1B8C1275368B000F5ABF7 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B8BF275368B000F5ABF7 /* Coordinator.swift */; };
 		31D1B8C327536BCB00F5ABF7 /* BaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B8C227536BCB00F5ABF7 /* BaseCoordinator.swift */; };
-		31D1B8C427536BCB00F5ABF7 /* BaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B8C227536BCB00F5ABF7 /* BaseCoordinator.swift */; };
 		31D1B8C627536C0D00F5ABF7 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B8C527536C0D00F5ABF7 /* AppCoordinator.swift */; };
-		31D1B8C727536C0D00F5ABF7 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B8C527536C0D00F5ABF7 /* AppCoordinator.swift */; };
 		31D1B8CC27536C7400F5ABF7 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B8C927536C7400F5ABF7 /* Router.swift */; };
-		31D1B8CD27536C7400F5ABF7 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B8C927536C7400F5ABF7 /* Router.swift */; };
 		31D1B8CE27536C7400F5ABF7 /* RouterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B8CA27536C7400F5ABF7 /* RouterProtocol.swift */; };
-		31D1B8CF27536C7400F5ABF7 /* RouterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B8CA27536C7400F5ABF7 /* RouterProtocol.swift */; };
 		31D1B8D027536C7400F5ABF7 /* Drawble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B8CB27536C7400F5ABF7 /* Drawble.swift */; };
-		31D1B8D127536C7400F5ABF7 /* Drawble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B8CB27536C7400F5ABF7 /* Drawble.swift */; };
 		31D1B8D327536CBD00F5ABF7 /* StoryBoarded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B8D227536CBD00F5ABF7 /* StoryBoarded.swift */; };
-		31D1B8D427536CBD00F5ABF7 /* StoryBoarded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B8D227536CBD00F5ABF7 /* StoryBoarded.swift */; };
 		31D1B8D6275371A900F5ABF7 /* ReportFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B8D5275371A900F5ABF7 /* ReportFormViewController.swift */; };
-		31D1B8D7275371A900F5ABF7 /* ReportFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B8D5275371A900F5ABF7 /* ReportFormViewController.swift */; };
 		31D1B8DB275372B200F5ABF7 /* FieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B8D9275372B200F5ABF7 /* FieldCell.swift */; };
-		31D1B8DC275372B200F5ABF7 /* FieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B8D9275372B200F5ABF7 /* FieldCell.swift */; };
 		31D1B8DD275372B200F5ABF7 /* FieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31D1B8DA275372B200F5ABF7 /* FieldCell.xib */; };
-		31D1B8DE275372B200F5ABF7 /* FieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31D1B8DA275372B200F5ABF7 /* FieldCell.xib */; };
 		31D1B8E0275372CC00F5ABF7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B8DF275372CC00F5ABF7 /* Constants.swift */; };
-		31D1B8E1275372CC00F5ABF7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B8DF275372CC00F5ABF7 /* Constants.swift */; };
 		31D1B8E42753754200F5ABF7 /* DatePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B8E22753754200F5ABF7 /* DatePickerCell.swift */; };
-		31D1B8E52753754200F5ABF7 /* DatePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B8E22753754200F5ABF7 /* DatePickerCell.swift */; };
 		31D1B8E62753754200F5ABF7 /* DatePickerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31D1B8E32753754200F5ABF7 /* DatePickerCell.xib */; };
-		31D1B8E72753754200F5ABF7 /* DatePickerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31D1B8E32753754200F5ABF7 /* DatePickerCell.xib */; };
 		31D1B8EA27538B9E00F5ABF7 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B8E827538B9E00F5ABF7 /* CommentCell.swift */; };
-		31D1B8EB27538B9E00F5ABF7 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B8E827538B9E00F5ABF7 /* CommentCell.swift */; };
 		31D1B8EC27538B9E00F5ABF7 /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31D1B8E927538B9E00F5ABF7 /* CommentCell.xib */; };
-		31D1B8ED27538B9E00F5ABF7 /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31D1B8E927538B9E00F5ABF7 /* CommentCell.xib */; };
 		31D428972750BD2A00C9D09E /* HttpService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D428962750BD2A00C9D09E /* HttpService.swift */; };
 		31D428992750BDC600C9D09E /* HttpRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D428982750BDC600C9D09E /* HttpRouter.swift */; };
 		31D4289B2750BF6400C9D09E /* CustomErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D4289A2750BF6400C9D09E /* CustomErrors.swift */; };
@@ -500,9 +483,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				31D1B8ED27538B9E00F5ABF7 /* CommentCell.xib in Resources */,
-				31D1B8DE275372B200F5ABF7 /* FieldCell.xib in Resources */,
-				31D1B8E72753754200F5ABF7 /* DatePickerCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -559,33 +539,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				31D1B8D427536CBD00F5ABF7 /* StoryBoarded.swift in Sources */,
-				31D1B8CD27536C7400F5ABF7 /* Router.swift in Sources */,
 				31D1B8B32753605100F5ABF7 /* StudentSuggestionViewModel.swift in Sources */,
+				319F66E72754F5030030C46C /* Objects.swift in Sources */,
 				31D1B8B9275360EE00F5ABF7 /* CommentViewModel.swift in Sources */,
 				31D1B8A627535E9E00F5ABF7 /* DatePickerViewModel.swift in Sources */,
-				319F66DF2754C48E0030C46C /* ReportFormCoordinator.swift in Sources */,
-				31D1B8EB27538B9E00F5ABF7 /* CommentCell.swift in Sources */,
 				31D1B89D27535DBF00F5ABF7 /* ReportFormViewModel.swift in Sources */,
-				31D1B8BD2753651400F5ABF7 /* Objects.swift in Sources */,
-				31D1B8E52753754200F5ABF7 /* DatePickerCell.swift in Sources */,
-				31D1B8CF27536C7400F5ABF7 /* RouterProtocol.swift in Sources */,
 				319899EF27525C310027234E /* SuggestionViewModelProtocol.swift in Sources */,
-				31D1B8C727536C0D00F5ABF7 /* AppCoordinator.swift in Sources */,
-				31D1B8D127536C7400F5ABF7 /* Drawble.swift in Sources */,
-				31D1B8E1275372CC00F5ABF7 /* Constants.swift in Sources */,
-				31D1B8C1275368B000F5ABF7 /* Coordinator.swift in Sources */,
 				31D1B8A027535E1900F5ABF7 /* FieldViewModel.swift in Sources */,
 				319B67E9274F3BCF000AABFA /* ReportFormViewModelTests.swift in Sources */,
-				31D1B8AA27535F7400F5ABF7 /* RealmServiceProtocol.swift in Sources */,
+				319F66EA2754F5220030C46C /* NaverBookAPIProtocol.swift in Sources */,
 				31D1B89A275349DC00F5ABF7 /* BookResponse.swift in Sources */,
+				319F66E82754F5060030C46C /* RealmServiceProtocol.swift in Sources */,
 				319899F227525D0A0027234E /* Book.swift in Sources */,
 				31D1B8A327535E7400F5ABF7 /* ButtonViewModel.swift in Sources */,
-				31D1B8AD27535F9E00F5ABF7 /* RealmService.swift in Sources */,
-				319899E9275252E80027234E /* NaverBookAPIProtocol.swift in Sources */,
-				31D1B8D7275371A900F5ABF7 /* ReportFormViewController.swift in Sources */,
-				31D1B8DC275372B200F5ABF7 /* FieldCell.swift in Sources */,
-				31D1B8C427536BCB00F5ABF7 /* BaseCoordinator.swift in Sources */,
 				31A7AEFC274E564C006C087C /* ReportFormatTests.swift in Sources */,
 				31D1B8BC2753613600F5ABF7 /* ReportFormState.swift in Sources */,
 				31D1B8B6275360AD00F5ABF7 /* SubjectSuggestionViewModel.swift in Sources */,

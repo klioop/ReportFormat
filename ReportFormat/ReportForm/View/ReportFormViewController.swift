@@ -48,8 +48,8 @@ class ReportFormViewController: UIViewController, StoryBoarded {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.viewModel = viewModelBuilder()
-        setupUI()
         binding()
+        setupUI()
     }
     
     private func setupUI() {
@@ -64,6 +64,8 @@ class ReportFormViewController: UIViewController, StoryBoarded {
             reloadAnimation: .automatic,
             deleteAnimation: .fade
         )
+        writeButton.backgroundColor = writeButton.isEnabled ? UIColor(named: ColorName.main) : .gray
+        writeButton.setTitleColor(.lightGray, for: .disabled)
     }
     
     private func binding() {
@@ -72,6 +74,14 @@ class ReportFormViewController: UIViewController, StoryBoarded {
         sections
             .bind(to: self.tableView.rx.items(dataSource: dataSource))
             .disposed(by: bag)
+        
+        viewModel.button.isEnabled
+            .bind(to: writeButton.rx.isEnabled)
+            .disposed(by: bag)
+        viewModel.button.isHidden
+            .bind(to: writeButton.rx.isHidden)
+            .disposed(by: bag)
+    
     }
 }
 
@@ -160,7 +170,5 @@ extension ReportFormViewController {
 extension ReportFormViewController: UITableViewDelegate {
     
 
-    
-    
 }
 

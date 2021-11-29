@@ -19,3 +19,7 @@ struct Identifier {
         static let CommentCell = "CommentCell"
     }
 }
+
+struct ColorName {
+    static let main = "mainColor"
+}

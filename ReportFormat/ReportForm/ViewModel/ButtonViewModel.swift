@@ -9,7 +9,8 @@ import Foundation
 import RxCocoa
 
 struct ButtonViewModel {
-    let isEnabled: Bool = false
+    let isEnabled = BehaviorRelay<Bool>(value: false)
+    let isHidden = BehaviorRelay<Bool>(value: false)
 }
 
 extension ButtonViewModel: Equatable {

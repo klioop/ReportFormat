@@ -33,18 +33,61 @@ struct ReportFormViewModel{
         
         return Observable.merge(
             .just(.initial(fields: allFields, button: button)),
-            date.focus.map { .focusDate(datePickerVM: datePickerViewModel) },
-            tapButton.map {.initial(fields: allFields, button: button) },
-            student.focus.map { .focus(field: student, suggestionViewModels: [])},
-            subject.focus.map { .focus(field: subject, suggestionViewModels: [])},
-            book.focus.map { .focus(field: book, suggestionViewModels: [])},
+            focusDate(with: datePickerViewModel),
+            tapButtonAction(allFields),
+            focus(for: student),
+            focus(for: subject),
+            focus(for: book),
             getStudentFromRealm(for: student),
-            tapReturn.map { .initial(fields: allFields, button: button) },
-            select.map { .initial(fields: allFields, button: button) },
+            tapReturnAction(allFields),
+            toInitial(for: select, fields: allFields),
             getSubjectFromRealm(for: subject),
             searchBooksFromNetwork(for: book),
-            comment.focus.map { .focusComment(commentViewModel) }
+            focusComment(with: commentViewModel)
         )
+    }
+    
+    private func toInitial(for action: PublishRelay<Void>, fields: [FieldViewModel]) -> Observable<State> {
+        action.map { [button] in
+            button.isHidden.accept(false)
+            return .initial(fields: fields, button: button)
+        }
+    }
+    
+    private func tapReturnAction(_ fields: [FieldViewModel]) -> Observable<State> {
+        tapReturn.map { [button] in
+            button.isHidden.accept(false)
+            return .initial(fields: fields, button: button)
+        }
+    }
+    
+    private func tapButtonAction(_ fields: [FieldViewModel]) -> Observable<State> {
+        tapButton.map { [button] in
+            button.isHidden.accept(false)
+            return .initial(fields: fields, button: button)
+        }
+    }
+    
+    private func focus(for field: FieldViewModel) -> Observable<State> {
+        field.focus.map { [button] in
+            button.isHidden.accept(true)
+            return .focus(field: field, suggestionViewModels: [])
+        }
+    }
+    
+    private func focusComment(with viewModel: CommentViewModel) -> Observable<State> {
+        comment.focus
+            .map { [button] in
+                button.isHidden.accept(false)
+                return .focusComment(viewModel)
+            }
+    }
+        
+    private func focusDate(with viewModel: DatePickerViewModel) -> Observable<State> {
+        date.focus.map { [button] in
+            button.isHidden.accept(true)
+            return .focusDate(datePickerVM: viewModel)
+        }
     }
     
     private func searchBooksFromNetwork(for field: FieldViewModel) -> Observable<State> {
