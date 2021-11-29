@@ -14,7 +14,10 @@ class DatePickerCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
     }
     
     func configure(with viewModel: DatePickerViewModel) {

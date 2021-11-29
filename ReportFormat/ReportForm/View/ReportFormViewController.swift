@@ -56,11 +56,31 @@ class ReportFormViewController: UIViewController, StoryBoarded {
         tableView.register(UINib(nibName: "FieldCell", bundle: nil), forCellReuseIdentifier: Identifier.TableViewCellId.FieldCell)
         tableView.register(UINib(nibName: "DatePickerCell", bundle: nil), forCellReuseIdentifier: Identifier.TableViewCellId.DatePickerCell)
         tableView.register(UINib(nibName: "CommentCell", bundle: nil), forCellReuseIdentifier: Identifier.TableViewCellId.CommentCell)
-        
+        tableView.rx
+            .setDelegate(self)
+            .disposed(by: bag)
+        dataSource.animationConfiguration = .init(
+            insertAnimation: .fade,
+            reloadAnimation: .automatic,
+            deleteAnimation: .fade
+        )
     }
     
     private func binding() {
-        let dataSource = RxTableViewSectionedAnimatedDataSource<ReportFormSection> { (dataSource, tableView, indexPath, item) -> UITableViewCell in
+        
+        let sections = createSections(with: viewModel.state)
+        sections
+            .bind(to: self.tableView.rx.items(dataSource: dataSource))
+            .disposed(by: bag)
+    }
+}
+
+// MARK: - dataSource and section
+
+extension ReportFormViewController {
+    
+    var dataSource: RxTableViewSectionedAnimatedDataSource<ReportFormSection> {
+        return RxTableViewSectionedAnimatedDataSource<ReportFormSection> { (dataSource, tableView, indexPath, item) -> UITableViewCell in
             switch item {
             case let .fields(vm):
                 let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.TableViewCellId.FieldCell)
@@ -80,10 +100,12 @@ class ReportFormViewController: UIViewController, StoryBoarded {
                     let studentVM = vm as! StudentSuggestionViewModel
                     cell.textLabel?.text = studentVM.name
                 }
+                
                 return cell
             case let .datePicker(vm):
                 let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.TableViewCellId.DatePickerCell) as! DatePickerCell
                 cell.configure(with: vm)
+                tableView.rowHeight = 300
                 return cell
             case let .comment(vm):
                 let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.TableViewCellId.CommentCell) as! CommentCell
@@ -91,17 +113,6 @@ class ReportFormViewController: UIViewController, StoryBoarded {
                 return cell
             }
         }
-        dataSource.animationConfiguration = .init(
-            insertAnimation: .fade,
-            reloadAnimation: .automatic,
-            deleteAnimation: .fade
-        )
-        
-        let sections = createSections(with: viewModel.state)
-        sections
-            .bind(to: self.tableView.rx.items(dataSource: dataSource))
-            .disposed(by: bag)
-        
     }
     
     private func createSections(with state: Observable<State>) -> Observable<[ReportFormSection]> {
@@ -143,5 +154,17 @@ class ReportFormViewController: UIViewController, StoryBoarded {
                 }
             }
     }
+}
+
+// MARK: - tableView delegate
+
+extension ReportFormViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        UITableView.automaticDimension
+    }
+
+    
+    
 }
 
