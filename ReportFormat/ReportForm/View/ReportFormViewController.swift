@@ -18,7 +18,7 @@ enum CellViewModel: IdentifiableType {
     
     var identity: String {
         switch self {
-        case let .fields(vm): return vm.identity
+        case let .fields(vm): return vm.title
         case let .datePicker(vm): return vm.identity
         case let .suggestion(vm): return vm.identity
         case let .comment(vm): return vm.identity
@@ -45,6 +45,38 @@ class ReportFormViewController: UIViewController, StoryBoarded {
     
     private let bag = DisposeBag()
     
+    private lazy var dataSource = RxTableViewSectionedAnimatedDataSource<ReportFormSection> { (dataSource, tableView, indexPath, item) -> UITableViewCell in
+        switch item {
+        case let .fields(vm):
+            let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.TableViewCellId.FieldCell)
+            as! FieldCell
+            cell.configure(with: vm)
+            return cell
+        case let .suggestion(vm):
+            let cell = UITableViewCell()
+            switch vm.type {
+            case .book:
+                let bookVM = vm as! BookSuggestionViewModel
+                cell.textLabel?.text = bookVM.text
+            case .subject:
+                let subjetVM = vm as! SubjectSuggestionViewModel
+                cell.textLabel?.text = subjetVM.name
+            case .student:
+                let studentVM = vm as! StudentSuggestionViewModel
+                cell.textLabel?.text = studentVM.name
+            }
+            return cell
+        case let .datePicker(vm):
+            let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.TableViewCellId.DatePickerCell) as! DatePickerCell
+            cell.configure(with: vm)
+            return cell
+        case let .comment(vm):
+            let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.TableViewCellId.CommentCell) as! CommentCell
+            cell.configure(with: vm)
+            return cell
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.viewModel = viewModelBuilder()
@@ -59,17 +91,17 @@ class ReportFormViewController: UIViewController, StoryBoarded {
         tableView.rx
             .setDelegate(self)
             .disposed(by: bag)
-        dataSource.animationConfiguration = .init(
-            insertAnimation: .fade,
-            reloadAnimation: .automatic,
-            deleteAnimation: .fade
-        )
+       
         writeButton.backgroundColor = writeButton.isEnabled ? UIColor(named: ColorName.main) : .gray
         writeButton.setTitleColor(.lightGray, for: .disabled)
     }
     
     private func binding() {
-        
+        dataSource.animationConfiguration = .init(
+            insertAnimation: .fade,
+            reloadAnimation: .automatic,
+            deleteAnimation: .fade
+        )
         let sections = createSections(with: viewModel.state)
         sections
             .bind(to: self.tableView.rx.items(dataSource: dataSource))
@@ -81,6 +113,22 @@ class ReportFormViewController: UIViewController, StoryBoarded {
         viewModel.button.isHidden
             .bind(to: writeButton.rx.isHidden)
             .disposed(by: bag)
+        
+        tableView.rx
+            .modelSelected(CellViewModel.self)
+            .bind(to: viewModel.selectedModel)
+            .disposed(by: bag)
+        
+        tableView.rx
+            .modelSelected(CellViewModel.self)
+            .subscribe(onNext: { [weak self] model in
+                if case let .suggestion(vm) = model {
+                    self?.view.endEditing(true)
+                    vm.select.accept(())
+                }
+            })
+            .disposed(by: bag)
+
     
     }
 }
@@ -89,39 +137,6 @@ class ReportFormViewController: UIViewController, StoryBoarded {
 
 extension ReportFormViewController {
     
-    var dataSource: RxTableViewSectionedAnimatedDataSource<ReportFormSection> {
-        return RxTableViewSectionedAnimatedDataSource<ReportFormSection> { (dataSource, tableView, indexPath, item) -> UITableViewCell in
-            switch item {
-            case let .fields(vm):
-                let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.TableViewCellId.FieldCell)
-                as! FieldCell
-                cell.configure(with: vm)
-                return cell
-            case let .suggestion(vm):
-                let cell = UITableViewCell()
-                switch vm.type {
-                case .book:
-                    let bookVM = vm as! BookSuggestionViewModel
-                    cell.textLabel?.text = bookVM.text
-                case .subject:
-                    let subjetVM = vm as! SubjectSuggestionViewModel
-                    cell.textLabel?.text = subjetVM.name
-                case .student:
-                    let studentVM = vm as! StudentSuggestionViewModel
-                    cell.textLabel?.text = studentVM.name
-                }                
-                return cell
-            case let .datePicker(vm):
-                let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.TableViewCellId.DatePickerCell) as! DatePickerCell
-                cell.configure(with: vm)
-                return cell
-            case let .comment(vm):
-                let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.TableViewCellId.CommentCell) as! CommentCell
-                cell.configure(with: vm)
-                return cell
-            }
-        }
-    }
     
     private func createSections(with state: Observable<State>) -> Observable<[ReportFormSection]> {
         return state

@@ -12,7 +12,7 @@ import RxDataSources
 
 struct DatePickerViewModel {
     let dateString: PublishRelay<String> = PublishRelay()
-    let date = BehaviorRelay<Date>(value: Date())
+    let date = PublishRelay<Date>()
     let tapButton: PublishRelay<Void>
     
     private let bag = DisposeBag()
@@ -45,6 +45,10 @@ extension DatePickerViewModel {
             }
             .bind(to: field.text)
             .disposed(by: bag)
+    }
+    
+    func temp() {
+        
     }
 }
 

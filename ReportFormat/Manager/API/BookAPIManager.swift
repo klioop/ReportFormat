@@ -8,6 +8,7 @@
 import Foundation
 import RxSwift
 import Alamofire
+import Network
 
 final class BookAPIManager {
     
@@ -27,7 +28,7 @@ extension BookAPIManager: NaverBookAPIProtocol {
                         do {
                             let response = try BookAPIManager.parseBooks(from: result)
                             let books = response.items.map { Book.toBook(from: $0) }
-                            single(.success(books))
+                            single(.success(books.uniqueElements()))
                         } catch {
                             single(.failure(APIError.failedToParseJSON))
                         }
@@ -50,4 +51,21 @@ extension BookAPIManager: NaverBookAPIProtocol {
         }
         return dataParsed
     }
+}
+
+extension Array where Element: Hashable {
+    
+    func uniqueElements() -> Array {
+        //Create an empty Set to track unique items
+        var set = Set<Element>()
+        let result = self.filter {
+            guard !set.contains($0) else {
+                return false
+            }
+            set.insert($0)
+            return true
+        }
+        return result
+    }
+   
 }

@@ -19,7 +19,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="여기에 입력하세요" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="iRf-YD-4hi">
-                        <rect key="frame" x="20" y="54" width="340" height="646"/>
+                        <rect key="frame" x="5" y="54" width="370" height="646"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="500" id="7mI-2Z-iKq"/>
@@ -36,12 +36,12 @@
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="iRf-YD-4hi" secondAttribute="bottom" constant="100" id="LOX-Eo-tSb"/>
-                    <constraint firstItem="iRf-YD-4hi" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="UI8-tl-Mcr"/>
+                    <constraint firstItem="iRf-YD-4hi" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="UI8-tl-Mcr"/>
                     <constraint firstItem="iRf-YD-4hi" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="54" id="eki-Ju-84O"/>
                     <constraint firstItem="iRf-YD-4hi" firstAttribute="top" secondItem="mpJ-13-aYZ" secondAttribute="bottom" constant="8" symbolic="YES" id="ik1-3Y-gZP"/>
                     <constraint firstItem="mpJ-13-aYZ" firstAttribute="leading" relation="lessThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="330" id="qfU-lq-URv"/>
                     <constraint firstAttribute="trailing" secondItem="mpJ-13-aYZ" secondAttribute="trailing" constant="20" id="s7S-Hr-avT"/>
-                    <constraint firstAttribute="trailing" secondItem="iRf-YD-4hi" secondAttribute="trailing" constant="20" id="tfO-b7-8Fv"/>
+                    <constraint firstAttribute="trailing" secondItem="iRf-YD-4hi" secondAttribute="trailing" constant="5" id="tfO-b7-8Fv"/>
                     <constraint firstItem="mpJ-13-aYZ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="wJR-Jf-Ytq"/>
                 </constraints>
             </tableViewCellContentView>

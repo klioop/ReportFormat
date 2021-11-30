@@ -13,4 +13,7 @@ protocol RealmServiceProtocol {
     func getSubject(with name: String) -> Single<[SubjectObject]>
     func addStudent(with name: String) throws
     func addSubject(with name: String) throws
+    func getAllStudents() -> Single<[StudentObject]>
+    func getAllSubjects() -> Single<[SubjectObject]>
 }
+

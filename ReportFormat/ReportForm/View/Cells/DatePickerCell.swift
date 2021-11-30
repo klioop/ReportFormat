@@ -13,7 +13,7 @@ class DatePickerCell: UITableViewCell {
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var selectionButton: UIButton!
     
-    private let bag = DisposeBag()
+    private var bag = DisposeBag()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -21,6 +21,11 @@ class DatePickerCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        bag = DisposeBag()
     }
     
     func configure(with viewModel: DatePickerViewModel) {
@@ -31,6 +36,7 @@ class DatePickerCell: UITableViewCell {
         datePicker.rx.value
             .bind(to: viewModel.date)
             .disposed(by: bag)
+            
     }
     
     

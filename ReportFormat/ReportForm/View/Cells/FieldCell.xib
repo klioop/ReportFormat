@@ -58,7 +58,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
-                <outlet property="textField" destination="yfb-4C-4lO" id="M9K-02-iAl"/>
+                <outlet property="inputTextField" destination="yfb-4C-4lO" id="M9K-02-iAl"/>
                 <outlet property="titleLabel" destination="mqz-LV-HRT" id="tEv-84-St1"/>
             </connections>
             <point key="canvasLocation" x="135" y="155"/>

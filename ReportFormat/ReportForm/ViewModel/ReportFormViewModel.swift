@@ -22,10 +22,33 @@ struct ReportFormViewModel{
     let realmService: RealmServiceProtocol
     let bookService: NaverBookAPIProtocol
     
+    let tapButtonFromDatePickerView = PublishRelay<Void>()
     let tapButton = PublishRelay<Void>()
-    let tapReturn = PublishRelay<Void>()
     let select = PublishRelay<Void>()
+    let selectedModel = PublishRelay<CellViewModel>()
     
+    init(
+        date: FieldViewModel,
+        student: FieldViewModel,
+        subject: FieldViewModel,
+        book: FieldViewModel,
+        range: FieldViewModel,
+        comment: FieldViewModel,
+        button: ButtonViewModel,
+        realmService: RealmServiceProtocol,
+        bookService: NaverBookAPIProtocol
+    ) {
+        self.date = date
+        self.student = student
+        self.subject = subject
+        self.book = book
+        self.range = range
+        self.comment = comment
+        self.button = button
+        self.realmService = realmService
+        self.bookService = bookService
+    }
+        
     var state: Observable<State> {
         let allFields = [date, student, subject, book, range, comment]
         let datePickerViewModel = DatePickerViewModel(tapButton: tapButton)
@@ -35,22 +58,69 @@ struct ReportFormViewModel{
             .just(.initial(fields: allFields, button: button)),
             focusDate(with: datePickerViewModel),
             toInitial(by: tapButton, fields: allFields),
-            focus(for: student),
-            focus(for: subject),
             focus(for: book),
-            getStudentFromRealm(for: student),
-            toInitial(by: tapReturn, fields: allFields),
-            toInitial(by: select, fields: allFields),
-            getSubjectFromRealm(for: subject),
             searchBooksFromNetwork(for: book),
+            toInitialbySelection(allFields),
+            focusAndGetData(for: subject, with: .subject),
+            getSubjectFromRealm(for: subject),
             focusComment(with: commentViewModel)
         )
+    }
+    
+    private func toInitialbySelection(_ fields: [FieldViewModel]) -> Observable<State> {
+        return select
+            .withLatestFrom(selectedModel) { ($0, $1) }
+            .map { (select, model) -> Void in
+                if case let .suggestion(vm) = model {
+                    switch vm.type {
+                    case .book:
+                        let bookVM = vm as! BookSuggestionViewModel
+                        self.book.text.accept(bookVM.text)
+                        self.book.isSearch.accept(true)
+                    case .subject:
+                        let subjectVM = vm as! SubjectSuggestionViewModel
+                        self.subject.text.accept(subjectVM.name)
+                    default:
+                        break
+                    }
+                }
+            }
+            .map { [button] in
+                button.isHidden.accept(false)
+                return .initial(fields: fields, button: button)
+            }
+            
     }
     
     private func toInitial(by action: PublishRelay<Void>, fields: [FieldViewModel]) -> Observable<State> {
         action.map { [button] in
             button.isHidden.accept(false)
+            let bool = fields.filter { !$0.text.value.isEmpty }.count == 2
+            button.isEnabled.accept(bool)
             return .initial(fields: fields, button: button)
+        }
+    }
+    
+    private func focusAndGetData(for field: FieldViewModel, with type: SuggestionType) -> Observable<State> {
+        switch type {
+        case .student:
+            return field.focus
+                .withLatestFrom(realmService.getAllStudents().asObservable()) { ($0, $1) }
+                .map { [button, select] (_, students) -> State in
+                    button.isHidden.accept(true)
+                    let viewModels = students.map { StudentSuggestionViewModel.init($0, select: select) }
+                    return .focus(field: field, suggestionViewModels: viewModels)
+                }
+        case .subject:
+            return field.focus
+                .withLatestFrom(realmService.getAllSubjects().asObservable()) { ($0, $1) }
+                .map { [button, select] (_, subjects) -> State in
+                    button.isHidden.accept(true)
+                    let viewModels = subjects.map { SubjectSuggestionViewModel.init($0, select: select) }
+                    return .focus(field: field, suggestionViewModels: viewModels)
+                }
+        default:
+            return .just(.focus(field: field, suggestionViewModels: []))
         }
     }
     
@@ -64,6 +134,7 @@ struct ReportFormViewModel{
     private func focusComment(with viewModel: CommentViewModel) -> Observable<State> {
         comment.focus
             .map { [button] in
+                viewModel.bind(to: comment)
                 button.isHidden.accept(false)
                 return .focusComment(viewModel)
             }
@@ -71,17 +142,17 @@ struct ReportFormViewModel{
         
     private func focusDate(with viewModel: DatePickerViewModel) -> Observable<State> {
         date.focus
-            .map { [button, date] in
-                button.isHidden.accept(true)
+            .map { [button] in
                 viewModel.bind(to: date)
+                button.isHidden.accept(true)
                 return .focusDate(datePickerVM: viewModel)
             }
     }
     
     private func searchBooksFromNetwork(for field: FieldViewModel) -> Observable<State> {
-        field.text
+        field.textForSearch
             .distinctUntilChanged()
-            .skip(while: { $0.isEmpty })
+            .skip(1)
             .debounce(.milliseconds(300), scheduler: MainScheduler.asyncInstance)
             .filter{ !$0.isEmpty }
             .flatMap { [bookService] query in
@@ -95,28 +166,13 @@ struct ReportFormViewModel{
     }
  
     private func getStudentFromRealm(for field: FieldViewModel) -> Observable<State> {
-        let students = field.text
+        field.text
             .debounce(.milliseconds(300), scheduler: MainScheduler.asyncInstance)
             .distinctUntilChanged()
             .skip(while: { $0.isEmpty })
             .flatMap { [realmService] (text) -> Observable<[StudentObject]> in
                 let students = realmService.getStudent(with: text)
                 return students.asObservable()
-            }
-        
-        return students
-            .withLatestFrom(field.text.asObservable()) { ($0, $1) }
-            .map { [realmService] (students, text) -> [StudentObject] in
-                if students.isEmpty {
-                    do {
-                        try realmService.addStudent(with: text)
-                    } catch {
-                        throw RealmError.failedToAddObject
-                    }
-                    return []
-                } else {
-                    return students
-                }
             }
             .map { students -> State in
                 let viewModels = students.map { [select] in

@@ -9,13 +9,37 @@ import Foundation
 import RealmSwift
 import RxSwift
 
-class RealmService: RealmServiceProtocol {
+class RealmService {
     static let shared: RealmServiceProtocol = RealmService()
     private let localRealm = try! Realm()
+    
+    init() {
+        ["수학", "영어", "국어", "과학", "코딩"].forEach {
+            if self.isSubjectExisted(with: $0) {
+                try! self.addSubject(with: $0)
+            }
+        }
+    }
 
+}
+
+extension RealmService: RealmServiceProtocol {
+    
+    func isSubjectExisted(with name: String) -> Bool {
+        localRealm.objects(SubjectObject.self).filter("name CONTAINS %@", "\(name)").isEmpty
+    }
+    
+    func getAllStudents() -> Single<[StudentObject]> {
+        .just(localRealm.objects(StudentObject.self).sorted(byKeyPath: "name").toArray())
+    }
+    
     func getStudent(with name: String) -> Single<[StudentObject]> {
         let studentObjects = localRealm.objects(StudentObject.self).filter("name CONTAINS %@", "\(name)")
         return .just(studentObjects.toArray())
+    }
+    
+    func getAllSubjects() -> Single<[SubjectObject]> {
+        .just(localRealm.objects(SubjectObject.self).sorted(byKeyPath: "name").toArray())
     }
     
     func getSubject(with name: String) -> Single<[SubjectObject]> {
@@ -48,7 +72,6 @@ class RealmService: RealmServiceProtocol {
             throw error
         }
     }
-    
 }
 
 extension Results {

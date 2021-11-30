@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import RxSwift
 import RxCocoa
 import RxDataSources
 
@@ -14,17 +15,17 @@ struct FieldViewModel {
     
     let text = BehaviorRelay<String>(value: "")
     let focus = PublishRelay<Void>()
+    var textForSearch = BehaviorRelay<String>(value: "")
+    var isSearch = BehaviorRelay<Bool>(value: false)
 }
 
 extension FieldViewModel: IdentifiableType {
-    var identity: String {
-        "\(self.title)"
-    }
+    var identity: String { title }
 }
 
 extension FieldViewModel: Equatable {
     static func ==(lhs: FieldViewModel, rhs: FieldViewModel) -> Bool {
-        return true
+        return lhs.text.value == rhs.text.value && lhs.title == rhs.title
     }
 }
 

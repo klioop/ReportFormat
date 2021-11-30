@@ -24,6 +24,10 @@ struct StudentSuggestionViewModel: SuggestionViewModelProtocol {
         self.name = studentObject.name
         self.select = PublishRelay<Void>()
     }
+    
+    func bindText(field: FieldViewModel) {
+        
+    }
    
 }
 

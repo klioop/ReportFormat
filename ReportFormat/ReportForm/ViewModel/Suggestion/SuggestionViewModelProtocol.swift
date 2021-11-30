@@ -18,4 +18,5 @@ protocol SuggestionViewModelProtocol {
     var select: PublishRelay<Void> { get }
     var identity: String { get }
     var `type`: SuggestionType { get }
+    
 }

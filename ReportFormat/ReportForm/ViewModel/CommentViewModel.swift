@@ -6,12 +6,14 @@
 //
 
 import Foundation
+import RxSwift
 import RxCocoa
 import RxDataSources
 
 struct CommentViewModel {
     let tapButton: PublishRelay<Void>
     let commentText = BehaviorRelay<String>(value: "")
+    private var bag = DisposeBag()
     
     init(tapButton: PublishRelay<Void>) {
         self.tapButton = tapButton
@@ -28,6 +30,13 @@ extension CommentViewModel: IdentifiableType {
 extension CommentViewModel {
     init() {
         self.tapButton = PublishRelay<Void>()
+    }
+    
+    func bind(to field: FieldViewModel) {
+        commentText
+            .asDriver()
+            .drive(field.text)
+            .disposed(by: bag)
     }
 }
 
