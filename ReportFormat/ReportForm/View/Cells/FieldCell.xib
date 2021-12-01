@@ -23,7 +23,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="학생" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mqz-LV-HRT">
-                        <rect key="frame" x="20" y="30" width="29.5" height="20.5"/>
+                        <rect key="frame" x="20" y="18" width="29.5" height="20.5"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20.5" id="tHN-Pa-Ncv"/>
                         </constraints>
@@ -32,10 +32,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yfb-4C-4lO">
-                        <rect key="frame" x="20" y="55.5" width="352" height="35"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="35" id="Pn6-tl-LcT"/>
-                        </constraints>
+                        <rect key="frame" x="20" y="43.5" width="352" height="60.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits"/>
                     </textField>
@@ -45,13 +42,13 @@
                     <constraint firstItem="yfb-4C-4lO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" symbolic="YES" id="6cE-oI-or7"/>
                     <constraint firstAttribute="trailing" secondItem="yfb-4C-4lO" secondAttribute="trailing" constant="20" symbolic="YES" id="HKp-6t-B7K"/>
                     <constraint firstAttribute="trailing" secondItem="eWX-Lb-5K9" secondAttribute="trailing" constant="5" id="Iht-K3-O6M"/>
-                    <constraint firstItem="mqz-LV-HRT" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="30" id="Sne-XM-73q"/>
+                    <constraint firstItem="mqz-LV-HRT" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="18" id="Sne-XM-73q"/>
                     <constraint firstItem="mqz-LV-HRT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" symbolic="YES" id="TAr-1e-ig2"/>
                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="mqz-LV-HRT" secondAttribute="trailing" constant="20" id="W4l-Gy-y6R"/>
-                    <constraint firstAttribute="bottom" secondItem="yfb-4C-4lO" secondAttribute="bottom" constant="31.5" id="aeE-HS-9em"/>
                     <constraint firstItem="eWX-Lb-5K9" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="iHo-pi-5ks"/>
                     <constraint firstItem="eWX-Lb-5K9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="kBG-Ov-s4c"/>
                     <constraint firstItem="yfb-4C-4lO" firstAttribute="top" secondItem="mqz-LV-HRT" secondAttribute="bottom" constant="5" id="qNx-rv-eEk"/>
+                    <constraint firstAttribute="bottom" secondItem="yfb-4C-4lO" secondAttribute="bottom" constant="18" id="rHa-zR-pLN"/>
                     <constraint firstAttribute="bottom" secondItem="eWX-Lb-5K9" secondAttribute="bottom" constant="5" id="rPx-y5-Gt3"/>
                 </constraints>
             </tableViewCellContentView>

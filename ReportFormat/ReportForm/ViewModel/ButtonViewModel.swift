@@ -18,3 +18,7 @@ extension ButtonViewModel: Equatable {
         return true
     }
 }
+
+extension ButtonViewModel {
+    
+}

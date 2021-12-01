@@ -23,3 +23,7 @@ struct Identifier {
 struct ColorName {
     static let main = "mainColor"
 }
+
+struct Constants {
+    static let commentTextViewPlaceHolder = "여기에 입력해주세요"
+}

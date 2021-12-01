@@ -10,7 +10,6 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-
 class ReportFormViewController: UIViewController, StoryBoarded {
     
     typealias ReportFormSection = AnimatableSectionModel<String, CellViewModel>
@@ -74,6 +73,7 @@ class ReportFormViewController: UIViewController, StoryBoarded {
             .disposed(by: bag)
                
         writeButton.setTitleColor(.lightGray, for: .disabled)
+        writeButton.layer.cornerRadius = 6
     }
     
     private func binding() {

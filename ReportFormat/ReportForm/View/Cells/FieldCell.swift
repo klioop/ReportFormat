@@ -31,8 +31,6 @@ class FieldCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         focusButton.frame = inputTextField.frame
-        focusButton.layer.borderColor = UIColor.red.cgColor
-        focusButton.layer.borderWidth = 1
     }
     
     override func prepareForReuse() {
