@@ -87,7 +87,7 @@ class ReportFormViewController: UIViewController, StoryBoarded {
             .bind(to: self.tableView.rx.items(dataSource: dataSource))
             .disposed(by: bag)
         
-        viewModel.button.isEnabled
+        viewModel.buttonViewModel.isEnabled
             .map { [writeButton] in
                 guard let button = writeButton else { return }
                 button.isEnabled = $0
@@ -97,7 +97,7 @@ class ReportFormViewController: UIViewController, StoryBoarded {
             .drive()
             .disposed(by: bag)
         
-        viewModel.button.isHidden
+        viewModel.buttonViewModel.isHidden
             .bind(to: writeButton.rx.isHidden)
             .disposed(by: bag)
         

@@ -18,7 +18,7 @@ struct ReportFormViewModel{
     let book: FieldViewModel
     let range: FieldViewModel
     let comment: FieldViewModel
-    let button: ButtonViewModel
+    let buttonViewModel: ButtonViewModel
     let realmService: RealmServiceProtocol
     let bookService: NaverBookAPIProtocol
     let fieldsShouldBeFilled: [FieldViewModel]
@@ -37,7 +37,7 @@ struct ReportFormViewModel{
         book: FieldViewModel,
         range: FieldViewModel,
         comment: FieldViewModel,
-        button: ButtonViewModel,
+        buttonViewModel: ButtonViewModel,
         realmService: RealmServiceProtocol,
         bookService: NaverBookAPIProtocol
     ) {
@@ -47,7 +47,7 @@ struct ReportFormViewModel{
         self.book = book
         self.range = range
         self.comment = comment
-        self.button = button
+        self.buttonViewModel = buttonViewModel
         self.realmService = realmService
         self.bookService = bookService
         
@@ -57,9 +57,8 @@ struct ReportFormViewModel{
             .map { dateText, studentText, commentText in
                 !dateText.isEmpty && !studentText.isEmpty && !commentText.isEmpty
             }
-            .bind(to: button.isEnabled)
+            .bind(to: buttonViewModel.isEnabled)
             .disposed(by: bag)
-        
     }
         
     var state: Observable<State> {
@@ -68,7 +67,7 @@ struct ReportFormViewModel{
         let commentViewModel = CommentViewModel(tapButton: tapButton)
         
         return Observable.merge(
-            .just(.initial(fields: allFields, button: button)),
+            .just(.initial(fields: allFields, button: buttonViewModel)),
             focusDate(with: datePickerViewModel),
             toInitial(by: tapButton, fields: allFields),
             focus(for: book),
@@ -79,6 +78,11 @@ struct ReportFormViewModel{
             focusComment(with: commentViewModel)
         )
     }
+}
+
+// MARK: - Helpers
+
+private extension ReportFormViewModel {
     
     private func toInitialbySelection(_ fields: [FieldViewModel]) -> Observable<State> {
         return select
@@ -98,17 +102,17 @@ struct ReportFormViewModel{
                     }
                 }
             }
-            .map { [button] in
-                button.isHidden.accept(false)
-                return .initial(fields: fields, button: button)
+            .map { [buttonViewModel] in
+                buttonViewModel.isHidden.accept(false)
+                return .initial(fields: fields, button: buttonViewModel)
             }
             
     }
     
     private func toInitial(by action: PublishRelay<Void>, fields: [FieldViewModel]) -> Observable<State> {
-        action.map { [button] in
-            button.isHidden.accept(false)
-            return .initial(fields: fields, button: button)
+        action.map { [buttonViewModel] in
+            buttonViewModel.isHidden.accept(false)
+            return .initial(fields: fields, button: buttonViewModel)
         }
     }
     
@@ -117,16 +121,16 @@ struct ReportFormViewModel{
         case .student:
             return field.focus
                 .withLatestFrom(realmService.getAllStudents().asObservable()) { ($0, $1) }
-                .map { [button, select] (_, students) -> State in
-                    button.isHidden.accept(true)
+                .map { [buttonViewModel, select] (_, students) -> State in
+                    buttonViewModel.isHidden.accept(true)
                     let viewModels = students.map { StudentSuggestionViewModel.init($0, select: select) }
                     return .focus(field: field, suggestionViewModels: viewModels)
                 }
         case .subject:
             return field.focus
                 .withLatestFrom(realmService.getAllSubjects().asObservable()) { ($0, $1) }
-                .map { [button, select] (_, subjects) -> State in
-                    button.isHidden.accept(true)
+                .map { [buttonViewModel, select] (_, subjects) -> State in
+                    buttonViewModel.isHidden.accept(true)
                     let viewModels = subjects.map { SubjectSuggestionViewModel.init($0, select: select) }
                     return .focus(field: field, suggestionViewModels: viewModels)
                 }
@@ -136,26 +140,26 @@ struct ReportFormViewModel{
     }
     
     private func focus(for field: FieldViewModel) -> Observable<State> {
-        field.focus.map { [button] in
-            button.isHidden.accept(true)
+        field.focus.map { [buttonViewModel] in
+            buttonViewModel.isHidden.accept(true)
             return .focus(field: field, suggestionViewModels: [])
         }
     }
     
     private func focusComment(with viewModel: CommentViewModel) -> Observable<State> {
         comment.focus
-            .map { [button] in
+            .map { [buttonViewModel] in
                 viewModel.bind(to: comment)
-                button.isHidden.accept(true)
+                buttonViewModel.isHidden.accept(true)
                 return .focusComment(viewModel)
             }
     }
         
     private func focusDate(with viewModel: DatePickerViewModel) -> Observable<State> {
         date.focus
-            .map { [button] in
+            .map { [buttonViewModel] in
                 viewModel.bind(to: date)
-                button.isHidden.accept(true)
+                buttonViewModel.isHidden.accept(true)
                 return .focusDate(datePickerVM: viewModel)
             }
     }
@@ -206,15 +210,5 @@ struct ReportFormViewModel{
                 return .focus(field: field, suggestionViewModels: viewModels)
             }
     }
-    
-}
 
-// MARK: - Helpers
-
-private extension ReportFormViewModel {
-    
-    func singnalToButton() {
-        let boolsForTextIsEmpty = fieldsShouldBeFilled.filter { !($0.text.value.isEmpty) }
-        button.isEnabled.accept(boolsForTextIsEmpty.count == fieldsShouldBeFilled.count)
-    }
 }
