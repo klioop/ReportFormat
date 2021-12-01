@@ -70,16 +70,16 @@ struct ReportFormViewModel{
     private func toInitialbySelection(_ fields: [FieldViewModel]) -> Observable<State> {
         return select
             .withLatestFrom(selectedModel) { ($0, $1) }
-            .map { (select, model) -> Void in
+            .map { [book, subject] (select, model) -> Void in
                 if case let .suggestion(vm) = model {
                     switch vm.type {
                     case .book:
                         let bookVM = vm as! BookSuggestionViewModel
-                        self.book.text.accept(bookVM.text)
-                        self.book.isSearch.accept(true)
+                        book.text.accept(bookVM.text)
+                        book.isSearch.accept(true)
                     case .subject:
                         let subjectVM = vm as! SubjectSuggestionViewModel
-                        self.subject.text.accept(subjectVM.name)
+                        subject.text.accept(subjectVM.name)
                     default:
                         break
                     }
@@ -95,8 +95,6 @@ struct ReportFormViewModel{
     private func toInitial(by action: PublishRelay<Void>, fields: [FieldViewModel]) -> Observable<State> {
         action.map { [button] in
             button.isHidden.accept(false)
-            let bool = fields.filter { !$0.text.value.isEmpty }.count == 2
-            button.isEnabled.accept(bool)
             return .initial(fields: fields, button: button)
         }
     }

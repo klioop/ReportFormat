@@ -10,27 +10,6 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-enum CellViewModel: IdentifiableType {
-    case fields(FieldViewModel)
-    case datePicker(DatePickerViewModel)
-    case suggestion(SuggestionViewModelProtocol)
-    case comment(CommentViewModel)
-    
-    var identity: String {
-        switch self {
-        case let .fields(vm): return vm.title
-        case let .datePicker(vm): return vm.identity
-        case let .suggestion(vm): return vm.identity
-        case let .comment(vm): return vm.identity
-        }
-    }
-}
-
-extension CellViewModel: Equatable {
-    static func ==(lhs: CellViewModel, rhs: CellViewModel) -> Bool {
-        lhs.identity == rhs.identity
-    }
-}
 
 class ReportFormViewController: UIViewController, StoryBoarded {
     
@@ -44,6 +23,8 @@ class ReportFormViewController: UIViewController, StoryBoarded {
     var viewModelBuilder: ReportFormViewModelBuilder!
     
     private let bag = DisposeBag()
+    
+    // MARK: - dataSource
     
     private lazy var dataSource = RxTableViewSectionedAnimatedDataSource<ReportFormSection> { (dataSource, tableView, indexPath, item) -> UITableViewCell in
         switch item {
@@ -91,8 +72,7 @@ class ReportFormViewController: UIViewController, StoryBoarded {
         tableView.rx
             .setDelegate(self)
             .disposed(by: bag)
-       
-        writeButton.backgroundColor = writeButton.isEnabled ? UIColor(named: ColorName.main) : .gray
+               
         writeButton.setTitleColor(.lightGray, for: .disabled)
     }
     
@@ -108,8 +88,15 @@ class ReportFormViewController: UIViewController, StoryBoarded {
             .disposed(by: bag)
         
         viewModel.button.isEnabled
-            .bind(to: writeButton.rx.isEnabled)
+            .map { [writeButton] in
+                guard let button = writeButton else { return }
+                button.isEnabled = $0
+                button.backgroundColor = button.isEnabled ? UIColor(named: ColorName.main) : .gray
+            }
+            .asDriver(onErrorJustReturn: ())
+            .drive()
             .disposed(by: bag)
+        
         viewModel.button.isHidden
             .bind(to: writeButton.rx.isHidden)
             .disposed(by: bag)
@@ -133,10 +120,9 @@ class ReportFormViewController: UIViewController, StoryBoarded {
     }
 }
 
-// MARK: - dataSource and section
+// MARK: - private function
 
 extension ReportFormViewController {
-    
     
     private func createSections(with state: Observable<State>) -> Observable<[ReportFormSection]> {
         return state

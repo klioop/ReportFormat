@@ -12,6 +12,7 @@
 		319899EF27525C310027234E /* SuggestionViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319899ED27525C170027234E /* SuggestionViewModelProtocol.swift */; };
 		319899F127525CDB0027234E /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319899F027525CDB0027234E /* Book.swift */; };
 		319899F227525D0A0027234E /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319899F027525CDB0027234E /* Book.swift */; };
+		3198DEA92757106500E3A7B7 /* CellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3198DEA82757106500E3A7B7 /* CellViewModel.swift */; };
 		319B67E9274F3BCF000AABFA /* ReportFormViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319B67E8274F3BCF000AABFA /* ReportFormViewModelTests.swift */; };
 		319CFD5A274F24EE008EC96F /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 319CFD59274F24EE008EC96F /* Realm */; };
 		319CFD5C274F24EE008EC96F /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 319CFD5B274F24EE008EC96F /* RealmSwift */; };
@@ -91,6 +92,7 @@
 /* Begin PBXFileReference section */
 		319899ED27525C170027234E /* SuggestionViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionViewModelProtocol.swift; sourceTree = "<group>"; };
 		319899F027525CDB0027234E /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
+		3198DEA82757106500E3A7B7 /* CellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellViewModel.swift; sourceTree = "<group>"; };
 		319B67E8274F3BCF000AABFA /* ReportFormViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportFormViewModelTests.swift; sourceTree = "<group>"; };
 		319F66DD2754C48E0030C46C /* ReportFormCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportFormCoordinator.swift; sourceTree = "<group>"; };
 		31A7AEE1274E564A006C087C /* ReportFormat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReportFormat.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -175,6 +177,7 @@
 				31D1B8A127535E7400F5ABF7 /* ButtonViewModel.swift */,
 				31D1B8A427535E9E00F5ABF7 /* DatePickerViewModel.swift */,
 				31D1B8B7275360EE00F5ABF7 /* CommentViewModel.swift */,
+				3198DEA82757106500E3A7B7 /* CellViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -503,6 +506,7 @@
 				31CC75142750F79800A3F03D /* BookResponse.swift in Sources */,
 				31D4289E2750C27200C9D09E /* Secret.swift in Sources */,
 				31D1B8B5275360AD00F5ABF7 /* SubjectSuggestionViewModel.swift in Sources */,
+				3198DEA92757106500E3A7B7 /* CellViewModel.swift in Sources */,
 				31D1B8D027536C7400F5ABF7 /* Drawble.swift in Sources */,
 				31D1B8C627536C0D00F5ABF7 /* AppCoordinator.swift in Sources */,
 				31D1B8C0275368B000F5ABF7 /* Coordinator.swift in Sources */,
