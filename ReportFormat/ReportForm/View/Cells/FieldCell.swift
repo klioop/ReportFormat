@@ -37,11 +37,14 @@ class FieldCell: UITableViewCell {
         super.prepareForReuse()
         bag = DisposeBag()
     }
+   
+}
+
+extension FieldCell {
     
     func configure(with viewModel: FieldViewModel) -> Void {
         titleLabel.text = viewModel.title
-        
-        
+                
         viewModel.text
             .bind(to: inputTextField.rx.text)
             .disposed(by: bag)
@@ -69,13 +72,8 @@ class FieldCell: UITableViewCell {
             .bind(to: viewModel.focus)
             .disposed(by: bag)
     }
-    
-    @objc
-    func focusAction() {
-        inputTextField.becomeFirstResponder()
-    }
-    
 }
+
 
 private extension FieldCell {
     
@@ -86,5 +84,10 @@ private extension FieldCell {
         }
         viewModel.text.accept(text)
         return
+    }
+    
+    @objc
+    func focusAction() {
+        inputTextField.becomeFirstResponder()
     }
 }
