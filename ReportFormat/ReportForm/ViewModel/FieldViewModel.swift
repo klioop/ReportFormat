@@ -37,26 +37,26 @@ extension FieldViewModel {
     }
     
     static func date() -> FieldViewModel {
-        FieldViewModel(title: "날짜")
+        FieldViewModel(title: Constants.FieldTitle.date)
     }
     
     static func student() -> FieldViewModel {
-        FieldViewModel(title: "학생 이름")
+        FieldViewModel(title: Constants.FieldTitle.student)
     }
     
     static func subject() -> FieldViewModel {
-        FieldViewModel(title: "과목")
+        FieldViewModel(title: Constants.FieldTitle.subject)
     }
     
     static func book() -> FieldViewModel {
-        FieldViewModel(title: "책")
+        FieldViewModel(title: Constants.FieldTitle.book)
     }
     
     static func range() -> FieldViewModel {
-        FieldViewModel(title: "범위")
+        FieldViewModel(title: Constants.FieldTitle.range)
     }
     
     static func comment() -> FieldViewModel {
-        FieldViewModel(title: "코맨트")
+        FieldViewModel(title: Constants.FieldTitle.comment)
     }
 }

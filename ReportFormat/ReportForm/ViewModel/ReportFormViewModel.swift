@@ -22,6 +22,8 @@ struct ReportFormViewModel{
     let realmService: RealmServiceProtocol
     let bookService: NaverBookAPIProtocol
     let fieldsShouldBeFilled: [FieldViewModel]
+    let datePickerViewModel: DatePickerViewModel
+    let commentViewModel: CommentViewModel
     
     let tapButtonFromDatePickerView = PublishRelay<Void>()
     let tapButton = PublishRelay<Void>()
@@ -50,8 +52,9 @@ struct ReportFormViewModel{
         self.buttonViewModel = buttonViewModel
         self.realmService = realmService
         self.bookService = bookService
-        
         self.fieldsShouldBeFilled = [date, student, comment]
+        self.datePickerViewModel = DatePickerViewModel(tapButton: tapButton)
+        self.commentViewModel = CommentViewModel(tapButton: tapButton)
         
         Observable.combineLatest(date.textForEmptyCheck, student.textForEmptyCheck, comment.textForEmptyCheck)
             .map { dateText, studentText, commentText in
@@ -59,12 +62,14 @@ struct ReportFormViewModel{
             }
             .bind(to: buttonViewModel.isEnabled)
             .disposed(by: bag)
+        
+        datePickerViewModel.bind(to: date)
+        commentViewModel.bind(to: comment)
     }
         
     var state: Observable<State> {
         let allFields = [date, student, subject, book, range, comment]
-        let datePickerViewModel = DatePickerViewModel(tapButton: tapButton)
-        let commentViewModel = CommentViewModel(tapButton: tapButton)
+        
         
         return Observable.merge(
             .just(.initial(fields: allFields, button: buttonViewModel)),
@@ -149,7 +154,6 @@ private extension ReportFormViewModel {
     private func focusComment(with viewModel: CommentViewModel) -> Observable<State> {
         comment.focus
             .map { [buttonViewModel] in
-                viewModel.bind(to: comment)
                 buttonViewModel.isHidden.accept(true)
                 return .focusComment(viewModel)
             }
@@ -158,7 +162,6 @@ private extension ReportFormViewModel {
     private func focusDate(with viewModel: DatePickerViewModel) -> Observable<State> {
         date.focus
             .map { [buttonViewModel] in
-                viewModel.bind(to: date)
                 buttonViewModel.isHidden.accept(true)
                 return .focusDate(datePickerVM: viewModel)
             }

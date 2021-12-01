@@ -11,7 +11,6 @@ import RxCocoa
 import RxRelay
 
 class CommentCell: UITableViewCell {
-
     
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var commentTextView: UITextView!
@@ -51,8 +50,7 @@ class CommentCell: UITableViewCell {
             .asDriver(onErrorJustReturn: ())
             .drive()
             .disposed(by: bag)
-            
-        
+                    
         commentTextView.rx.text
             .orEmpty
             .asDriver()

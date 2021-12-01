@@ -26,4 +26,13 @@ struct ColorName {
 
 struct Constants {
     static let commentTextViewPlaceHolder = "여기에 입력해주세요"
+    
+    struct FieldTitle {
+        static let book = "책(검색)"
+        static let student = "학생 이름"
+        static let subject = "과목"
+        static let range = "범위"
+        static let comment = "코멘트"
+        static let date = "날짜"
+    }
 }

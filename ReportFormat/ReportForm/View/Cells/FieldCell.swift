@@ -46,22 +46,17 @@ class FieldCell: UITableViewCell {
             .bind(to: inputTextField.rx.text)
             .disposed(by: bag)
         
-        let textFieldText =  inputTextField.rx.text
+        let textFieldText = inputTextField.rx.text
             .orEmpty
-            .share(replay: 1, scope: .forever)
+            .share(replay: 1, scope: .whileConnected)
         
         textFieldText
             .bind(to: viewModel.textForEmptyCheck)
             .disposed(by: bag)
         
         textFieldText
-            .map { [viewModel] text -> Void in
-                if viewModel.title == "책" && !viewModel.isSearch.value {
-                    viewModel.textForSearch.accept(text)
-                    return
-                }
-                viewModel.text.accept(text)
-                return
+            .map { [weak self, viewModel] text -> Void in
+                self?.injectTextToDifferentStream(on: viewModel, with: text)
             }
             .asDriver(onErrorJustReturn: ())
             .drive()
@@ -80,4 +75,16 @@ class FieldCell: UITableViewCell {
         inputTextField.becomeFirstResponder()
     }
     
+}
+
+private extension FieldCell {
+    
+    func injectTextToDifferentStream(on viewModel: FieldViewModel, with text: String) -> Void {
+        if viewModel.title == Constants.FieldTitle.book && !viewModel.isSearch.value {
+            viewModel.textForSearch.accept(text)
+            return
+        }
+        viewModel.text.accept(text)
+        return
+    }
 }
