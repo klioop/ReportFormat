@@ -17,6 +17,7 @@ struct FieldViewModel {
     let focus = PublishRelay<Void>()
     var textForSearch = BehaviorRelay<String>(value: "")
     var isSearch = BehaviorRelay<Bool>(value: false)
+    let textForEmptyCheck = BehaviorRelay<String>(value: "")
 }
 
 extension FieldViewModel: IdentifiableType {

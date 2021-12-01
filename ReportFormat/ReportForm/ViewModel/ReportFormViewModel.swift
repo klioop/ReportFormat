@@ -28,6 +28,8 @@ struct ReportFormViewModel{
     let select = PublishRelay<Void>()
     let selectedModel = PublishRelay<CellViewModel>()
     
+    private let bag = DisposeBag()
+    
     init(
         date: FieldViewModel,
         student: FieldViewModel,
@@ -50,6 +52,14 @@ struct ReportFormViewModel{
         self.bookService = bookService
         
         self.fieldsShouldBeFilled = [date, student, comment]
+        
+        Observable.combineLatest(date.textForEmptyCheck, student.textForEmptyCheck, comment.textForEmptyCheck)
+            .map { dateText, studentText, commentText in
+                !dateText.isEmpty && !studentText.isEmpty && !commentText.isEmpty
+            }
+            .bind(to: button.isEnabled)
+            .disposed(by: bag)
+        
     }
         
     var state: Observable<State> {
@@ -90,7 +100,6 @@ struct ReportFormViewModel{
             }
             .map { [button] in
                 button.isHidden.accept(false)
-                singnalToButton()
                 return .initial(fields: fields, button: button)
             }
             
@@ -99,7 +108,6 @@ struct ReportFormViewModel{
     private func toInitial(by action: PublishRelay<Void>, fields: [FieldViewModel]) -> Observable<State> {
         action.map { [button] in
             button.isHidden.accept(false)
-            singnalToButton()
             return .initial(fields: fields, button: button)
         }
     }
@@ -138,7 +146,7 @@ struct ReportFormViewModel{
         comment.focus
             .map { [button] in
                 viewModel.bind(to: comment)
-                button.isHidden.accept(false)
+                button.isHidden.accept(true)
                 return .focusComment(viewModel)
             }
     }

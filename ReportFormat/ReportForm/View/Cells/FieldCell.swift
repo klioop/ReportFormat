@@ -48,8 +48,15 @@ class FieldCell: UITableViewCell {
             .bind(to: inputTextField.rx.text)
             .disposed(by: bag)
         
-        inputTextField.rx.text
+        let textFieldText =  inputTextField.rx.text
             .orEmpty
+            .share(replay: 1, scope: .forever)
+        
+        textFieldText
+            .bind(to: viewModel.textForEmptyCheck)
+            .disposed(by: bag)
+        
+        textFieldText
             .map { [viewModel] text -> Void in
                 if viewModel.title == "책" && !viewModel.isSearch.value {
                     viewModel.textForSearch.accept(text)
