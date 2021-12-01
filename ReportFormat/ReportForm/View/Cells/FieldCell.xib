@@ -61,7 +61,7 @@
                 <outlet property="inputTextField" destination="yfb-4C-4lO" id="M9K-02-iAl"/>
                 <outlet property="titleLabel" destination="mqz-LV-HRT" id="tEv-84-St1"/>
             </connections>
-            <point key="canvasLocation" x="135" y="155"/>
+            <point key="canvasLocation" x="139" y="122"/>
         </tableViewCell>
     </objects>
     <resources>

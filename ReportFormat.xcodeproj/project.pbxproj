@@ -40,7 +40,6 @@
 		31CC751D27510CC200A3F03D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CC751C27510CC200A3F03D /* ViewController.swift */; };
 		31D1B89A275349DC00F5ABF7 /* BookResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CC75132750F79800A3F03D /* BookResponse.swift */; };
 		31D1B89C27535DBF00F5ABF7 /* ReportFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B89B27535DBF00F5ABF7 /* ReportFormViewModel.swift */; };
-		31D1B89D27535DBF00F5ABF7 /* ReportFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B89B27535DBF00F5ABF7 /* ReportFormViewModel.swift */; };
 		31D1B89F27535E1900F5ABF7 /* FieldViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B89E27535E1800F5ABF7 /* FieldViewModel.swift */; };
 		31D1B8A027535E1900F5ABF7 /* FieldViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B89E27535E1800F5ABF7 /* FieldViewModel.swift */; };
 		31D1B8A227535E7400F5ABF7 /* ButtonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B8A127535E7400F5ABF7 /* ButtonViewModel.swift */; };
@@ -547,7 +546,6 @@
 				319F66E72754F5030030C46C /* Objects.swift in Sources */,
 				31D1B8B9275360EE00F5ABF7 /* CommentViewModel.swift in Sources */,
 				31D1B8A627535E9E00F5ABF7 /* DatePickerViewModel.swift in Sources */,
-				31D1B89D27535DBF00F5ABF7 /* ReportFormViewModel.swift in Sources */,
 				319899EF27525C310027234E /* SuggestionViewModelProtocol.swift in Sources */,
 				31D1B8A027535E1900F5ABF7 /* FieldViewModel.swift in Sources */,
 				319B67E9274F3BCF000AABFA /* ReportFormViewModelTests.swift in Sources */,

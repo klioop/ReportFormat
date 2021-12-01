@@ -21,6 +21,7 @@ struct ReportFormViewModel{
     let button: ButtonViewModel
     let realmService: RealmServiceProtocol
     let bookService: NaverBookAPIProtocol
+    let fieldsShouldBeFilled: [FieldViewModel]
     
     let tapButtonFromDatePickerView = PublishRelay<Void>()
     let tapButton = PublishRelay<Void>()
@@ -47,6 +48,8 @@ struct ReportFormViewModel{
         self.button = button
         self.realmService = realmService
         self.bookService = bookService
+        
+        self.fieldsShouldBeFilled = [date, student, comment]
     }
         
     var state: Observable<State> {
@@ -87,6 +90,7 @@ struct ReportFormViewModel{
             }
             .map { [button] in
                 button.isHidden.accept(false)
+                singnalToButton()
                 return .initial(fields: fields, button: button)
             }
             
@@ -95,6 +99,7 @@ struct ReportFormViewModel{
     private func toInitial(by action: PublishRelay<Void>, fields: [FieldViewModel]) -> Observable<State> {
         action.map { [button] in
             button.isHidden.accept(false)
+            singnalToButton()
             return .initial(fields: fields, button: button)
         }
     }
@@ -194,4 +199,14 @@ struct ReportFormViewModel{
             }
     }
     
+}
+
+// MARK: - Helpers
+
+private extension ReportFormViewModel {
+    
+    func singnalToButton() {
+        let boolsForTextIsEmpty = fieldsShouldBeFilled.filter { !($0.text.value.isEmpty) }
+        button.isEnabled.accept(boolsForTextIsEmpty.count == fieldsShouldBeFilled.count)
+    }
 }
