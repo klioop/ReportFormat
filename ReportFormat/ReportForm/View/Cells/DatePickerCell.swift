@@ -17,6 +17,7 @@ class DatePickerCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        setupUI()
     }
     
     override func layoutSubviews() {
@@ -39,5 +40,12 @@ class DatePickerCell: UITableViewCell {
             
     }
     
-    
+}
+
+private extension DatePickerCell {
+    func setupUI() {
+        selectionButton.layer.cornerRadius = 6
+        selectionButton.backgroundColor = UIColor(named: ColorName.main)
+        selectionButton.setTitleColor(.white, for: .normal)
+    }
 }
