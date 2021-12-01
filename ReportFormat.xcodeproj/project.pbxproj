@@ -31,6 +31,7 @@
 		31A7AF1E274E5898006C087C /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 31A7AF1D274E5898006C087C /* RxRelay */; };
 		31A7AF20274E5898006C087C /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 31A7AF1F274E5898006C087C /* RxSwift */; };
 		31A7AF23274E58AE006C087C /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = 31A7AF22274E58AE006C087C /* RxDataSources */; };
+		31A961BB2757A70900CCC297 /* Array+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A961BA2757A70900CCC297 /* Array+extension.swift */; };
 		31CC750D2750F2F700A3F03D /* NaverAPIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CC750C2750F2F700A3F03D /* NaverAPIRouter.swift */; };
 		31CC750F2750F66E00A3F03D /* NaverAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CC750E2750F66E00A3F03D /* NaverAPIService.swift */; };
 		31CC75122750F71800A3F03D /* NaverBookAPIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CC75112750F71800A3F03D /* NaverBookAPIProtocol.swift */; };
@@ -103,6 +104,7 @@
 		31A7AEF2274E564C006C087C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		31A7AEF7274E564C006C087C /* ReportFormatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReportFormatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		31A7AEFB274E564C006C087C /* ReportFormatTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportFormatTests.swift; sourceTree = "<group>"; };
+		31A961BA2757A70900CCC297 /* Array+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+extension.swift"; sourceTree = "<group>"; };
 		31CC750C2750F2F700A3F03D /* NaverAPIRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverAPIRouter.swift; sourceTree = "<group>"; };
 		31CC750E2750F66E00A3F03D /* NaverAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverAPIService.swift; sourceTree = "<group>"; };
 		31CC75112750F71800A3F03D /* NaverBookAPIProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverBookAPIProtocol.swift; sourceTree = "<group>"; };
@@ -170,11 +172,11 @@
 		319899EC27525BFD0027234E /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				31D1B8EE27539B4B00F5ABF7 /* Suggestion */,
 				31D1B89B27535DBF00F5ABF7 /* ReportFormViewModel.swift */,
 				31D1B89E27535E1800F5ABF7 /* FieldViewModel.swift */,
-				31D1B8A127535E7400F5ABF7 /* ButtonViewModel.swift */,
+				31D1B8EE27539B4B00F5ABF7 /* Suggestion */,
 				31D1B8A427535E9E00F5ABF7 /* DatePickerViewModel.swift */,
+				31D1B8A127535E7400F5ABF7 /* ButtonViewModel.swift */,
 				31D1B8B7275360EE00F5ABF7 /* CommentViewModel.swift */,
 				3198DEA82757106500E3A7B7 /* CellViewModel.swift */,
 			);
@@ -275,6 +277,7 @@
 			children = (
 				31D1B8D227536CBD00F5ABF7 /* StoryBoarded.swift */,
 				31D1B8DF275372CC00F5ABF7 /* Constants.swift */,
+				31A961BA2757A70900CCC297 /* Array+extension.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -528,6 +531,7 @@
 				31D1B8B22753605100F5ABF7 /* StudentSuggestionViewModel.swift in Sources */,
 				31D1B8CC27536C7400F5ABF7 /* Router.swift in Sources */,
 				31CC75122750F71800A3F03D /* NaverBookAPIProtocol.swift in Sources */,
+				31A961BB2757A70900CCC297 /* Array+extension.swift in Sources */,
 				31CC751D27510CC200A3F03D /* ViewController.swift in Sources */,
 				31D1B8AC27535F9E00F5ABF7 /* RealmService.swift in Sources */,
 				31A7AEE7274E564A006C087C /* SceneDelegate.swift in Sources */,

@@ -21,6 +21,7 @@ struct ReportFormViewModel{
     let buttonViewModel: ButtonViewModel
     let realmService: RealmServiceProtocol
     let bookService: NaverBookAPIProtocol
+    
     let fieldsShouldBeFilled: [FieldViewModel]
     let datePickerViewModel: DatePickerViewModel
     let commentViewModel: CommentViewModel
@@ -69,8 +70,7 @@ struct ReportFormViewModel{
         
     var state: Observable<State> {
         let allFields = [date, student, subject, book, range, comment]
-        
-        
+                
         return Observable.merge(
             .just(.initial(fields: allFields, button: buttonViewModel)),
             focusDate(with: datePickerViewModel),

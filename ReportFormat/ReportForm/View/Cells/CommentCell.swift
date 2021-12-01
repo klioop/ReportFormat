@@ -35,9 +35,9 @@ class CommentCell: UITableViewCell {
         
         viewModel.commentText
             .map { [saveButton] in
-                let isTextEmpty = $0.isEmpty
-                saveButton?.backgroundColor = isTextEmpty ? .gray : UIColor(named: ColorName.main)
-                return !isTextEmpty
+                let disableFlag = ($0.isEmpty) || ($0 == Constants.commentTextViewPlaceHolder)
+                saveButton?.backgroundColor = disableFlag ? .gray : UIColor(named: ColorName.main)
+                return !disableFlag
             }
             .bind(to: saveButton.rx.isEnabled)
             .disposed(by: bag)
