@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		31960A652758B2000076AAA7 /* ReportCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31960A632758B2000076AAA7 /* ReportCommentCell.swift */; };
+		31960A662758B2000076AAA7 /* ReportCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31960A642758B2000076AAA7 /* ReportCommentCell.xib */; };
+		31960A682758B58B0076AAA7 /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31960A672758B58B0076AAA7 /* ReportViewController.swift */; };
 		319899EA27525BDA0027234E /* BookSuggestionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CC75192751064F00A3F03D /* BookSuggestionViewModel.swift */; };
 		319899EE27525C170027234E /* SuggestionViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319899ED27525C170027234E /* SuggestionViewModelProtocol.swift */; };
 		319899EF27525C310027234E /* SuggestionViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319899ED27525C170027234E /* SuggestionViewModelProtocol.swift */; };
@@ -32,6 +35,8 @@
 		31A7AF20274E5898006C087C /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 31A7AF1F274E5898006C087C /* RxSwift */; };
 		31A7AF23274E58AE006C087C /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = 31A7AF22274E58AE006C087C /* RxDataSources */; };
 		31A961BB2757A70900CCC297 /* Array+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A961BA2757A70900CCC297 /* Array+extension.swift */; };
+		31C9E1482758943F00DC9787 /* ReportDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C9E1462758943F00DC9787 /* ReportDataCell.swift */; };
+		31C9E1492758943F00DC9787 /* ReportCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31C9E1472758943F00DC9787 /* ReportCell.xib */; };
 		31CC750D2750F2F700A3F03D /* NaverAPIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CC750C2750F2F700A3F03D /* NaverAPIRouter.swift */; };
 		31CC750F2750F66E00A3F03D /* NaverAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CC750E2750F66E00A3F03D /* NaverAPIService.swift */; };
 		31CC75122750F71800A3F03D /* NaverBookAPIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CC75112750F71800A3F03D /* NaverBookAPIProtocol.swift */; };
@@ -90,6 +95,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		31960A632758B2000076AAA7 /* ReportCommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportCommentCell.swift; sourceTree = "<group>"; };
+		31960A642758B2000076AAA7 /* ReportCommentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReportCommentCell.xib; sourceTree = "<group>"; };
+		31960A672758B58B0076AAA7 /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
 		319899ED27525C170027234E /* SuggestionViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionViewModelProtocol.swift; sourceTree = "<group>"; };
 		319899F027525CDB0027234E /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		3198DEA82757106500E3A7B7 /* CellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellViewModel.swift; sourceTree = "<group>"; };
@@ -105,6 +113,8 @@
 		31A7AEF7274E564C006C087C /* ReportFormatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReportFormatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		31A7AEFB274E564C006C087C /* ReportFormatTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportFormatTests.swift; sourceTree = "<group>"; };
 		31A961BA2757A70900CCC297 /* Array+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+extension.swift"; sourceTree = "<group>"; };
+		31C9E1462758943F00DC9787 /* ReportDataCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportDataCell.swift; sourceTree = "<group>"; };
+		31C9E1472758943F00DC9787 /* ReportCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReportCell.xib; sourceTree = "<group>"; };
 		31CC750C2750F2F700A3F03D /* NaverAPIRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverAPIRouter.swift; sourceTree = "<group>"; };
 		31CC750E2750F66E00A3F03D /* NaverAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverAPIService.swift; sourceTree = "<group>"; };
 		31CC75112750F71800A3F03D /* NaverBookAPIProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverBookAPIProtocol.swift; sourceTree = "<group>"; };
@@ -286,8 +296,37 @@
 		31C9E14127588DCF00DC9787 /* Report */ = {
 			isa = PBXGroup;
 			children = (
+				31C9E1432758941000DC9787 /* ViewModel */,
+				31C9E1422758940700DC9787 /* View */,
 			);
 			path = Report;
+			sourceTree = "<group>";
+		};
+		31C9E1422758940700DC9787 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				31C9E1452758942C00DC9787 /* Cell */,
+				31960A672758B58B0076AAA7 /* ReportViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		31C9E1432758941000DC9787 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		31C9E1452758942C00DC9787 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				31C9E1462758943F00DC9787 /* ReportDataCell.swift */,
+				31C9E1472758943F00DC9787 /* ReportCell.xib */,
+				31960A632758B2000076AAA7 /* ReportCommentCell.swift */,
+				31960A642758B2000076AAA7 /* ReportCommentCell.xib */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		31CC7518275105F000A3F03D /* ReportForm */ = {
@@ -488,6 +527,8 @@
 				31D1B8E62753754200F5ABF7 /* DatePickerCell.xib in Resources */,
 				31D1B8EC27538B9E00F5ABF7 /* CommentCell.xib in Resources */,
 				31D1B8DD275372B200F5ABF7 /* FieldCell.xib in Resources */,
+				31960A662758B2000076AAA7 /* ReportCommentCell.xib in Resources */,
+				31C9E1492758943F00DC9787 /* ReportCell.xib in Resources */,
 				31A7AEEC274E564A006C087C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -510,6 +551,7 @@
 				31D1B89F27535E1900F5ABF7 /* FieldViewModel.swift in Sources */,
 				31D1B8E42753754200F5ABF7 /* DatePickerCell.swift in Sources */,
 				31D1B8AF27535FF800F5ABF7 /* Objects.swift in Sources */,
+				31960A682758B58B0076AAA7 /* ReportViewController.swift in Sources */,
 				31D1B8B8275360EE00F5ABF7 /* CommentViewModel.swift in Sources */,
 				31D428992750BDC600C9D09E /* HttpRouter.swift in Sources */,
 				31D1B8CE27536C7400F5ABF7 /* RouterProtocol.swift in Sources */,
@@ -517,8 +559,10 @@
 				31D4289E2750C27200C9D09E /* Secret.swift in Sources */,
 				31D1B8B5275360AD00F5ABF7 /* SubjectSuggestionViewModel.swift in Sources */,
 				3198DEA92757106500E3A7B7 /* CellViewModel.swift in Sources */,
+				31C9E1482758943F00DC9787 /* ReportDataCell.swift in Sources */,
 				31D1B8D027536C7400F5ABF7 /* Drawble.swift in Sources */,
 				31D1B8C627536C0D00F5ABF7 /* AppCoordinator.swift in Sources */,
+				31960A652758B2000076AAA7 /* ReportCommentCell.swift in Sources */,
 				31D1B8C0275368B000F5ABF7 /* Coordinator.swift in Sources */,
 				31CC751A2751064F00A3F03D /* BookSuggestionViewModel.swift in Sources */,
 				31D1B8DB275372B200F5ABF7 /* FieldCell.swift in Sources */,

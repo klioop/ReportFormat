@@ -11,12 +11,18 @@ struct Identifier {
     
     struct StoryBoardId {
         static let ReportForm = "ReportFormViewController"
+        static let ReportView = "ReportViewController"
     }
     
     struct TableViewCellId {
+        // ReportFormView
         static let FieldCell = "FieldCell"
         static let DatePickerCell = "DatePickerCell"
         static let CommentCell = "CommentCell"
+        
+        // ReportView
+        static let ReportDataCell = "ReportDataCell"
+        static let ReportCommentCell = "ReportCommentCell"
     }
 }
 
@@ -37,7 +43,7 @@ struct Constants {
     }
     
     struct Header {
-        // ReportFormView
+//         ReportFormView
         static let fields = "Fields"
         static let field = "Field"
         static let date = "DatePicker"
