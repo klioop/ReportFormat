@@ -12,6 +12,7 @@ import RxCocoa
 typealias ReportFormViewModelBuilder = () -> ReportFormViewModel
 
 struct ReportFormViewModel{
+    
     let date: FieldViewModel
     let student: FieldViewModel
     let subject: FieldViewModel
@@ -30,6 +31,7 @@ struct ReportFormViewModel{
     let tapButton = PublishRelay<Void>()
     let select = PublishRelay<Void>()
     let selectedModel = PublishRelay<CellViewModel>()
+    let tapWriteButton = PublishRelay<Void>()
     
     private let bag = DisposeBag()
     

@@ -19,3 +19,13 @@ class SubjectObject: Object {
     @Persisted var name: String
     @Persisted var dateCreated: Date
 }
+
+class ReportObject: Object {
+    @Persisted(primaryKey: true) var _id: ObjectId
+    @Persisted var studentName: String
+    @Persisted var reportDate: String
+    @Persisted var comment: String
+    @Persisted var bookName: String?
+    @Persisted var bookImageUrl: String?
+    @Persisted var subject: String?    
+}
