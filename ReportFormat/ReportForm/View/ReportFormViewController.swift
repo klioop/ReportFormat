@@ -115,8 +115,6 @@ class ReportFormViewController: UIViewController, StoryBoarded {
                 }
             })
             .disposed(by: bag)
-
-    
     }
 }
 

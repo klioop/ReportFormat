@@ -57,17 +57,9 @@ struct ReportFormViewModel{
         self.datePickerViewModel = DatePickerViewModel(tapButton: tapButton)
         self.commentViewModel = CommentViewModel(tapButton: tapButton)
         
-        Observable.combineLatest(date.textForEmptyCheck, student.textForEmptyCheck, comment.textForEmptyCheck)
-            .map { dateText, studentText, commentText in
-                !dateText.isEmpty && !studentText.isEmpty && !commentText.isEmpty
-            }
-            .bind(to: buttonViewModel.isEnabled)
-            .disposed(by: bag)
-        
-        datePickerViewModel.bind(to: date)
-        commentViewModel.bind(to: comment)
+        self.process()
     }
-        
+    
     var state: Observable<State> {
         let allFields = [date, student, subject, book, range, comment]
                 
@@ -88,6 +80,19 @@ struct ReportFormViewModel{
 // MARK: - Helpers
 
 private extension ReportFormViewModel {
+    
+    private func process() {
+        Observable.combineLatest(date.textForEmptyCheck, student.textForEmptyCheck, comment.textForEmptyCheck)
+            .map { dateText, studentText, commentText in
+                !dateText.isEmpty && !studentText.isEmpty && !commentText.isEmpty
+            }
+            .bind(to: buttonViewModel.isEnabled)
+            .disposed(by: bag)
+        
+        datePickerViewModel.bind(to: date)
+        commentViewModel.bind(to: comment)
+        
+    }
     
     private func toInitialbySelection(_ fields: [FieldViewModel]) -> Observable<State> {
         return select
