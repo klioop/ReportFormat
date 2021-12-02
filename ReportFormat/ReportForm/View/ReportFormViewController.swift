@@ -68,9 +68,6 @@ class ReportFormViewController: UIViewController, StoryBoarded {
         tableView.register(UINib(nibName: "FieldCell", bundle: nil), forCellReuseIdentifier: Identifier.TableViewCellId.FieldCell)
         tableView.register(UINib(nibName: "DatePickerCell", bundle: nil), forCellReuseIdentifier: Identifier.TableViewCellId.DatePickerCell)
         tableView.register(UINib(nibName: "CommentCell", bundle: nil), forCellReuseIdentifier: Identifier.TableViewCellId.CommentCell)
-        tableView.rx
-            .setDelegate(self)
-            .disposed(by: bag)
                
         writeButton.setTitleColor(.lightGray, for: .disabled)
         writeButton.layer.cornerRadius = 6
@@ -82,7 +79,7 @@ class ReportFormViewController: UIViewController, StoryBoarded {
             reloadAnimation: .automatic,
             deleteAnimation: .fade
         )
-        // sections 는 UI 가 ReportFormViewModel 의 상태 변화에 반응하도록 하기 위한 다리 역할
+        // sections 는 UI 가 ReportFormViewModel 의 state 변화에 반응하도록 하기 위한 다리 역할
         let sections = createSections(with: viewModel.state)
         
         // Output
@@ -170,11 +167,3 @@ extension ReportFormViewController {
             }
     }
 }
-
-// MARK: - tableView delegate
-
-extension ReportFormViewController: UITableViewDelegate {
-    
-
-}
-

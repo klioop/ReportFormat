@@ -104,7 +104,7 @@ private extension ReportFormViewModel {
         
         tapWriteButton
             .map { [routingAction] in
-                let report = createReport()
+                let report = self.createReport()
                 routingAction.report.accept(report)
             }
             .asDriver(onErrorDriveWith: .empty())
