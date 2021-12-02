@@ -25,7 +25,7 @@ class ReportObject: Object {
     @Persisted var studentName: String
     @Persisted var reportDate: String
     @Persisted var comment: String
-    @Persisted var bookName: String?
+    @Persisted var bookTitle: String?
     @Persisted var bookImageUrl: String?
     @Persisted var subject: String?    
 }

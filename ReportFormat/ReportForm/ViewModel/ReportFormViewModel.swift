@@ -12,6 +12,14 @@ import RxCocoa
 typealias ReportFormViewModelBuilder = () -> ReportFormViewModel
 
 struct ReportFormViewModel{
+    typealias RoutingAction = (report: PublishRelay<Report>, ())
+    typealias Routing = (report: Driver<Report>, ())
+    
+    private var routingAction: RoutingAction = (report: PublishRelay(), ())
+    lazy var routing: Routing = (
+        report: routingAction.report.asDriver(onErrorDriveWith: .empty()),
+        ()
+    )
     
     let date: FieldViewModel
     let student: FieldViewModel
@@ -83,7 +91,7 @@ struct ReportFormViewModel{
 
 private extension ReportFormViewModel {
     
-    private func process() {
+    func process() {
         Observable.combineLatest(date.textForEmptyCheck, student.textForEmptyCheck, comment.textForEmptyCheck)
             .map { dateText, studentText, commentText in
                 !dateText.isEmpty && !studentText.isEmpty && !commentText.isEmpty
@@ -94,9 +102,11 @@ private extension ReportFormViewModel {
         datePickerViewModel.bind(to: date)
         commentViewModel.bind(to: comment)
         
+        
+            
     }
     
-    private func toInitialbySelection(_ fields: [FieldViewModel]) -> Observable<State> {
+    func toInitialbySelection(_ fields: [FieldViewModel]) -> Observable<State> {
         return select
             .withLatestFrom(selectedModel) { ($0, $1) }
             .map { [book, subject] (select, model) -> Void in

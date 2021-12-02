@@ -82,7 +82,10 @@ class ReportFormViewController: UIViewController, StoryBoarded {
             reloadAnimation: .automatic,
             deleteAnimation: .fade
         )
+        // sections 는 UI 가 ReportFormViewModel 의 상태 변화에 반응하도록 하기 위한 다리 역할
         let sections = createSections(with: viewModel.state)
+        
+        // Output
         sections
             .bind(to: self.tableView.rx.items(dataSource: dataSource))
             .disposed(by: bag)
@@ -101,6 +104,7 @@ class ReportFormViewController: UIViewController, StoryBoarded {
             .bind(to: writeButton.rx.isHidden)
             .disposed(by: bag)
         
+        // Input
         tableView.rx
             .modelSelected(CellViewModel.self)
             .bind(to: viewModel.selectedModel)
@@ -114,6 +118,10 @@ class ReportFormViewController: UIViewController, StoryBoarded {
                     vm.select.accept(())
                 }
             })
+            .disposed(by: bag)
+        
+        writeButton.rx.tap
+            .bind(to: viewModel.tapWriteButton)
             .disposed(by: bag)
     }
 }
