@@ -12,26 +12,29 @@ import RxDataSources
 
 struct BookSuggestionViewModel: SuggestionViewModelProtocol {
     
-    var text: String
+    var title: String
     var select: PublishRelay<Void>
     var type: SuggestionType = .book
+    let book: Book
     
     init(_ book: Book, select: PublishRelay<Void>) {
         self.select = select
-        self.text = "\(book.title) | \(book.pubdate)"
+        self.title = "\(book.title)"
+        self.book = book
     }
     
 }
 
 extension BookSuggestionViewModel: IdentifiableType {
     var identity: String {
-        "\(self.text)"
+        "\(self.title)"
     }
 }
 
 extension BookSuggestionViewModel {
     init(_ book: Book) {
-        self.text = ""
+        self.title = ""
         self.select = PublishRelay<Void>()
+        self.book = book
     }
 }

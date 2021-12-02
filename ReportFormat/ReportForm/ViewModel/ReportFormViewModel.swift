@@ -102,8 +102,24 @@ private extension ReportFormViewModel {
         datePickerViewModel.bind(to: date)
         commentViewModel.bind(to: comment)
         
+//        tapWriteButton
+//            .map {
+//
+//            }
+//
         
             
+    }
+    
+    func createReport() -> Report {
+        Report(
+            studentName: student.text.value,
+            reportDate: date.text.value,
+            comment: comment.text.value,
+            bookTitle: book.text.value,
+            bookImageUrl: book.bookImageUrl.value,
+            subject: subject.text.value
+        )
     }
     
     func toInitialbySelection(_ fields: [FieldViewModel]) -> Observable<State> {
@@ -114,8 +130,9 @@ private extension ReportFormViewModel {
                     switch vm.type {
                     case .book:
                         let bookVM = vm as! BookSuggestionViewModel
-                        book.text.accept(bookVM.text)
+                        book.text.accept(bookVM.title)
                         book.isSearch.accept(true)
+                        book.bookImageUrl.accept(bookVM.book.imageUrl)
                     case .subject:
                         let subjectVM = vm as! SubjectSuggestionViewModel
                         subject.text.accept(subjectVM.name)

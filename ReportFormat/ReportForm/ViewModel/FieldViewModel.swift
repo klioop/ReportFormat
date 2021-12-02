@@ -18,6 +18,7 @@ struct FieldViewModel {
     var textForSearch = BehaviorRelay<String>(value: "")
     var isSearch = BehaviorRelay<Bool>(value: false)
     let textForEmptyCheck = BehaviorRelay<String>(value: "")
+    let bookImageUrl = BehaviorRelay<String>(value: "")
 }
 
 extension FieldViewModel: IdentifiableType {

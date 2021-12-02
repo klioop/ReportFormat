@@ -37,7 +37,7 @@ class ReportFormViewController: UIViewController, StoryBoarded {
             switch vm.type {
             case .book:
                 let bookVM = vm as! BookSuggestionViewModel
-                cell.textLabel?.text = bookVM.text
+                cell.textLabel?.text = bookVM.title
             case .subject:
                 let subjetVM = vm as! SubjectSuggestionViewModel
                 cell.textLabel?.text = subjetVM.name
