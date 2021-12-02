@@ -134,32 +134,32 @@ extension ReportFormViewController {
                 case let .initial(fields: fields, button: _):
                     return [
                         AnimatableSectionModel(
-                            model: Constants.Header.fields,
+                            model: Constants.ModelName.fields,
                             items: fields.map(CellViewModel.fields)
                         )
                     ]
                 case let .focusDate(datePickerVM: dateVM):
                     return [
                         AnimatableSectionModel(
-                            model: Constants.Header.date,
+                            model: Constants.ModelName.date,
                             items: [ .datePicker(dateVM) ]
                         )
                     ]
                 case let .focus(field: field, suggestionViewModels: suggestions):
                     return [
                         AnimatableSectionModel(
-                            model: Constants.Header.field,
+                            model: Constants.ModelName.field,
                             items: [.fields(field)]
                         ),
                         AnimatableSectionModel(
-                            model: Constants.Header.suggestion,
+                            model: Constants.ModelName.suggestion,
                             items: suggestions.map(CellViewModel.suggestion)
                         )
                     ]
                 case let .focusComment(vm):
                     return [
                         AnimatableSectionModel(
-                            model: Constants.Header.comment,
+                            model: Constants.ModelName.comment,
                             items: [.comment(vm)]
                         )
                     ]

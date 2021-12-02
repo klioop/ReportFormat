@@ -42,12 +42,16 @@ struct Constants {
         static let date = "날짜*"
     }
     
-    struct Header {
-//         ReportFormView
+    struct ModelName {
+        // ReportFormView
         static let fields = "Fields"
         static let field = "Field"
         static let date = "DatePicker"
         static let suggestion = "Suggestioins"
         static let comment = "Comment"
+        
+        // Report
+        static let data = "Data"
+        static let reportComment = "reportComment"
     }
 }

@@ -12,6 +12,8 @@
 		31960A682758B58B0076AAA7 /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31960A672758B58B0076AAA7 /* ReportViewController.swift */; };
 		31960A6A2758C1020076AAA7 /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31960A692758C1020076AAA7 /* Report.swift */; };
 		31960A6C2758D7F30076AAA7 /* ReportViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31960A6B2758D7F30076AAA7 /* ReportViewModel.swift */; };
+		31960A6F2758D9CC0076AAA7 /* ReportCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31960A6E2758D9CC0076AAA7 /* ReportCoordinator.swift */; };
+		31960A712758E1D80076AAA7 /* ReportCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31960A702758E1D80076AAA7 /* ReportCellViewModel.swift */; };
 		319899EA27525BDA0027234E /* BookSuggestionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CC75192751064F00A3F03D /* BookSuggestionViewModel.swift */; };
 		319899EE27525C170027234E /* SuggestionViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319899ED27525C170027234E /* SuggestionViewModelProtocol.swift */; };
 		319899EF27525C310027234E /* SuggestionViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319899ED27525C170027234E /* SuggestionViewModelProtocol.swift */; };
@@ -102,6 +104,8 @@
 		31960A672758B58B0076AAA7 /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
 		31960A692758C1020076AAA7 /* Report.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
 		31960A6B2758D7F30076AAA7 /* ReportViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewModel.swift; sourceTree = "<group>"; };
+		31960A6E2758D9CC0076AAA7 /* ReportCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportCoordinator.swift; sourceTree = "<group>"; };
+		31960A702758E1D80076AAA7 /* ReportCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportCellViewModel.swift; sourceTree = "<group>"; };
 		319899ED27525C170027234E /* SuggestionViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionViewModelProtocol.swift; sourceTree = "<group>"; };
 		319899F027525CDB0027234E /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		3198DEA82757106500E3A7B7 /* CellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellViewModel.swift; sourceTree = "<group>"; };
@@ -183,6 +187,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		31960A6D2758D9BD0076AAA7 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				31960A6E2758D9CC0076AAA7 /* ReportCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
 		319899EC27525BFD0027234E /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -301,6 +313,7 @@
 		31C9E14127588DCF00DC9787 /* Report */ = {
 			isa = PBXGroup;
 			children = (
+				31960A6D2758D9BD0076AAA7 /* Coordinator */,
 				31C9E1432758941000DC9787 /* ViewModel */,
 				31C9E1422758940700DC9787 /* View */,
 			);
@@ -320,6 +333,7 @@
 			isa = PBXGroup;
 			children = (
 				31960A6B2758D7F30076AAA7 /* ReportViewModel.swift */,
+				31960A702758E1D80076AAA7 /* ReportCellViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -581,6 +595,7 @@
 				31D1B8A927535F7400F5ABF7 /* RealmServiceProtocol.swift in Sources */,
 				319899EE27525C170027234E /* SuggestionViewModelProtocol.swift in Sources */,
 				31D1B8A527535E9E00F5ABF7 /* DatePickerViewModel.swift in Sources */,
+				31960A712758E1D80076AAA7 /* ReportCellViewModel.swift in Sources */,
 				31A7AEE5274E564A006C087C /* AppDelegate.swift in Sources */,
 				319F66DE2754C48E0030C46C /* ReportFormCoordinator.swift in Sources */,
 				31D1B8D327536CBD00F5ABF7 /* StoryBoarded.swift in Sources */,
@@ -589,6 +604,7 @@
 				31D1B8D6275371A900F5ABF7 /* ReportFormViewController.swift in Sources */,
 				31D1B8B22753605100F5ABF7 /* StudentSuggestionViewModel.swift in Sources */,
 				31D1B8CC27536C7400F5ABF7 /* Router.swift in Sources */,
+				31960A6F2758D9CC0076AAA7 /* ReportCoordinator.swift in Sources */,
 				31CC75122750F71800A3F03D /* NaverBookAPIProtocol.swift in Sources */,
 				31A961BB2757A70900CCC297 /* Array+extension.swift in Sources */,
 				31CC751D27510CC200A3F03D /* ViewController.swift in Sources */,

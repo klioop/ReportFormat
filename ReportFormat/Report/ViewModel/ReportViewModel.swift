@@ -6,14 +6,27 @@
 //
 
 import Foundation
+import RxCocoa
+import RxDataSources
+
+typealias ReportItemSection = SectionModel<String, ReportCellViewModel>
 
 protocol ReportViewModelProtocol {
     
-    typealias Input = ()
-    typealias Output = ()
+    typealias Input = (
+        didTapWriteButton: Driver<Void>,
+        didTapBackButton: Driver<Void>
+    )
+    typealias Output = (
+        title: String,
+        report: Driver<[ReportItemSection]>
+    )
+    typealias ViewBuilder = (ReportViewModelProtocol.Input) -> ReportViewModelProtocol
+    typealias Dependencies = (report: Report, ())
     
     var input: ReportViewModelProtocol.Input { get }
     var output: ReportViewModelProtocol.Output { get }
+    
 }
 
 struct ReportViewModel: ReportViewModelProtocol {
@@ -21,15 +34,29 @@ struct ReportViewModel: ReportViewModelProtocol {
     var input: ReportViewModelProtocol.Input
     var output: ReportViewModelProtocol.Output
     
-    init(input: ReportViewModelProtocol.Input) {
+    init(
+        input: ReportViewModelProtocol.Input,
+        dependencies: ReportViewModelProtocol.Dependencies
+    ) {
         self.input = input
-        self.output = ReportViewModel.output(input)
+        self.output = ReportViewModel.output(dependencies)
     }
 }
 
-extension ReportViewModelProtocol {
+extension ReportViewModel {
     
-    static func output(_ input: ReportViewModelProtocol.Input) -> ReportViewModelProtocol.Output {
-        return ()
+    static func output(_ dependencies: ReportViewModelProtocol.Dependencies) -> ReportViewModelProtocol.Output {
+        let title = dependencies.report.reportDate + " 수업 리포트"
+        let sections = Driver.just(dependencies.report)
+            .map { report in
+                ReportCellViewModel.init(with: report)
+            }
+            .map { viewModel in
+                [
+                    ReportItemSection(model: Constants.ModelName.data, items: [viewModel]),
+                    ReportItemSection(model: Constants.ModelName.comment, items: [viewModel])
+                ]
+            }
+        return (title, sections)
     }
 }
