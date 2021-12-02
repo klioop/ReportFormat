@@ -102,13 +102,14 @@ private extension ReportFormViewModel {
         datePickerViewModel.bind(to: date)
         commentViewModel.bind(to: comment)
         
-//        tapWriteButton
-//            .map {
-//
-//            }
-//
-        
-            
+        tapWriteButton
+            .map { [routingAction] in
+                let report = createReport()
+                routingAction.report.accept(report)
+            }
+            .asDriver(onErrorDriveWith: .empty())
+            .drive()
+            .disposed(by: bag)
     }
     
     func createReport() -> Report {
