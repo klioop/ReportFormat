@@ -20,18 +20,30 @@ class ReportViewController: UIViewController, StoryBoarded {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setupUI()
+        viewModel = viewModelBuilder((
+            createButton.rx.tap.asDriver(),
+            createButton.rx.tap.asDriver()
+        ))
+        binding()
     }
     
 }
 
 private extension ReportViewController {
+    
+    func setupUI() {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "arrow.uturn.left"), for: .normal)
+        button.setTitle("수정", for: .normal)
+        let leftBarButton = UIBarButtonItem(customView: button)
+//        navigationItem.leftBarButtonItem = leftBarButton
+    }
+    
     func binding() {
         viewModel.output
             .title
             .drive(self.rx.title)
             .disposed(by: bag)
-        
-            
     }
 }

@@ -12,12 +12,12 @@ import RxCocoa
 typealias ReportFormViewModelBuilder = () -> ReportFormViewModel
 
 struct ReportFormViewModel{
-    typealias RoutingAction = (report: PublishRelay<Report>, ())
+    typealias RoutingAction = (reportRelay: PublishRelay<Report>, ())
     typealias Routing = (report: Driver<Report>, ())
     
-    private var routingAction: RoutingAction = (report: PublishRelay(), ())
+    private var routingAction: RoutingAction = (reportRelay: PublishRelay(), ())
     lazy var routing: Routing = (
-        report: routingAction.report.asDriver(onErrorDriveWith: .empty()),
+        report: routingAction.reportRelay.asDriver(onErrorDriveWith: .empty()),
         ()
     )
     
@@ -105,7 +105,7 @@ private extension ReportFormViewModel {
         tapWriteButton
             .map { [routingAction] in
                 let report = self.createReport()
-                routingAction.report.accept(report)
+                routingAction.reportRelay.accept(report)
             }
             .asDriver(onErrorDriveWith: .empty())
             .drive()

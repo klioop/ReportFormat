@@ -14,7 +14,7 @@ typealias ReportItemSection = SectionModel<String, ReportCellViewModel>
 protocol ReportViewModelProtocol {
     
     typealias Input = (
-        didTapWriteButton: Driver<Void>,
+        didTapCreateButton: Driver<Void>,
         didTapBackButton: Driver<Void>
     )
     typealias Output = (
