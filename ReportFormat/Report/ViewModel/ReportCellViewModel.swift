@@ -7,6 +7,12 @@
 
 import Foundation
 
+enum ReportCellCase {
+    case data
+    case comment
+}
+
+
 struct ReportCellViewModel {
     let studentName: String
     let date: String
@@ -14,7 +20,6 @@ struct ReportCellViewModel {
     let subject: String?
     let bookTitle: String?
     let bookImageUrl: String?
-    
 }
 
 extension ReportCellViewModel {

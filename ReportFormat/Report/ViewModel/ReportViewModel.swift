@@ -18,7 +18,7 @@ protocol ReportViewModelProtocol {
         didTapBackButton: Driver<Void>
     )
     typealias Output = (
-        title: String,
+        title: Driver<String>,
         report: Driver<[ReportItemSection]>
     )
     typealias ViewBuilder = (ReportViewModelProtocol.Input) -> ReportViewModelProtocol
@@ -46,7 +46,7 @@ struct ReportViewModel: ReportViewModelProtocol {
 extension ReportViewModel {
     
     static func output(_ dependencies: ReportViewModelProtocol.Dependencies) -> ReportViewModelProtocol.Output {
-        let title = dependencies.report.reportDate + " 수업 리포트"
+        let title = Driver.just(dependencies.report.reportDate + " 수업 리포트")
         let sections = Driver.just(dependencies.report)
             .map { report in
                 ReportCellViewModel.init(with: report)
