@@ -7,8 +7,11 @@
 
 import UIKit
 import RxSwift
+import RxDataSources
 
 class ReportViewController: UIViewController, StoryBoarded {
+    
+    typealias ReportSection = SectionModel<String, ReportCellModelCase>
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var createButton: UIButton!
@@ -33,11 +36,8 @@ class ReportViewController: UIViewController, StoryBoarded {
 private extension ReportViewController {
     
     func setupUI() {
-        let button = UIButton()
-        button.setImage(UIImage(systemName: "arrow.uturn.left"), for: .normal)
-        button.setTitle("수정", for: .normal)
-        let leftBarButton = UIBarButtonItem(customView: button)
-//        navigationItem.leftBarButtonItem = leftBarButton
+        
+
     }
     
     func binding() {
@@ -45,5 +45,13 @@ private extension ReportViewController {
             .title
             .drive(self.rx.title)
             .disposed(by: bag)
+    }
+    
+    func createBarButton(with sfSymbol: String, title: String) -> UIBarButtonItem {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: sfSymbol), for: .normal)
+        button.setTitle(title, for: .normal)
+        
+        return UIBarButtonItem(customView: button)
     }
 }

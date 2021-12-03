@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum ReportCellCase {
+enum ReportCellModelCase {
     case data
     case comment
 }
