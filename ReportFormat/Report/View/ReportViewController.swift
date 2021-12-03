@@ -11,10 +11,21 @@ import RxDataSources
 
 class ReportViewController: UIViewController, StoryBoarded {
     
-    typealias ReportSection = SectionModel<String, ReportCellModelCase>
-    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var createButton: UIButton!
+    
+    private lazy var dataSource = RxTableViewSectionedReloadDataSource<ReportItemSection> { (dataSource, tableView, IndexPath, item) -> UITableViewCell in
+        switch item {
+        case let .data(vm):
+            let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.TableViewCellId.ReportDataCell) as! ReportDataCell
+            return cell
+        case let .comment(vm):
+            let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.TableViewCellId.ReportCommentCell) as! ReportCommentCell
+            cell.configure(with: vm)
+            return cell
+        }
+        
+    }
     
     private var viewModel: ReportViewModelProtocol!
     var viewModelBuilder: ReportViewModelProtocol.ViewBuilder!
@@ -36,8 +47,8 @@ class ReportViewController: UIViewController, StoryBoarded {
 private extension ReportViewController {
     
     func setupUI() {
-        
-
+        self.tableView.register(UINib(nibName: "ReportCell", bundle: nil), forCellReuseIdentifier: Identifier.TableViewCellId.ReportDataCell)
+        self.tableView.register(UINib(nibName: Identifier.TableViewCellId.ReportCommentCell, bundle: nil), forCellReuseIdentifier: Identifier.TableViewCellId.ReportCommentCell)
     }
     
     func binding() {

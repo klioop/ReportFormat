@@ -10,7 +10,6 @@ import UIKit
 class ReportCommentCell: UITableViewCell {
 
     @IBOutlet weak var commentTextView: UITextView!
-    @IBOutlet weak var createButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -20,3 +19,10 @@ class ReportCommentCell: UITableViewCell {
    
     
 }
+
+extension ReportCommentCell {
+    func configure(with viewModel: ReportCellViewModel) {
+        
+    }
+}
+

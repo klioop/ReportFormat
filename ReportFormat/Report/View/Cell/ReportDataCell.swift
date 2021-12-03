@@ -19,5 +19,10 @@ class ReportDataCell: UITableViewCell {
         // Initialization code
     }
 
-    
+}
+
+extension ReportDataCell {
+    func configure(with viewModel: ReportCellViewModel) {
+        
+    }
 }

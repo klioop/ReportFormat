@@ -8,8 +8,8 @@
 import Foundation
 
 enum ReportCellModelCase {
-    case data
-    case comment
+    case data(ReportCellViewModel)
+    case comment(ReportCellViewModel)
 }
 
 

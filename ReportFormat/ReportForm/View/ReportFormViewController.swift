@@ -63,6 +63,11 @@ class ReportFormViewController: UIViewController, StoryBoarded {
         binding()
         setupUI()
     }
+}
+
+// MARK: - private function
+
+extension ReportFormViewController {
     
     private func setupUI() {
         tableView.register(UINib(nibName: "FieldCell", bundle: nil), forCellReuseIdentifier: Identifier.TableViewCellId.FieldCell)
@@ -121,11 +126,6 @@ class ReportFormViewController: UIViewController, StoryBoarded {
             .bind(to: viewModel.tapWriteButton)
             .disposed(by: bag)
     }
-}
-
-// MARK: - private function
-
-extension ReportFormViewController {
     
     private func createSections(with state: Observable<State>) -> Observable<[ReportFormSection]> {
         return state

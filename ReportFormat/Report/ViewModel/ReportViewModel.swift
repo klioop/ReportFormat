@@ -9,7 +9,7 @@ import Foundation
 import RxCocoa
 import RxDataSources
 
-typealias ReportItemSection = SectionModel<String, ReportCellViewModel>
+typealias ReportItemSection = SectionModel<String, ReportCellModelCase>
 
 protocol ReportViewModelProtocol {
     
@@ -19,7 +19,7 @@ protocol ReportViewModelProtocol {
     )
     typealias Output = (
         title: Driver<String>,
-        report: Driver<[ReportItemSection]>
+        sections: Driver<[ReportItemSection]>
     )
     typealias ViewBuilder = (ReportViewModelProtocol.Input) -> ReportViewModelProtocol
     typealias Dependencies = (report: Report, ())
@@ -53,8 +53,8 @@ extension ReportViewModel {
             }
             .map { viewModel in
                 [
-                    ReportItemSection(model: Constants.ModelName.data, items: [viewModel]),
-                    ReportItemSection(model: Constants.ModelName.comment, items: [viewModel])
+                    ReportItemSection(model: Constants.ModelName.data, items: [.data(viewModel)]),
+                    ReportItemSection(model: Constants.ModelName.comment, items: [.comment(viewModel)])
                 ]
             }
         return (title, sections)

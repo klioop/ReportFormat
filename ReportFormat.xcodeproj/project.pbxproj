@@ -14,6 +14,7 @@
 		31960A6C2758D7F30076AAA7 /* ReportViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31960A6B2758D7F30076AAA7 /* ReportViewModel.swift */; };
 		31960A6F2758D9CC0076AAA7 /* ReportCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31960A6E2758D9CC0076AAA7 /* ReportCoordinator.swift */; };
 		31960A712758E1D80076AAA7 /* ReportCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31960A702758E1D80076AAA7 /* ReportCellViewModel.swift */; };
+		3196BBD6275A41EB00751662 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 3196BBD5275A41EB00751662 /* Kingfisher */; };
 		319899EA27525BDA0027234E /* BookSuggestionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CC75192751064F00A3F03D /* BookSuggestionViewModel.swift */; };
 		319899EE27525C170027234E /* SuggestionViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319899ED27525C170027234E /* SuggestionViewModelProtocol.swift */; };
 		319899EF27525C310027234E /* SuggestionViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319899ED27525C170027234E /* SuggestionViewModelProtocol.swift */; };
@@ -171,6 +172,7 @@
 				31A7AF1E274E5898006C087C /* RxRelay in Frameworks */,
 				319CFD5C274F24EE008EC96F /* RealmSwift in Frameworks */,
 				31A7AF1C274E5898006C087C /* RxCocoa in Frameworks */,
+				3196BBD6275A41EB00751662 /* Kingfisher in Frameworks */,
 				31A7AF20274E5898006C087C /* RxSwift in Frameworks */,
 				31A7AF23274E58AE006C087C /* RxDataSources in Frameworks */,
 				31A7AF19274E587E006C087C /* Alamofire in Frameworks */,
@@ -470,6 +472,7 @@
 				31A7AF22274E58AE006C087C /* RxDataSources */,
 				319CFD59274F24EE008EC96F /* Realm */,
 				319CFD5B274F24EE008EC96F /* RealmSwift */,
+				3196BBD5275A41EB00751662 /* Kingfisher */,
 			);
 			productName = ReportFormat;
 			productReference = 31A7AEE1274E564A006C087C /* ReportFormat.app */;
@@ -526,6 +529,7 @@
 				31A7AF1A274E5897006C087C /* XCRemoteSwiftPackageReference "RxSwift" */,
 				31A7AF21274E58AE006C087C /* XCRemoteSwiftPackageReference "RxDataSources" */,
 				319CFD58274F24EE008EC96F /* XCRemoteSwiftPackageReference "realm-cocoa" */,
+				3196BBD4275A41EB00751662 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 31A7AEE2274E564A006C087C /* Products */;
 			projectDirPath = "";
@@ -930,6 +934,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		3196BBD4275A41EB00751662 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 		319CFD58274F24EE008EC96F /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-cocoa.git";
@@ -965,6 +977,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		3196BBD5275A41EB00751662 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3196BBD4275A41EB00751662 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
 		319CFD59274F24EE008EC96F /* Realm */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 319CFD58274F24EE008EC96F /* XCRemoteSwiftPackageReference "realm-cocoa" */;
