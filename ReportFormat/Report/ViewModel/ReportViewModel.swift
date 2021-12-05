@@ -32,17 +32,19 @@ protocol ReportViewModelProtocol {
 
 struct ReportViewModel: ReportViewModelProtocol {
     
-    typealias RoutingAction = (reportRelay: PublishRelay<ReportObject>, ())
-    typealias Routing = (report: Driver<ReportObject>, ())
+    typealias RoutingAction = (voidRelay: PublishRelay<Void>, ())
+    typealias Routing = (void: Driver<Void>, ())
     
     private let routingAction: RoutingAction = (PublishRelay(), ())
     lazy var routing: Routing = (
-        routingAction.reportRelay.asDriver(onErrorDriveWith: .empty()),
+        routingAction.voidRelay.asDriver(onErrorDriveWith: .empty()),
         ()
     )
                                  
     var input: ReportViewModelProtocol.Input
     var output: ReportViewModelProtocol.Output
+    
+    private var bag = DisposeBag()
     
     init(
         input: ReportViewModelProtocol.Input,
@@ -60,9 +62,15 @@ private extension ReportViewModel {
         dependencies: ReportViewModelProtocol.Dependencies
     ) {
         input.didTapCreateButton
-            .map {
-                
+            .asObservable()
+            .map { (tap) -> Void in
+                try dependencies.realmService.addReport(dependencies.report)
+                routingAction.voidRelay.accept(())
+                return tap
             }
+            .asDriver(onErrorDriveWith: .empty())
+            .drive()
+            .disposed(by: bag)
     }
     
     static func output(_ dependencies: ReportViewModelProtocol.Dependencies) -> ReportViewModelProtocol.Output {
