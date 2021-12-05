@@ -23,6 +23,7 @@ protocol ReportListViewModelProtocol {
         ()
     )
     typealias Output = (
+        sections: Driver<[ReportListSection]>,
         ()
     )
     typealias Dependencies = (
@@ -52,6 +53,26 @@ struct ReportListViewModel: ReportListViewModelProtocol {
 
 private extension ReportListViewModel {
     static func output(dependencies: ReportListViewModelProtocol.Dependencies) -> ReportListViewModelProtocol.Output{
-        return ()
+        
+        let sections = dependencies.realm.getAllReports()
+            .asObservable()
+            .map {
+                Report.toReports(from: $0)
+            }
+            .map { (reports) -> [ReportListSection]  in
+                if reports.isEmpty {
+                    return [
+                        ReportListSection(model: "empty", items: [.empty])
+                    ]
+                } else {
+                    return [
+                        ReportListSection(model: "reports", items: reports.map(ReportListCellViewModel.init).map(ReportListCellViewModelType.list))
+                    ]
+                }
+            }
+            .asDriver(onErrorDriveWith: .empty())
+            
+        
+        return (sections, ())
     }
 }

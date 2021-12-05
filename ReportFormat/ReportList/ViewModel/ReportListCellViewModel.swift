@@ -9,4 +9,8 @@ import Foundation
 
 struct ReportListCellViewModel {
     
+    init(_ report: Report) {
+        
+    }
+    
 }
