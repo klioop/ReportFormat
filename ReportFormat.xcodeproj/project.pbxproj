@@ -87,6 +87,9 @@
 		31D428992750BDC600C9D09E /* HttpRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D428982750BDC600C9D09E /* HttpRouter.swift */; };
 		31D4289B2750BF6400C9D09E /* CustomErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D4289A2750BF6400C9D09E /* CustomErrors.swift */; };
 		31D4289E2750C27200C9D09E /* Secret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D4289D2750C27200C9D09E /* Secret.swift */; };
+		31D5C411275C952F000FAD35 /* ReportListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D5C410275C952F000FAD35 /* ReportListViewController.swift */; };
+		31D5C416275C9CE3000FAD35 /* ReportListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D5C415275C9CE3000FAD35 /* ReportListViewModel.swift */; };
+		31D5C418275CA081000FAD35 /* ReportListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D5C417275CA081000FAD35 /* ReportListCellViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -161,6 +164,9 @@
 		31D428982750BDC600C9D09E /* HttpRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpRouter.swift; sourceTree = "<group>"; };
 		31D4289A2750BF6400C9D09E /* CustomErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomErrors.swift; sourceTree = "<group>"; };
 		31D4289D2750C27200C9D09E /* Secret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secret.swift; sourceTree = "<group>"; };
+		31D5C410275C952F000FAD35 /* ReportListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportListViewController.swift; sourceTree = "<group>"; };
+		31D5C415275C9CE3000FAD35 /* ReportListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportListViewModel.swift; sourceTree = "<group>"; };
+		31D5C417275CA081000FAD35 /* ReportListCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportListCellViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -253,6 +259,7 @@
 				31A7AF26274E58FD006C087C /* Utilities */,
 				31A7AF25274E58F7006C087C /* Manager */,
 				31A7AF24274E58E7006C087C /* Model */,
+				31D5C40F275C951B000FAD35 /* ReportList */,
 				31CC7518275105F000A3F03D /* ReportForm */,
 				31C9E14127588DCF00DC9787 /* Report */,
 				31A7AF14274E5780006C087C /* Supportings */,
@@ -448,6 +455,40 @@
 			path = Secret;
 			sourceTree = "<group>";
 		};
+		31D5C40F275C951B000FAD35 /* ReportList */ = {
+			isa = PBXGroup;
+			children = (
+				31D5C414275C9566000FAD35 /* Coordinator */,
+				31D5C412275C955E000FAD35 /* ViewModel */,
+				31D5C413275C9562000FAD35 /* View */,
+			);
+			path = ReportList;
+			sourceTree = "<group>";
+		};
+		31D5C412275C955E000FAD35 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				31D5C415275C9CE3000FAD35 /* ReportListViewModel.swift */,
+				31D5C417275CA081000FAD35 /* ReportListCellViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		31D5C413275C9562000FAD35 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				31D5C410275C952F000FAD35 /* ReportListViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		31D5C414275C9566000FAD35 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -571,6 +612,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				31D5C411275C952F000FAD35 /* ReportListViewController.swift in Sources */,
 				31D1B89C27535DBF00F5ABF7 /* ReportFormViewModel.swift in Sources */,
 				31D1B89F27535E1900F5ABF7 /* FieldViewModel.swift in Sources */,
 				31D1B8E42753754200F5ABF7 /* DatePickerCell.swift in Sources */,
@@ -590,6 +632,7 @@
 				31960A652758B2000076AAA7 /* ReportCommentCell.swift in Sources */,
 				31D1B8C0275368B000F5ABF7 /* Coordinator.swift in Sources */,
 				31CC751A2751064F00A3F03D /* BookSuggestionViewModel.swift in Sources */,
+				31D5C416275C9CE3000FAD35 /* ReportListViewModel.swift in Sources */,
 				31D1B8DB275372B200F5ABF7 /* FieldCell.swift in Sources */,
 				31D1B8A227535E7400F5ABF7 /* ButtonViewModel.swift in Sources */,
 				31D1B8C327536BCB00F5ABF7 /* BaseCoordinator.swift in Sources */,
@@ -608,6 +651,7 @@
 				31D1B8D6275371A900F5ABF7 /* ReportFormViewController.swift in Sources */,
 				31D1B8B22753605100F5ABF7 /* StudentSuggestionViewModel.swift in Sources */,
 				31D1B8CC27536C7400F5ABF7 /* Router.swift in Sources */,
+				31D5C418275CA081000FAD35 /* ReportListCellViewModel.swift in Sources */,
 				31960A6F2758D9CC0076AAA7 /* ReportCoordinator.swift in Sources */,
 				31CC75122750F71800A3F03D /* NaverBookAPIProtocol.swift in Sources */,
 				31A961BB2757A70900CCC297 /* Array+extension.swift in Sources */,

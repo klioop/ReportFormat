@@ -35,3 +35,10 @@ class ReportCoordinator: BaseCoordinator {
         router.push(vc, isAnimated: true, onNavigationBack: isComplted)
     }
 }
+
+private extension ReportCoordinator {
+    func dismiss() {
+        
+    }
+
+}

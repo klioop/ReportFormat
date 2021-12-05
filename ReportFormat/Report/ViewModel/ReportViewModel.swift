@@ -55,6 +55,8 @@ struct ReportViewModel: ReportViewModelProtocol {
     }
 }
 
+// MARK: - helpers
+
 private extension ReportViewModel {
     
     func process(
@@ -63,14 +65,18 @@ private extension ReportViewModel {
     ) {
         input.didTapCreateButton
             .asObservable()
-            .map { (tap) -> Void in
-                try dependencies.realmService.addReport(dependencies.report)
-                routingAction.voidRelay.accept(())
+            .map { [dependencies] (tap) -> Void in
+                try self.addReportToRealmAndRouting(dependencies)
                 return tap
             }
             .asDriver(onErrorDriveWith: .empty())
             .drive()
             .disposed(by: bag)
+    }
+    
+    func addReportToRealmAndRouting(_ dependencies: ReportViewModelProtocol.Dependencies) throws {
+        try dependencies.realmService.addReport(dependencies.report)
+        routingAction.voidRelay.accept(())
     }
     
     static func output(_ dependencies: ReportViewModelProtocol.Dependencies) -> ReportViewModelProtocol.Output {
