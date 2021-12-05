@@ -48,7 +48,6 @@
 		31CC75142750F79800A3F03D /* BookResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CC75132750F79800A3F03D /* BookResponse.swift */; };
 		31CC75172750FA7100A3F03D /* BookAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CC75162750FA7100A3F03D /* BookAPIManager.swift */; };
 		31CC751A2751064F00A3F03D /* BookSuggestionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CC75192751064F00A3F03D /* BookSuggestionViewModel.swift */; };
-		31CC751D27510CC200A3F03D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CC751C27510CC200A3F03D /* ViewController.swift */; };
 		31D1B89A275349DC00F5ABF7 /* BookResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CC75132750F79800A3F03D /* BookResponse.swift */; };
 		31D1B89C27535DBF00F5ABF7 /* ReportFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B89B27535DBF00F5ABF7 /* ReportFormViewModel.swift */; };
 		31D1B89F27535E1900F5ABF7 /* FieldViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B89E27535E1800F5ABF7 /* FieldViewModel.swift */; };
@@ -90,6 +89,11 @@
 		31D5C411275C952F000FAD35 /* ReportListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D5C410275C952F000FAD35 /* ReportListViewController.swift */; };
 		31D5C416275C9CE3000FAD35 /* ReportListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D5C415275C9CE3000FAD35 /* ReportListViewModel.swift */; };
 		31D5C418275CA081000FAD35 /* ReportListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D5C417275CA081000FAD35 /* ReportListCellViewModel.swift */; };
+		31D5C41C275CB09B000FAD35 /* ReportListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D5C41A275CB09B000FAD35 /* ReportListCell.swift */; };
+		31D5C41D275CB09B000FAD35 /* ReportListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31D5C41B275CB09B000FAD35 /* ReportListCell.xib */; };
+		31D5C41F275CB621000FAD35 /* ReportListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D5C41E275CB621000FAD35 /* ReportListCoordinator.swift */; };
+		31D5C422275CC1C9000FAD35 /* ReportListEmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D5C420275CC1C9000FAD35 /* ReportListEmptyCell.swift */; };
+		31D5C423275CC1C9000FAD35 /* ReportListEmptyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31D5C421275CC1C9000FAD35 /* ReportListEmptyCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -133,7 +137,6 @@
 		31CC75132750F79800A3F03D /* BookResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookResponse.swift; sourceTree = "<group>"; };
 		31CC75162750FA7100A3F03D /* BookAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookAPIManager.swift; sourceTree = "<group>"; };
 		31CC75192751064F00A3F03D /* BookSuggestionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookSuggestionViewModel.swift; sourceTree = "<group>"; };
-		31CC751C27510CC200A3F03D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		31D1B89B27535DBF00F5ABF7 /* ReportFormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportFormViewModel.swift; sourceTree = "<group>"; };
 		31D1B89E27535E1800F5ABF7 /* FieldViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldViewModel.swift; sourceTree = "<group>"; };
 		31D1B8A127535E7400F5ABF7 /* ButtonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonViewModel.swift; sourceTree = "<group>"; };
@@ -167,6 +170,11 @@
 		31D5C410275C952F000FAD35 /* ReportListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportListViewController.swift; sourceTree = "<group>"; };
 		31D5C415275C9CE3000FAD35 /* ReportListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportListViewModel.swift; sourceTree = "<group>"; };
 		31D5C417275CA081000FAD35 /* ReportListCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportListCellViewModel.swift; sourceTree = "<group>"; };
+		31D5C41A275CB09B000FAD35 /* ReportListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportListCell.swift; sourceTree = "<group>"; };
+		31D5C41B275CB09B000FAD35 /* ReportListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReportListCell.xib; sourceTree = "<group>"; };
+		31D5C41E275CB621000FAD35 /* ReportListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportListCoordinator.swift; sourceTree = "<group>"; };
+		31D5C420275CC1C9000FAD35 /* ReportListEmptyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportListEmptyCell.swift; sourceTree = "<group>"; };
+		31D5C421275CC1C9000FAD35 /* ReportListEmptyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReportListEmptyCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -373,7 +381,6 @@
 			isa = PBXGroup;
 			children = (
 				31D1B8D82753721E00F5ABF7 /* Cells */,
-				31CC751C27510CC200A3F03D /* ViewController.swift */,
 				31D1B8D5275371A900F5ABF7 /* ReportFormViewController.swift */,
 			);
 			path = View;
@@ -477,6 +484,7 @@
 		31D5C413275C9562000FAD35 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				31D5C419275CB071000FAD35 /* Cell */,
 				31D5C410275C952F000FAD35 /* ReportListViewController.swift */,
 			);
 			path = View;
@@ -485,8 +493,20 @@
 		31D5C414275C9566000FAD35 /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
+				31D5C41E275CB621000FAD35 /* ReportListCoordinator.swift */,
 			);
 			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		31D5C419275CB071000FAD35 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				31D5C41A275CB09B000FAD35 /* ReportListCell.swift */,
+				31D5C41B275CB09B000FAD35 /* ReportListCell.xib */,
+				31D5C420275CC1C9000FAD35 /* ReportListEmptyCell.swift */,
+				31D5C421275CC1C9000FAD35 /* ReportListEmptyCell.xib */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -588,6 +608,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				31A7AEF1274E564C006C087C /* LaunchScreen.storyboard in Resources */,
+				31D5C41D275CB09B000FAD35 /* ReportListCell.xib in Resources */,
 				31A7AEEE274E564C006C087C /* Assets.xcassets in Resources */,
 				31D1B8E62753754200F5ABF7 /* DatePickerCell.xib in Resources */,
 				31D1B8EC27538B9E00F5ABF7 /* CommentCell.xib in Resources */,
@@ -595,6 +616,7 @@
 				31960A662758B2000076AAA7 /* ReportCommentCell.xib in Resources */,
 				31C9E1492758943F00DC9787 /* ReportCell.xib in Resources */,
 				31A7AEEC274E564A006C087C /* Main.storyboard in Resources */,
+				31D5C423275CC1C9000FAD35 /* ReportListEmptyCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -631,7 +653,9 @@
 				31D1B8C627536C0D00F5ABF7 /* AppCoordinator.swift in Sources */,
 				31960A652758B2000076AAA7 /* ReportCommentCell.swift in Sources */,
 				31D1B8C0275368B000F5ABF7 /* Coordinator.swift in Sources */,
+				31D5C41C275CB09B000FAD35 /* ReportListCell.swift in Sources */,
 				31CC751A2751064F00A3F03D /* BookSuggestionViewModel.swift in Sources */,
+				31D5C41F275CB621000FAD35 /* ReportListCoordinator.swift in Sources */,
 				31D5C416275C9CE3000FAD35 /* ReportListViewModel.swift in Sources */,
 				31D1B8DB275372B200F5ABF7 /* FieldCell.swift in Sources */,
 				31D1B8A227535E7400F5ABF7 /* ButtonViewModel.swift in Sources */,
@@ -640,6 +664,7 @@
 				31D4289B2750BF6400C9D09E /* CustomErrors.swift in Sources */,
 				31D1B8EA27538B9E00F5ABF7 /* CommentCell.swift in Sources */,
 				31D1B8A927535F7400F5ABF7 /* RealmServiceProtocol.swift in Sources */,
+				31D5C422275CC1C9000FAD35 /* ReportListEmptyCell.swift in Sources */,
 				319899EE27525C170027234E /* SuggestionViewModelProtocol.swift in Sources */,
 				31D1B8A527535E9E00F5ABF7 /* DatePickerViewModel.swift in Sources */,
 				31960A712758E1D80076AAA7 /* ReportCellViewModel.swift in Sources */,
@@ -655,7 +680,6 @@
 				31960A6F2758D9CC0076AAA7 /* ReportCoordinator.swift in Sources */,
 				31CC75122750F71800A3F03D /* NaverBookAPIProtocol.swift in Sources */,
 				31A961BB2757A70900CCC297 /* Array+extension.swift in Sources */,
-				31CC751D27510CC200A3F03D /* ViewController.swift in Sources */,
 				31D1B8AC27535F9E00F5ABF7 /* RealmService.swift in Sources */,
 				31A7AEE7274E564A006C087C /* SceneDelegate.swift in Sources */,
 				31CC750D2750F2F700A3F03D /* NaverAPIRouter.swift in Sources */,

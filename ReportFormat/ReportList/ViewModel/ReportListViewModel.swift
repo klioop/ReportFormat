@@ -30,13 +30,26 @@ protocol ReportListViewModelProtocol {
         realm: RealmServiceProtocol,
         ()
     )
+    typealias ViewModelBuilder = (ReportListViewModelProtocol.Input) -> ReportListViewModelProtocol
     
     var input: ReportListViewModelProtocol.Input { get }
     var output: ReportListViewModelProtocol.Output { get }
 }
 
 struct ReportListViewModel: ReportListViewModelProtocol {
-    
+    typealias RoutingAction = (
+        reportRelay: PublishRelay<Report>,
+        voidRelay: PublishRelay<Void>
+    )
+    typealias Routing = (
+        report: Driver<Report>,
+        tap: Driver<Void>
+    )
+    private let routingAction: RoutingAction = (PublishRelay(), PublishRelay())
+    lazy var routing: Routing = (
+        routingAction.reportRelay.asDriver(onErrorDriveWith: .empty()),
+        routingAction.voidRelay.asDriver(onErrorDriveWith: .empty())
+    )
     
     var input: ReportListViewModelProtocol.Input
     var output: ReportListViewModelProtocol.Output
@@ -52,6 +65,11 @@ struct ReportListViewModel: ReportListViewModelProtocol {
 }
 
 private extension ReportListViewModel {
+    
+    private func process() {
+        
+    }
+    
     static func output(dependencies: ReportListViewModelProtocol.Dependencies) -> ReportListViewModelProtocol.Output{
         
         let sections = dependencies.realm.getAllReports()

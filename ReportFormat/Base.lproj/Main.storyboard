@@ -10,16 +10,16 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Report List View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ReportFormat" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ReportListViewController" id="BYZ-38-t0r" customClass="ReportListViewController" customModule="ReportFormat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Up5-2h-O0c">
-                                <rect key="frame" x="0.0" y="84" width="390" height="726"/>
+                                <rect key="frame" x="0.0" y="84" width="390" height="677"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="40w-jG-Jgx">
@@ -42,6 +42,16 @@
                             <constraint firstItem="Up5-2h-O0c" firstAttribute="top" secondItem="40w-jG-Jgx" secondAttribute="bottom" id="nYa-DM-gzs"/>
                         </constraints>
                     </view>
+                    <toolbarItems>
+                        <barButtonItem image="plus" catalog="system" id="SXX-mc-i6h">
+                            <color key="tintColor" name="mainColor"/>
+                        </barButtonItem>
+                    </toolbarItems>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="newReportButton" destination="SXX-mc-i6h" id="red-Y1-2vw"/>
+                        <outlet property="tableView" destination="Up5-2h-O0c" id="1zd-ro-Hhi"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -142,6 +152,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="plus" catalog="system" width="128" height="113"/>
         <namedColor name="mainColor">
             <color red="1" green="0.36078431372549019" blue="0.34509803921568627" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

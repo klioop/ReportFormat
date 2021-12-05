@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReportListCell" rowHeight="100" id="KGk-i7-Jjw" customClass="ReportListCell" customModule="ReportFormat" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="390" height="100"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="390" height="100"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="riN-pq-58o">
+                        <rect key="frame" x="5" y="0.0" width="380" height="95"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="wfY-iW-tIC">
+                                <rect key="frame" x="138" y="20.5" width="79.5" height="54"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="김새싹" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HYW-gE-sJA">
+                                        <rect key="frame" x="0.0" y="0.0" width="79.5" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="수학" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Glv-bI-nm5">
+                                        <rect key="frame" x="0.0" y="24" width="79.5" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2021년 10월 20일" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cXY-bZ-I9K">
+                                        <rect key="frame" x="0.0" y="42" width="79.5" height="12"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bz5-05-BwE">
+                                <rect key="frame" x="10" y="32" width="28" height="31"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="square.and.arrow.up" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="25"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="bz5-05-BwE" firstAttribute="leading" secondItem="riN-pq-58o" secondAttribute="leading" constant="10" id="Emt-ps-zs8"/>
+                            <constraint firstItem="wfY-iW-tIC" firstAttribute="centerY" secondItem="riN-pq-58o" secondAttribute="centerY" id="JtU-XB-4eb"/>
+                            <constraint firstItem="wfY-iW-tIC" firstAttribute="leading" secondItem="bz5-05-BwE" secondAttribute="trailing" constant="100" id="LvI-zY-sWt"/>
+                            <constraint firstAttribute="height" constant="95" id="PUY-YQ-Wz8"/>
+                            <constraint firstAttribute="trailing" secondItem="wfY-iW-tIC" secondAttribute="trailing" constant="162.5" id="Pmk-4x-9b2"/>
+                            <constraint firstItem="bz5-05-BwE" firstAttribute="centerY" secondItem="riN-pq-58o" secondAttribute="centerY" id="srV-Xt-6jZ"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="riN-pq-58o" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="L4Y-QW-8Sh"/>
+                    <constraint firstAttribute="trailing" secondItem="riN-pq-58o" secondAttribute="trailing" constant="5" id="neZ-e5-jPB"/>
+                    <constraint firstItem="riN-pq-58o" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="z5q-ef-tCh"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <connections>
+                <outlet property="dateLabel" destination="cXY-bZ-I9K" id="IHy-AN-beN"/>
+                <outlet property="nameLabel" destination="HYW-gE-sJA" id="Ik1-Iq-LPc"/>
+                <outlet property="shareButton" destination="bz5-05-BwE" id="4Iy-Yu-Cap"/>
+                <outlet property="subjectLabel" destination="Glv-bI-nm5" id="Y97-TQ-JTk"/>
+            </connections>
+            <point key="canvasLocation" x="182.60869565217394" y="166.74107142857142"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

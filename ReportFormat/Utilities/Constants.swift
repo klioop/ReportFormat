@@ -10,6 +10,7 @@ import Foundation
 struct Identifier {
     
     struct StoryBoardId {
+        static let ReportListViewController = "ReportListViewController"
         static let ReportForm = "ReportFormViewController"
         static let ReportView = "ReportViewController"
     }
@@ -23,6 +24,10 @@ struct Identifier {
         // ReportView
         static let ReportDataCell = "ReportDataCell"
         static let ReportCommentCell = "ReportCommentCell"
+        
+        // ReportListView
+        static let ReportListCell = "ReportListCell"
+        static let ReportListEmptyCell = "ReportListEmptyCell"
     }
 }
 

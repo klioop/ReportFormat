@@ -38,9 +38,9 @@ class AppCoordinator: BaseCoordinator {
     
     override func start() {
         let router = Router(navigationController: navigationController)
-        let temp = ReportFormCoordinator(router: router)
-        self.add(temp)
-        temp.start()
+        let reportListCoordinator = ReportListCoordinator(router: router)
+        self.add(reportListCoordinator)
+        reportListCoordinator.start()
         
         window.rootViewController = navigationController
         window.makeKeyAndVisible()

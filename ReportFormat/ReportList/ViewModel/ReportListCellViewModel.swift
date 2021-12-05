@@ -9,8 +9,10 @@ import Foundation
 
 struct ReportListCellViewModel {
     
+    let report: Report
+    
     init(_ report: Report) {
-        
+        self.report = report
     }
     
 }
