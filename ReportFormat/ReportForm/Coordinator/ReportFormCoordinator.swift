@@ -45,7 +45,7 @@ class ReportFormCoordinator: BaseCoordinator {
             
             return viewModel
         }
-        router.push(vc, isAnimated: true, onNavigationBack: isComplted)
+        router.present(vc, isAnimated: true, onDismiss: isComplted)
     }
 }
 

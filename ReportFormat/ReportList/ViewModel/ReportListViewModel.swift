@@ -50,9 +50,11 @@ struct ReportListViewModel: ReportListViewModelProtocol {
         routingAction.reportRelay.asDriver(onErrorDriveWith: .empty()),
         routingAction.voidRelay.asDriver(onErrorDriveWith: .empty())
     )
+    private var bag = DisposeBag()
     
     var input: ReportListViewModelProtocol.Input
     var output: ReportListViewModelProtocol.Output
+
     
     init(
         input: ReportListViewModelProtocol.Input,
@@ -66,8 +68,15 @@ struct ReportListViewModel: ReportListViewModelProtocol {
 
 private extension ReportListViewModel {
     
-    private func process() {
-        
+    private func process(
+        input: ReportListViewModelProtocol.Input
+    ) {
+        input.didTapNewReport
+            .map {
+                routingAction.voidRelay.accept(())
+            }
+            .drive()
+            .disposed(by: bag)
     }
     
     static func output(dependencies: ReportListViewModelProtocol.Dependencies) -> ReportListViewModelProtocol.Output{
