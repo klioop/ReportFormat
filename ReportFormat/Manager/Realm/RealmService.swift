@@ -25,6 +25,27 @@ class RealmService {
 
 extension RealmService: RealmServiceProtocol {
     
+    func addReport(_ report: Report) throws {
+        do {
+            try localRealm.write {
+                let reportObject = ReportObject(value: [
+                    "studentName": report.studentName,
+                    "reportDate": report.reportDate,
+                    "comment": report.comment,
+                    "bookTitle": report.bookTitle,
+                    "bookImageUrl": report.bookImageUrl,
+                    "subject": report.subject,
+                    "range": report.range
+                ])
+                localRealm.add(reportObject)
+            }
+        } catch {
+            let error = RealmError.failedToAddObject
+            print(error.errorMessage)
+            throw error
+        }
+    }
+    
     func isSubjectExisted(with name: String) -> Bool {
         localRealm.objects(SubjectObject.self).filter("name CONTAINS %@", "\(name)").isEmpty
     }
