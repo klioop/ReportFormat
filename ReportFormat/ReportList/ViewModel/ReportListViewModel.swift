@@ -62,6 +62,8 @@ struct ReportListViewModel: ReportListViewModelProtocol {
     ) {
         self.input = input
         self.output = ReportListViewModel.output(dependencies: dependencies)
+        
+        self.process(input: input)
     }
     
 }

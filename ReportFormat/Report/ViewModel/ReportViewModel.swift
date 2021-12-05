@@ -33,7 +33,7 @@ protocol ReportViewModelProtocol {
 struct ReportViewModel: ReportViewModelProtocol {
     
     typealias RoutingAction = (voidRelay: PublishRelay<Void>, ())
-    typealias Routing = (void: Driver<Void>, ())
+    typealias Routing = (didTapCreateButton: Driver<Void>, ())
     
     private let routingAction: RoutingAction = (PublishRelay(), ())
     lazy var routing: Routing = (
@@ -52,6 +52,8 @@ struct ReportViewModel: ReportViewModelProtocol {
     ) {
         self.input = input
         self.output = ReportViewModel.output(dependencies)
+        
+        self.process(input: input, dependencies: dependencies)
     }
 }
 
@@ -66,7 +68,9 @@ private extension ReportViewModel {
         input.didTapCreateButton
             .asObservable()
             .map { [dependencies] (tap) -> Void in
+                print("눌림")
                 try self.addReportToRealmAndRouting(dependencies)
+                routingAction.voidRelay.accept(tap)
                 return tap
             }
             .asDriver(onErrorDriveWith: .empty())
@@ -83,8 +87,7 @@ private extension ReportViewModel {
         let title = Driver.just(dependencies.report.reportDate + " 수업 리포트")
         let sections = Driver.just(dependencies.report)
             .map { report in
-                print(report)
-                return ReportCellViewModel.init(with: report)
+                ReportCellViewModel.init(with: report)
             }
             .map { viewModel in
                 [

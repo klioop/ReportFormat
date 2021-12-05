@@ -33,7 +33,6 @@ class ReportListCoordinator: BaseCoordinator {
             
             return viewModel
         }
-        
         router.push(vc, isAnimated: false, onNavigationBack: isComplted)
     }
     

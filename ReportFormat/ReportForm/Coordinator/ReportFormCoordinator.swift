@@ -5,14 +5,17 @@
 //  Created by klioop on 2021/11/29.
 //
 
-import Foundation
+import UIKit
 import RxSwift
+import RxCocoa
+
 
 class ReportFormCoordinator: BaseCoordinator {
     
     let router: RouterProtocol
     
     private let bag = DisposeBag()
+    private let didDismss = PublishRelay<Void>()
     
     init(router: RouterProtocol) {
         self.router = router
@@ -45,13 +48,14 @@ class ReportFormCoordinator: BaseCoordinator {
             
             return viewModel
         }
-        router.present(vc, isAnimated: true, onDismiss: isComplted)
+        router.push(vc, isAnimated: true, onNavigationBack: isComplted)
     }
 }
 
 private extension ReportFormCoordinator {
+    
     func showReport(_ report: Report) {
-        let reportCoordinator = ReportCoordinator(router: router, report: report)
+        let reportCoordinator = ReportCoordinator(router: self.router, report: report)
         reportCoordinator.isComplted = { [weak self, weak reportCoordinator] in
             guard
                 let self = self,

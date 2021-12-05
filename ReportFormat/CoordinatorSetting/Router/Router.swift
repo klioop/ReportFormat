@@ -50,6 +50,25 @@ extension Router: RouterProtocol {
         viewController.presentationController?.delegate = self
     }
     
+    func presentWithNav(_ nav: UINavigationController, isAnimated: Bool, onDismiss closure: NavigationBackClosure?) {
+        if let closure = closure {
+            closures.updateValue(closure, forKey: "nav")
+        }
+        navigationController.present(nav, animated: isAnimated, completion: nil)
+        nav.presentationController?.delegate = self
+    }
+    
+    func dismissWithNav(_ isAnimated: Bool) {
+        navigationController.dismiss(animated: isAnimated, completion: nil)
+        guard let closure = closures.removeValue(forKey: "nav") else { return }
+        closure()
+    }
+    
+    func dismiss(_ isAnimated: Bool) {
+        navigationController.dismiss(animated: isAnimated, completion: nil)
+        
+    }
+    
     func executeClosure(_ viewController: UIViewController) {
         guard let closure = closures.removeValue(forKey: viewController.description) else { return }
         closure()

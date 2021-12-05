@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 typealias NavigationBackClosure = () -> Void
 
@@ -16,5 +17,11 @@ protocol RouterProtocol {
     
     func present(_ drawable: Drawble, isAnimated: Bool, onDismiss: NavigationBackClosure?)
     
-    func popToRoot(_ isAnimated: Bool) 
+    func popToRoot(_ isAnimated: Bool)
+    
+    func dismiss(_ isAnimated: Bool)
+    
+    func presentWithNav(_ nav: UINavigationController, isAnimated: Bool, onDismiss: NavigationBackClosure?)
+    
+    func dismissWithNav(_ isAnimated: Bool)
 }

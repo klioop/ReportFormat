@@ -34,6 +34,14 @@ class ReportListViewController: UIViewController, StoryBoarded {
         binding()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if let navCon = navigationController,
+           navCon.isToolbarHidden {
+            navCon.setToolbarHidden(false, animated: true)
+        }
+    }
+    
 }
 
 private extension ReportListViewController {
