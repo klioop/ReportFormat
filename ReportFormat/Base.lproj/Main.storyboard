@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
@@ -15,30 +15,52 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ReportFormat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Up5-2h-O0c">
+                                <rect key="frame" x="0.0" y="84" width="390" height="726"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="40w-jG-Jgx">
+                                <rect key="frame" x="0.0" y="44" width="390" height="40"/>
+                                <color key="backgroundColor" name="mainColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Lkp-U8-ufi"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="40w-jG-Jgx" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="34h-W1-ybO"/>
+                            <constraint firstItem="Up5-2h-O0c" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="8vx-dd-LhA"/>
+                            <constraint firstItem="Up5-2h-O0c" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="M2z-XI-Ieq"/>
+                            <constraint firstItem="Up5-2h-O0c" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="Yl7-HC-vYy"/>
+                            <constraint firstItem="40w-jG-Jgx" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="gT4-Uq-7uk"/>
+                            <constraint firstItem="40w-jG-Jgx" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="nPj-im-dkh"/>
+                            <constraint firstItem="Up5-2h-O0c" firstAttribute="top" secondItem="40w-jG-Jgx" secondAttribute="bottom" id="nYa-DM-gzs"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="132" y="69"/>
+            <point key="canvasLocation" x="130.76923076923077" y="68.957345971563981"/>
         </scene>
         <!--Report Form View Controller-->
         <scene sceneID="KEa-n8-pK5">
             <objects>
                 <viewController storyboardIdentifier="ReportFormViewController" id="wcF-OP-Xjn" customClass="ReportFormViewController" customModule="ReportFormat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0R2-ua-HRd">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="LTn-KP-0LY">
-                                <rect key="frame" x="0.0" y="44" width="414" height="723"/>
+                                <rect key="frame" x="0.0" y="44" width="390" height="671"/>
                                 <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fPq-Xn-2ra">
-                                <rect key="frame" x="10" y="772" width="394" height="50"/>
+                                <rect key="frame" x="10" y="720" width="370" height="50"/>
                                 <color key="backgroundColor" name="mainColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="p6f-6e-DP0"/>
@@ -76,15 +98,15 @@
             <objects>
                 <viewController storyboardIdentifier="ReportViewController" id="hNH-7u-M1r" customClass="ReportViewController" customModule="ReportFormat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ljx-lx-eEi">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="UGs-mV-g3R">
-                                <rect key="frame" x="0.0" y="44" width="414" height="723"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="UGs-mV-g3R">
+                                <rect key="frame" x="0.0" y="44" width="390" height="671"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ieC-RJ-RGO">
-                                <rect key="frame" x="10" y="772" width="394" height="50"/>
+                                <rect key="frame" x="10" y="720" width="370" height="50"/>
                                 <color key="backgroundColor" name="mainColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="8lb-i2-epn"/>
@@ -121,7 +143,7 @@
     </scenes>
     <resources>
         <namedColor name="mainColor">
-            <color red="0.72549019607843135" green="0.086274509803921567" blue="0.27450980392156865" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.36078431372549019" blue="0.34509803921568627" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="secondarySystemBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

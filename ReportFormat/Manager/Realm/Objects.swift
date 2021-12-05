@@ -27,5 +27,6 @@ class ReportObject: Object {
     @Persisted var comment: String
     @Persisted var bookTitle: String?
     @Persisted var bookImageUrl: String?
-    @Persisted var subject: String?    
+    @Persisted var subject: String?
+    @Persisted var range: String?
 }

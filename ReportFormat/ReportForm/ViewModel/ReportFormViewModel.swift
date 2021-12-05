@@ -119,7 +119,8 @@ private extension ReportFormViewModel {
             comment: comment.text.value,
             bookTitle: book.text.value,
             bookImageUrl: book.bookImageUrl.value,
-            subject: subject.text.value
+            subject: subject.text.value,
+            range: range.text.value
         )
     }
     
@@ -213,7 +214,7 @@ private extension ReportFormViewModel {
                     .asObservable()
             }
             .map({ books in
-                let viewModels = books.map { [select] in BookSuggestionViewModel($0, select: select) }
+                let viewModels = books.uniqueElements().map{ [select] in BookSuggestionViewModel($0, select: select)}
                 return .focus(field: field, suggestionViewModels: viewModels)
             })
     }

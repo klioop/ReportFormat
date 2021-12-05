@@ -30,15 +30,31 @@ extension Book {
         return Book(
             title: title,
             imageUrl: response.image,
-            pubdate: response.pubdate,
+            pubdate: Book.toPubYear(from: response.pubdate),
             publisher: response.publisher
         )
+    }
+    
+    static private func toPubYear(from dateString: String) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyyMMdd"
+        let date = formatter.date(from: dateString)
+        formatter.dateFormat = "yyyy년"
+        
+        return formatter.string(from: date ?? Date())
+    }
+    
+}
+
+extension Book: Equatable {
+    static func ==(lhs: Book, rhs: Book) -> Bool {
+        return lhs.title.lowercased() == rhs.title.lowercased()
     }
 }
 
 extension Book: Hashable {
     func hash(into hasher: inout Hasher) {
-        hasher.combine("\(title)-\(pubdate)")
+        hasher.combine("\(title)")
     }
 }
 

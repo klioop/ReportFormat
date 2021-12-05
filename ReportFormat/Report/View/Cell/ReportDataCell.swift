@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ReportDataCell: UITableViewCell {
 
@@ -16,13 +17,15 @@ class ReportDataCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
 }
 
 extension ReportDataCell {
     func configure(with viewModel: ReportCellViewModel) {
-        
+        bookImageVIew.kf.setImage(with: URL(string: viewModel.bookImageUrl ?? ""))
+        nameLabel.text = viewModel.studentName
+        subjectLabel.text = viewModel.subject ?? ""
+        rangeLabel.text = viewModel.range ?? ""
     }
 }

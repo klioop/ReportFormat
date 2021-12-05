@@ -18,15 +18,14 @@ class ReportViewController: UIViewController, StoryBoarded {
         switch item {
         case let .data(vm):
             let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.TableViewCellId.ReportDataCell) as! ReportDataCell
+            cell.configure(with: vm)
             return cell
         case let .comment(vm):
             let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.TableViewCellId.ReportCommentCell) as! ReportCommentCell
             cell.configure(with: vm)
             return cell
         }
-        
     }
-    
     private var viewModel: ReportViewModelProtocol!
     var viewModelBuilder: ReportViewModelProtocol.ViewBuilder!
     
@@ -37,7 +36,7 @@ class ReportViewController: UIViewController, StoryBoarded {
         setupUI()
         viewModel = viewModelBuilder((
             createButton.rx.tap.asDriver(),
-            createButton.rx.tap.asDriver()
+            ()
         ))
         binding()
     }
@@ -55,6 +54,11 @@ private extension ReportViewController {
         viewModel.output
             .title
             .drive(self.rx.title)
+            .disposed(by: bag)
+        
+        viewModel.output
+            .sections
+            .drive(self.tableView.rx.items(dataSource: dataSource))
             .disposed(by: bag)
     }
     

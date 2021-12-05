@@ -33,11 +33,13 @@ class ReportFormViewController: UIViewController, StoryBoarded {
             cell.configure(with: vm)
             return cell
         case let .suggestion(vm):
-            let cell = UITableViewCell()
+            let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
             switch vm.type {
             case .book:
                 let bookVM = vm as! BookSuggestionViewModel
-                cell.textLabel?.text = bookVM.title
+                cell.textLabel?.numberOfLines = 2
+                cell.textLabel?.text = bookVM.book.title
+                cell.detailTextLabel?.text = "출판년도: " + bookVM.book.pubdate
             case .subject:
                 let subjetVM = vm as! SubjectSuggestionViewModel
                 cell.textLabel?.text = subjetVM.name

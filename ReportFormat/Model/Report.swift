@@ -14,4 +14,5 @@ struct Report {
     let bookTitle: String?
     let bookImageUrl: String?
     let subject: String?
+    let range: String?
 }

@@ -13,7 +13,6 @@ class ReportCommentCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
    
@@ -22,7 +21,7 @@ class ReportCommentCell: UITableViewCell {
 
 extension ReportCommentCell {
     func configure(with viewModel: ReportCellViewModel) {
-        
+        commentTextView.text = viewModel.comment
     }
 }
 

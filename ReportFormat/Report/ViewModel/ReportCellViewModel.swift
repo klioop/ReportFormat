@@ -20,6 +20,7 @@ struct ReportCellViewModel {
     let subject: String?
     let bookTitle: String?
     let bookImageUrl: String?
+    let range: String?
 }
 
 extension ReportCellViewModel {
@@ -31,5 +32,6 @@ extension ReportCellViewModel {
         self.subject = report.subject
         self.bookTitle = report.bookTitle
         self.bookImageUrl = report.bookImageUrl
+        self.range = report.range
     }
 }
