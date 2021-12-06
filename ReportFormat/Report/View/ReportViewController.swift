@@ -43,6 +43,14 @@ class ReportViewController: UIViewController, StoryBoarded {
         binding()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let nav = navigationController,
+           !nav.isToolbarHidden {
+            nav.setToolbarHidden(true, animated: false)
+        }
+    }
+    
 }
 // MARK: - helpers
 
