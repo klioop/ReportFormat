@@ -19,5 +19,6 @@ protocol RealmServiceProtocol {
     func addReport(_ report: Report) throws
     func getAllReports() -> Single<[ReportObject]>
     func getReports() -> Results<ReportObject>
+    func editReport(_ report: Report) throws
 }
 

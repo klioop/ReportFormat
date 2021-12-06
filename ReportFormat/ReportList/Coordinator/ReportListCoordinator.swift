@@ -34,7 +34,7 @@ class ReportListCoordinator: BaseCoordinator {
             
             viewModel.routing.report
                 .map { [weak self] in
-                    self?.showReport(with: $0)
+                    self?.showReportViewForEditting(with: $0)
                 }
                 .drive()
                 .disposed(by: bag)
@@ -60,7 +60,7 @@ private extension ReportListCoordinator {
         coordinator.start()
     }
     
-    func showReport(with report: Report) {
+    func showReportViewForEditting(with report: Report) {
         let coordinator = ReportCoordinator(router: router, report: report, reportSceneType: .editing)
         self.add(coordinator)
         coordinator.isComplted = { [weak self, weak coordinator] in

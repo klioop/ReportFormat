@@ -12,13 +12,19 @@ import RxCocoa
 typealias ReportFormViewModelBuilder = () -> ReportFormViewModel
 
 struct ReportFormViewModel{
-    typealias RoutingAction = (reportRelay: PublishRelay<Report>, ())
-    typealias Routing = (report: Driver<Report>, ())
+    typealias RoutingAction = (
+        reportRelay: PublishRelay<Report>,
+        reportUpdatedRelay: PublishRelay<Report>
+    )
+    typealias Routing = (report: Driver<Report>, reportEditted: Driver<Report>)
     
-    private var routingAction: RoutingAction = (reportRelay: PublishRelay(), ())
+    private var routingAction: RoutingAction = (
+        reportRelay: PublishRelay(),
+        reportUpdatedRelay: PublishRelay()
+    )
     lazy var routing: Routing = (
         report: routingAction.reportRelay.asDriver(onErrorDriveWith: .empty()),
-        ()
+        reportEditted: routingAction.reportUpdatedRelay.asDriver(onErrorDriveWith: .empty())
     )
     
     let date: FieldViewModel
@@ -115,13 +121,35 @@ private extension ReportFormViewModel {
         
         tapWriteButton
             .map { [routingAction] in
-                let report = self.createReport()
+                let report = createReport()
                 routingAction.reportRelay.accept(report)
             }
             .asDriver(onErrorDriveWith: .empty())
             .drive()
             .disposed(by: bag)
         
+        tapEditButton
+            .map { [routingAction, realmService] in
+                let reportUpdated = updateReport()
+                try realmService.editReport(reportUpdated)
+                routingAction.reportUpdatedRelay.accept(reportUpdated)
+            }
+            .asDriver(onErrorDriveWith: .empty())
+            .drive()
+            .disposed(by: bag)
+        
+    }
+    
+    func updateReport() -> Report {
+        guard var report = self.report else { return Report.emptyReport() }
+        report.reportDate = date.text.value
+        report.studentName = student.text.value
+        report.subject = subject.text.value
+        report.comment = comment.text.value
+        report.bookTitle = book.text.value
+        report.bookImageUrl = book.bookImageUrl.value
+        
+        return report
     }
     
     func createReport() -> Report {
@@ -250,7 +278,7 @@ private extension ReportFormViewModel {
     
     private func getSubjectFromRealm(for field: FieldViewModel) -> Observable<State> {
         field.text
-            .skip(1)
+            .skip(1) // edit 일 때 field 채워짐 -> 검색 방지 위해 element 하나 skip
             .distinctUntilChanged()
             .skip(while: { $0.isEmpty })
             .flatMap { [realmService] (text) in

@@ -25,6 +25,24 @@ class RealmService {
 
 extension RealmService: RealmServiceProtocol {
     
+    func editReport(_ report: Report) throws {
+        do {
+            try localRealm.write {
+                guard let reportObject = getReports().filter({ $0._id == report.objectId }).first else { return }
+                reportObject.reportDate = report.reportDate
+                reportObject.studentName = report.studentName
+                reportObject.comment = report.comment
+                reportObject.subject = report.subject
+                reportObject.bookTitle = report.bookTitle
+                reportObject.range = report.range
+            }
+        } catch {
+            let error = RealmError.failedToEdit
+            print(error.errorMessage)
+            throw error
+        }
+    }
+    
     func getReports() -> Results<ReportObject> {
         localRealm.objects(ReportObject.self).sorted(byKeyPath: "reportDate")
     }
@@ -107,5 +125,18 @@ extension Results {
     func toArray() -> Array<Self.Element> {
         self.map { $0 }
     }
-        
+}
+
+private extension RealmService {
+    static func toReportObject(from report: Report) -> ReportObject {
+        ReportObject(value: [
+            "studentName": report.studentName,
+            "reportDate": report.reportDate,
+            "comment": report.comment,
+            "bookTitle": report.bookTitle,
+            "bookImageUrl": report.bookImageUrl,
+            "subject": report.subject,
+            "range": report.range
+        ])
+    }
 }

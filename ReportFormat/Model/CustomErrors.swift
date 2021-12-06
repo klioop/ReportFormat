@@ -23,11 +23,14 @@ enum APIError: Error {
 
 enum RealmError: Error {
     case failedToAddObject
+    case failedToEdit
     
     var errorMessage: String {
         switch self {
         case .failedToAddObject:
             return "Failed to add a new object"
+        case .failedToEdit:
+            return "Failed to edit the object"
         }
     }
 }

@@ -9,6 +9,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 import RxDataSources
+import RxRealm
 
 typealias ReportItemSection = SectionModel<String, ReportCellModelCase>
 
@@ -85,9 +86,6 @@ private extension ReportViewModel {
                 .drive()
                 .disposed(by: bag)
         
-            
-            
-            
     }
     
     func addReportToRealmAndRouting(_ dependencies: ReportViewModelProtocol.Dependencies) throws {
@@ -97,7 +95,14 @@ private extension ReportViewModel {
     
     static func output(_ dependencies: ReportViewModelProtocol.Dependencies) -> ReportViewModelProtocol.Output {
         let title = Driver.just(dependencies.report.reportDate + " 수업 리포트")
-        let sections = Driver.just(dependencies.report)
+        let reports = dependencies.realmService.getReports()
+        let sections = Observable.arrayWithChangeset(from: reports)
+            .map { (array, _) -> Report in
+                guard let report = array.filter({ $0._id == (dependencies.report.objectId!) }).first
+                else { return Report.emptyReport() }
+                return Report.toReport(from: report)
+            }
+            .asDriver(onErrorDriveWith: .empty())
             .map { report in
                 ReportCellViewModel.init(with: report)
             }
@@ -107,6 +112,7 @@ private extension ReportViewModel {
                     ReportItemSection(model: Constants.ModelName.comment, items: [.comment(viewModel)])
                 ]
             }
+            
         let sceneType = Driver.just(dependencies.sceneType)
         
         return (title, sections, sceneType)
