@@ -20,7 +20,7 @@ class AppCoordinator: BaseCoordinator {
         standardAppearnce.configureWithOpaqueBackground()
         standardAppearnce.backgroundColor = UIColor(named: "mainColor")
         standardAppearnce.titleTextAttributes = [
-            .font: UIFont(name: "Avenir-Medium", size: 13.0)!,
+            .font: UIFont(name: "Avenir-Medium", size: 25.0)!,
             .foregroundColor: UIColor.white
         ]
         standardAppearnce.shadowColor = .clear

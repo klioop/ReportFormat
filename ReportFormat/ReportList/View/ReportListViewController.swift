@@ -59,6 +59,10 @@ private extension ReportListViewController {
     }
     
     func binding() {
+        viewModel.output.title
+            .drive(self.rx.title)
+            .disposed(by: bag)
+        
         viewModel.output.sections
             .drive(self.tableView.rx.items(dataSource: dataSource))
             .disposed(by: bag)

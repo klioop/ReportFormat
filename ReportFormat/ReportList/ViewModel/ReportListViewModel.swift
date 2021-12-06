@@ -25,7 +25,7 @@ protocol ReportListViewModelProtocol {
     )
     typealias Output = (
         sections: Driver<[ReportListSection]>,
-        ()
+        title: Driver<String>
     )
     typealias Dependencies = (
         realm: RealmServiceProtocol,
@@ -90,9 +90,8 @@ private extension ReportListViewModel {
     }
     
     static func output(dependencies: ReportListViewModelProtocol.Dependencies) -> ReportListViewModelProtocol.Output{
-        
+        let title = Driver.just("리포트")
         let reports = dependencies.realm.getReports()
-        
         let sections = Observable.arrayWithChangeset(from: reports)
             .map { (array, _) -> [Report] in
                 return Report.toReports(from: array)
@@ -111,6 +110,6 @@ private extension ReportListViewModel {
             .asDriver(onErrorDriveWith: .empty())
             
         
-        return (sections, ())
+        return (sections, title)
     }
 }
