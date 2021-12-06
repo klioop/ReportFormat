@@ -12,8 +12,9 @@ import RxCocoa
 class ReportCoordinator: BaseCoordinator {
     
     let router: RouterProtocol
-    let report: Report
+    var report: Report
     let reportSceneType: ReportSceneType
+    let reportEdittedFromForm = PublishRelay<Report>()
     
     private var bag = DisposeBag()
     
@@ -31,10 +32,11 @@ class ReportCoordinator: BaseCoordinator {
         let vc = ReportViewController.instantiate()
         let realmService = RealmService.shared
     
-        vc.viewModelBuilder = { [report, realmService, bag, reportSceneType] in
+        vc.viewModelBuilder = { [report, realmService, bag, reportSceneType, reportEdittedFromForm] in
+            
             var viewModel = ReportViewModel(
                 input: $0,
-                dependencies: (report, realmService, reportSceneType)
+                dependencies: (report, realmService, reportSceneType, reportEdittedFromForm)
             )
             
             viewModel.routing.didTapCreateButton
@@ -53,6 +55,7 @@ class ReportCoordinator: BaseCoordinator {
             
             return viewModel
         }
+        
         router.push(vc, isAnimated: true, onNavigationBack: isComplted)
     }
 }
@@ -63,7 +66,8 @@ private extension ReportCoordinator {
     }
     
     func showFormEditting(with report: Report) {
-        let coordinator = ReportFormCoordinator(router: router, sceneType: .editing, report: report)
+        let coordinator = ReportFormCoordinator(router: router, sceneType: .editing, report: report, reportEditted: reportEdittedFromForm)
+        
         coordinator.isComplted = { [weak self, weak coordinator] in
             guard
                 let self = self,

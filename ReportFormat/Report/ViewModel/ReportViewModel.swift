@@ -25,7 +25,12 @@ protocol ReportViewModelProtocol {
         reportSceneType: Driver<ReportSceneType>
     )
     typealias ViewBuilder = (ReportViewModelProtocol.Input) -> ReportViewModelProtocol
-    typealias Dependencies = (report: Report, realmService: RealmServiceProtocol, sceneType: ReportSceneType)
+    typealias Dependencies = (
+        report: Report,
+        realmService: RealmServiceProtocol,
+        sceneType: ReportSceneType,
+        reportRelayFromForm: PublishRelay<Report>
+    )
     
     var input: ReportViewModelProtocol.Input { get }
     var output: ReportViewModelProtocol.Output { get }
@@ -45,6 +50,8 @@ struct ReportViewModel: ReportViewModelProtocol {
                                  
     var input: ReportViewModelProtocol.Input
     var output: ReportViewModelProtocol.Output
+    
+    var reportFromForm = BehaviorRelay<Report>(value: Report.emptyReport())
     
     private var bag = DisposeBag()
     
@@ -80,11 +87,16 @@ private extension ReportViewModel {
         
         
         input.didTapEditButton
-                .map { [dependencies, routingAction] (tap) in                    
-                    routingAction.reportRelay.accept(dependencies.report)
+                .map { [dependencies, routingAction] (tap) in
+                    let report = reportFromForm.value.reportDate.isEmpty ? dependencies.report : reportFromForm.value
+                    routingAction.reportRelay.accept(report)
                 }
                 .drive()
                 .disposed(by: bag)
+        
+        dependencies.reportRelayFromForm
+            .bind(to: reportFromForm)
+            .disposed(by: bag)
         
     }
     

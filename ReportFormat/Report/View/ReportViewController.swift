@@ -44,6 +44,7 @@ class ReportViewController: UIViewController, StoryBoarded {
     }
     
 }
+// MARK: - helpers
 
 private extension ReportViewController {
     
@@ -83,7 +84,7 @@ private extension ReportViewController {
     }
     
     func createBarButton(with sfSymbol: String, title: String) -> UIBarButtonItem {
-        let button = UIButton()
+        let button = UIButton(type: .system)
         button.setImage(UIImage(systemName: sfSymbol), for: .normal)
         button.setTitle(title, for: .normal)
         

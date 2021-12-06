@@ -34,9 +34,13 @@ extension CommentViewModel {
     }
     
     func bind(to field: FieldViewModel) {
+        commentTextFromEditting
+            .bind(to: commentText)
+            .disposed(by: bag)
+        
         commentText
             .filter { !($0 == Constants.commentTextViewPlaceHolder) }
-            .asDriver(onErrorJustReturn: "")
+            .asDriver(onErrorDriveWith: .empty())
             .drive(field.text)
             .disposed(by: bag)
     }

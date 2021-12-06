@@ -13,16 +13,24 @@ import RxCocoa
 class ReportFormCoordinator: BaseCoordinator {
     
     let router: RouterProtocol
-    let report: Report?
+    var report: Report?
     let sceneType: ReportFormSceneType
+    
+    let reportEditted: PublishRelay<Report>?
     
     private let bag = DisposeBag()
     private let didDismss = PublishRelay<Void>()
     
-    init(router: RouterProtocol, sceneType: ReportFormSceneType, report: Report? = nil) {
+    init(
+        router: RouterProtocol,
+        sceneType: ReportFormSceneType,
+        report: Report? = nil,
+        reportEditted: PublishRelay<Report>? = nil
+    ) {
         self.router = router
         self.report = report
         self.sceneType = sceneType
+        self.reportEditted = reportEditted
     }
     
     override func start() {
@@ -53,7 +61,10 @@ class ReportFormCoordinator: BaseCoordinator {
                 .disposed(by: bag)
             
             viewModel.routing.reportEditted
-                .map { [weak self] _ in
+                .map { [weak self] (report) in
+                    if let reportEditted = self?.reportEditted {
+                        reportEditted.accept(report)
+                    }
                     self?.popTowardReport()
                 }
                 .drive()

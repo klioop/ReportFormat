@@ -33,13 +33,20 @@ class CommentCell: UITableViewCell {
             .bind(to: viewModel.tapButton)
             .disposed(by: bag)
         
-        viewModel.commentText
+        let commentText = viewModel.commentText
+            .share(replay: 1, scope: .whileConnected)
+        
+        commentText
             .map { [saveButton] in
                 let disableFlag = ($0.isEmpty) || ($0 == Constants.commentTextViewPlaceHolder)
                 saveButton?.backgroundColor = disableFlag ? .gray : UIColor(named: ColorName.main)
                 return !disableFlag
             }
             .bind(to: saveButton.rx.isEnabled)
+            .disposed(by: bag)
+        
+        commentText
+            .bind(to: commentTextView.rx.text)
             .disposed(by: bag)
         
         commentTextView.rx.didBeginEditing
@@ -55,11 +62,6 @@ class CommentCell: UITableViewCell {
             .orEmpty
             .asDriver()
             .drive(viewModel.commentText)
-            .disposed(by: bag)
-        
-        viewModel.commentTextFromEditting
-            .asDriver()
-            .drive(commentTextView.rx.text)
             .disposed(by: bag)
         
     }

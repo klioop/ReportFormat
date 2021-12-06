@@ -81,9 +81,6 @@ struct ReportFormViewModel{
         self.datePickerViewModel = DatePickerViewModel(tapButton: tapButton)
         self.commentViewModel = CommentViewModel(tapButton: tapButton)
         
-        commentViewModel.commentTextFromEditting.accept(report?.comment ?? "")
-        datePickerViewModel.dateStringFromEditting.accept(report?.reportDate ?? "")
-        
         self.process()
     }
     
@@ -109,12 +106,19 @@ struct ReportFormViewModel{
 private extension ReportFormViewModel {
     
     func process() {
+        // 작성 or 수정 버튼 활성화 stream
         Observable.combineLatest(date.textForEmptyCheck, student.textForEmptyCheck, comment.textForEmptyCheck)
             .map { dateText, studentText, commentText in
                 !dateText.isEmpty && !studentText.isEmpty && !commentText.isEmpty
             }
             .bind(to: buttonViewModel.isEnabled)
             .disposed(by: bag)
+        
+        // editting 일 때 comment and date 기본 값 stream
+        if let report = report {
+            commentViewModel.commentTextFromEditting.accept(report.comment)
+            datePickerViewModel.dateStringFromEditting.accept(report.reportDate)
+        }
         
         datePickerViewModel.bind(to: date)
         commentViewModel.bind(to: comment)
@@ -278,8 +282,8 @@ private extension ReportFormViewModel {
     
     private func getSubjectFromRealm(for field: FieldViewModel) -> Observable<State> {
         field.text
-            .skip(1) // edit 일 때 field 채워짐 -> 검색 방지 위해 element 하나 skip
             .distinctUntilChanged()
+            .skip(1) // edit 일 때 field 채워짐 -> 검색 방지 위해 element 하나 skip            
             .skip(while: { $0.isEmpty })
             .flatMap { [realmService] (text) in
                 realmService.getSubject(with: text)

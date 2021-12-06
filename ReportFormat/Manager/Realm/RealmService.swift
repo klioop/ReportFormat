@@ -54,15 +54,7 @@ extension RealmService: RealmServiceProtocol {
     func addReport(_ report: Report) throws {
         do {
             try localRealm.write {
-                let reportObject = ReportObject(value: [
-                    "studentName": report.studentName,
-                    "reportDate": report.reportDate,
-                    "comment": report.comment,
-                    "bookTitle": report.bookTitle,
-                    "bookImageUrl": report.bookImageUrl,
-                    "subject": report.subject,
-                    "range": report.range
-                ])
+                let reportObject = RealmService.toReportObject(from: report)
                 localRealm.add(reportObject)
             }
         } catch {
