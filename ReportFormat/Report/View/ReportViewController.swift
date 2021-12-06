@@ -17,11 +17,11 @@ class ReportViewController: UIViewController, StoryBoarded {
     private lazy var dataSource = RxTableViewSectionedReloadDataSource<ReportItemSection> { (dataSource, tableView, IndexPath, item) -> UITableViewCell in
         switch item {
         case let .data(vm):
-            let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.TableViewCellId.ReportDataCell) as! ReportDataCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.TableViewCellId.reportDataCell) as! ReportDataCell
             cell.configure(with: vm)
             return cell
         case let .comment(vm):
-            let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.TableViewCellId.ReportCommentCell) as! ReportCommentCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.TableViewCellId.reportCommentCell) as! ReportCommentCell
             cell.configure(with: vm)
             return cell
         }
@@ -46,8 +46,8 @@ class ReportViewController: UIViewController, StoryBoarded {
 private extension ReportViewController {
     
     func setupUI() {
-        self.tableView.register(UINib(nibName: "ReportCell", bundle: nil), forCellReuseIdentifier: Identifier.TableViewCellId.ReportDataCell)
-        self.tableView.register(UINib(nibName: Identifier.TableViewCellId.ReportCommentCell, bundle: nil), forCellReuseIdentifier: Identifier.TableViewCellId.ReportCommentCell)
+        self.tableView.register(UINib(nibName: "ReportCell", bundle: nil), forCellReuseIdentifier: Identifier.TableViewCellId.reportDataCell)
+        self.tableView.register(UINib(nibName: Identifier.TableViewCellId.reportCommentCell, bundle: nil), forCellReuseIdentifier: Identifier.TableViewCellId.reportCommentCell)
     }
     
     func binding() {

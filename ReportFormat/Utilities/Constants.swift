@@ -10,24 +10,24 @@ import Foundation
 struct Identifier {
     
     struct StoryBoardId {
-        static let ReportListViewController = "ReportListViewController"
-        static let ReportForm = "ReportFormViewController"
-        static let ReportView = "ReportViewController"
+        static let reportListViewController = "ReportListViewController"
+        static let reportForm = "ReportFormViewController"
+        static let reportView = "ReportViewController"
     }
     
     struct TableViewCellId {
         // ReportFormView
-        static let FieldCell = "FieldCell"
-        static let DatePickerCell = "DatePickerCell"
-        static let CommentCell = "CommentCell"
+        static let fieldCell = "FieldCell"
+        static let datePickerCell = "DatePickerCell"
+        static let commentCell = "CommentCell"
         
         // ReportView
-        static let ReportDataCell = "ReportDataCell"
-        static let ReportCommentCell = "ReportCommentCell"
+        static let reportDataCell = "ReportDataCell"
+        static let reportCommentCell = "ReportCommentCell"
         
         // ReportListView
-        static let ReportListCell = "ReportListCell"
-        static let ReportListEmptyCell = "ReportListEmptyCell"
+        static let reportListCell = "ReportListCell"
+        static let reportListEmptyCell = "ReportListEmptyCell"
     }
 }
 

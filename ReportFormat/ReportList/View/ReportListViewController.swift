@@ -46,8 +46,8 @@ class ReportListViewController: UIViewController, StoryBoarded {
 
 private extension ReportListViewController {
     func setupUI() {
-        tableView.register(UINib(nibName: Identifier.TableViewCellId.ReportListCell, bundle: nil), forCellReuseIdentifier: Identifier.TableViewCellId.ReportListCell)
-        tableView.register(UINib(nibName: Identifier.TableViewCellId.ReportListEmptyCell, bundle: nil), forCellReuseIdentifier: Identifier.TableViewCellId.ReportListEmptyCell)
+        tableView.register(UINib(nibName: Identifier.TableViewCellId.reportListCell, bundle: nil), forCellReuseIdentifier: Identifier.TableViewCellId.reportListCell)
+        tableView.register(UINib(nibName: Identifier.TableViewCellId.reportListEmptyCell, bundle: nil), forCellReuseIdentifier: Identifier.TableViewCellId.reportListEmptyCell)
 
     }
     
@@ -68,10 +68,10 @@ private extension ReportListViewController {
         return { (_, tableView, indexPath, item) -> UITableViewCell in
             switch item {
             case .empty:
-                let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.TableViewCellId.ReportListEmptyCell) as! ReportListEmptyCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.TableViewCellId.reportListEmptyCell) as! ReportListEmptyCell
                 return cell
             case let .list(vm):
-                let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.TableViewCellId.ReportListCell) as! ReportListCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.TableViewCellId.reportListCell) as! ReportListCell
                 cell.configure(with: vm)
                 return cell
             }

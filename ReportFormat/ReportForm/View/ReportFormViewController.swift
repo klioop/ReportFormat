@@ -28,7 +28,7 @@ class ReportFormViewController: UIViewController, StoryBoarded {
     private lazy var dataSource = RxTableViewSectionedAnimatedDataSource<ReportFormSection> { (dataSource, tableView, indexPath, item) -> UITableViewCell in
         switch item {
         case let .fields(vm):
-            let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.TableViewCellId.FieldCell)
+            let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.TableViewCellId.fieldCell)
             as! FieldCell
             cell.configure(with: vm)
             return cell
@@ -49,11 +49,11 @@ class ReportFormViewController: UIViewController, StoryBoarded {
             }
             return cell
         case let .datePicker(vm):
-            let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.TableViewCellId.DatePickerCell) as! DatePickerCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.TableViewCellId.datePickerCell) as! DatePickerCell
             cell.configure(with: vm)
             return cell
         case let .comment(vm):
-            let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.TableViewCellId.CommentCell) as! CommentCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.TableViewCellId.commentCell) as! CommentCell
             cell.configure(with: vm)
             return cell
         }
@@ -65,6 +65,14 @@ class ReportFormViewController: UIViewController, StoryBoarded {
         binding()
         setupUI()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let nav = navigationController,
+           !nav.isToolbarHidden {
+            nav.setToolbarHidden(true, animated: false)
+        }
+    }
 }
 
 // MARK: - private function
@@ -72,9 +80,9 @@ class ReportFormViewController: UIViewController, StoryBoarded {
 extension ReportFormViewController {
     
     private func setupUI() {
-        tableView.register(UINib(nibName: "FieldCell", bundle: nil), forCellReuseIdentifier: Identifier.TableViewCellId.FieldCell)
-        tableView.register(UINib(nibName: "DatePickerCell", bundle: nil), forCellReuseIdentifier: Identifier.TableViewCellId.DatePickerCell)
-        tableView.register(UINib(nibName: "CommentCell", bundle: nil), forCellReuseIdentifier: Identifier.TableViewCellId.CommentCell)
+        tableView.register(UINib(nibName: "FieldCell", bundle: nil), forCellReuseIdentifier: Identifier.TableViewCellId.fieldCell)
+        tableView.register(UINib(nibName: "DatePickerCell", bundle: nil), forCellReuseIdentifier: Identifier.TableViewCellId.datePickerCell)
+        tableView.register(UINib(nibName: "CommentCell", bundle: nil), forCellReuseIdentifier: Identifier.TableViewCellId.commentCell)
                
         writeButton.setTitleColor(.lightGray, for: .disabled)
         writeButton.layer.cornerRadius = 6

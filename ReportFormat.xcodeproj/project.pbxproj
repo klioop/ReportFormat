@@ -82,6 +82,8 @@
 		31D1B8E62753754200F5ABF7 /* DatePickerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31D1B8E32753754200F5ABF7 /* DatePickerCell.xib */; };
 		31D1B8EA27538B9E00F5ABF7 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1B8E827538B9E00F5ABF7 /* CommentCell.swift */; };
 		31D1B8EC27538B9E00F5ABF7 /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31D1B8E927538B9E00F5ABF7 /* CommentCell.xib */; };
+		31D2E2C3275D9EFD005B9BBF /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 31D2E2C2275D9EFD005B9BBF /* IQKeyboardManagerSwift */; };
+		31D2E2C6275DB703005B9BBF /* RxRealm in Frameworks */ = {isa = PBXBuildFile; productRef = 31D2E2C5275DB703005B9BBF /* RxRealm */; };
 		31D428972750BD2A00C9D09E /* HttpService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D428962750BD2A00C9D09E /* HttpService.swift */; };
 		31D428992750BDC600C9D09E /* HttpRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D428982750BDC600C9D09E /* HttpRouter.swift */; };
 		31D4289B2750BF6400C9D09E /* CustomErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D4289A2750BF6400C9D09E /* CustomErrors.swift */; };
@@ -186,7 +188,9 @@
 				31A7AF1E274E5898006C087C /* RxRelay in Frameworks */,
 				319CFD5C274F24EE008EC96F /* RealmSwift in Frameworks */,
 				31A7AF1C274E5898006C087C /* RxCocoa in Frameworks */,
+				31D2E2C6275DB703005B9BBF /* RxRealm in Frameworks */,
 				3196BBD6275A41EB00751662 /* Kingfisher in Frameworks */,
+				31D2E2C3275D9EFD005B9BBF /* IQKeyboardManagerSwift in Frameworks */,
 				31A7AF20274E5898006C087C /* RxSwift in Frameworks */,
 				31A7AF23274E58AE006C087C /* RxDataSources in Frameworks */,
 				31A7AF19274E587E006C087C /* Alamofire in Frameworks */,
@@ -534,6 +538,8 @@
 				319CFD59274F24EE008EC96F /* Realm */,
 				319CFD5B274F24EE008EC96F /* RealmSwift */,
 				3196BBD5275A41EB00751662 /* Kingfisher */,
+				31D2E2C2275D9EFD005B9BBF /* IQKeyboardManagerSwift */,
+				31D2E2C5275DB703005B9BBF /* RxRealm */,
 			);
 			productName = ReportFormat;
 			productReference = 31A7AEE1274E564A006C087C /* ReportFormat.app */;
@@ -591,6 +597,8 @@
 				31A7AF21274E58AE006C087C /* XCRemoteSwiftPackageReference "RxDataSources" */,
 				319CFD58274F24EE008EC96F /* XCRemoteSwiftPackageReference "realm-cocoa" */,
 				3196BBD4275A41EB00751662 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				31D2E2C1275D9EFD005B9BBF /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
+				31D2E2C4275DB703005B9BBF /* XCRemoteSwiftPackageReference "RxRealm" */,
 			);
 			productRefGroup = 31A7AEE2274E564A006C087C /* Products */;
 			projectDirPath = "";
@@ -1042,6 +1050,22 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		31D2E2C1275D9EFD005B9BBF /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
+		31D2E2C4275DB703005B9BBF /* XCRemoteSwiftPackageReference "RxRealm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxRealm.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1084,6 +1108,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 31A7AF21274E58AE006C087C /* XCRemoteSwiftPackageReference "RxDataSources" */;
 			productName = RxDataSources;
+		};
+		31D2E2C2275D9EFD005B9BBF /* IQKeyboardManagerSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 31D2E2C1275D9EFD005B9BBF /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			productName = IQKeyboardManagerSwift;
+		};
+		31D2E2C5275DB703005B9BBF /* RxRealm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 31D2E2C4275DB703005B9BBF /* XCRemoteSwiftPackageReference "RxRealm" */;
+			productName = RxRealm;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

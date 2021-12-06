@@ -9,6 +9,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 import RxDataSources
+import RxRealm
 
 typealias ReportListSection = SectionModel<String, ReportListCellViewModelType>
 
@@ -83,12 +84,13 @@ private extension ReportListViewModel {
     
     static func output(dependencies: ReportListViewModelProtocol.Dependencies) -> ReportListViewModelProtocol.Output{
         
-        let sections = dependencies.realm.getAllReports()
-            .asObservable()
-            .map {
-                Report.toReports(from: $0)
+        let reports = dependencies.realm.getReports()
+        
+        let sections = Observable.arrayWithChangeset(from: reports)
+            .map { (array, _) -> [Report] in
+                return Report.toReports(from: array)
             }
-            .map { (reports) -> [ReportListSection]  in
+            .map { reports -> [ReportListSection] in
                 if reports.isEmpty {
                     return [
                         ReportListSection(model: "empty", items: [.empty])
@@ -100,6 +102,27 @@ private extension ReportListViewModel {
                 }
             }
             .asDriver(onErrorDriveWith: .empty())
+            
+           
+    
+//
+//        let sections = dependencies.realm.getAllReports()
+//            .asObservable()
+//            .map {
+//                Report.toReports(from: $0)
+//            }
+//            .map { (reports) -> [ReportListSection]  in
+//                if reports.isEmpty {
+//                    return [
+//                        ReportListSection(model: "empty", items: [.empty])
+//                    ]
+//                } else {
+//                    return [
+//                        ReportListSection(model: "reports", items: reports.map(ReportListCellViewModel.init).map(ReportListCellViewModelType.list))
+//                    ]
+//                }
+//            }
+//            .asDriver(onErrorDriveWith: .empty())
             
         
         return (sections, ())

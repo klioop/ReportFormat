@@ -25,6 +25,10 @@ class RealmService {
 
 extension RealmService: RealmServiceProtocol {
     
+    func getReports() -> Results<ReportObject> {
+        localRealm.objects(ReportObject.self).sorted(byKeyPath: "reportDate")
+    }
+    
     func getAllReports() -> Single<[ReportObject]> {
         .just(localRealm.objects(ReportObject.self).sorted(byKeyPath: "reportDate").toArray())
     }

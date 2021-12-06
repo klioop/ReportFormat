@@ -7,6 +7,7 @@
 
 import Foundation
 import RxSwift
+import RealmSwift
 
 protocol RealmServiceProtocol {
     func getStudent(with name: String) -> Single<[StudentObject]>
@@ -17,5 +18,6 @@ protocol RealmServiceProtocol {
     func getAllSubjects() -> Single<[SubjectObject]>
     func addReport(_ report: Report) throws
     func getAllReports() -> Single<[ReportObject]>
+    func getReports() -> Results<ReportObject>
 }
 
