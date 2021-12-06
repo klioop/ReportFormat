@@ -63,13 +63,17 @@ private extension ReportViewController {
         
         viewModel.output
             .reportSceneType
-            .map {
-                switch $0 {
+            .map { (type) -> Bool in
+                switch type {
                 case .new:
                     return false
                 case .editing:
                     return true
                 }
+            }
+            .map { [weak self] (bool) -> Bool in
+                self?.navigationItem.rightBarButtonItem = bool ? UIBarButtonItem(title: "수정하기", style: .plain, target: self, action: nil) : nil
+                return bool
             }
             .drive(self.createButton.rx.isHidden)
             .disposed(by: bag)
