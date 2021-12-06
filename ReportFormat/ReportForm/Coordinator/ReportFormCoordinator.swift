@@ -52,6 +52,13 @@ class ReportFormCoordinator: BaseCoordinator {
                 .drive()
                 .disposed(by: bag)
             
+            viewModel.routing.reportEditted
+                .map { [weak self] _ in
+                    self?.popTowardReport()
+                }
+                .drive()
+                .disposed(by: bag)
+            
             return viewModel
         }
         router.push(vc, isAnimated: true, onNavigationBack: isComplted)
@@ -70,6 +77,10 @@ private extension ReportFormCoordinator {
             self.remove(coordinator)
         }
         reportCoordinator.start()
+    }
+    
+    func popTowardReport() {
+        router.pop(true)
     }
 }
 
