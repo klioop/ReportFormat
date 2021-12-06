@@ -59,4 +59,9 @@ struct Constants {
         static let data = "Data"
         static let reportComment = "reportComment"
     }
+    
+    struct ReportFormButtonTitle {
+        static let edit = "수정하기"
+        static let new = "작성하기"
+    }
 }

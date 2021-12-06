@@ -135,6 +135,15 @@ extension ReportFormViewController {
         writeButton.rx.tap
             .bind(to: viewModel.tapWriteButton)
             .disposed(by: bag)
+        
+        viewModel.buttonViewModel.buttonTitle
+            .map { [writeButton] (title) in
+                writeButton?.setTitle(title, for: .normal)
+            }
+            .drive()
+            .disposed(by: bag)
+        
+        
     }
     
     private func createSections(with state: Observable<State>) -> Observable<[ReportFormSection]> {

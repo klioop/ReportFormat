@@ -38,7 +38,7 @@ class ReportFormCoordinator: BaseCoordinator {
                 book: .book(report),
                 range: .range(report),
                 comment: .comment(),
-                buttonViewModel: ButtonViewModel(),
+                buttonViewModel: ButtonViewModel(sceneType: sceneType),
                 realmService: realmService,
                 bookService: apiService,
                 sceneType: sceneType,
