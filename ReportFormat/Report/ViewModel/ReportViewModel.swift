@@ -12,16 +12,11 @@ import RxDataSources
 
 typealias ReportItemSection = SectionModel<String, ReportCellModelCase>
 
-enum ReportSceneType: Int {
-    case new
-    case editing
-}
-
 protocol ReportViewModelProtocol {
     
     typealias Input = (
         didTapCreateButton: Driver<Void>,
-        ()
+        didTapEditButton: Driver<Void>
     )
     typealias Output = (
         title: Driver<String>,
@@ -38,13 +33,13 @@ protocol ReportViewModelProtocol {
 
 struct ReportViewModel: ReportViewModelProtocol {
     
-    typealias RoutingAction = (voidRelay: PublishRelay<Void>, ())
-    typealias Routing = (didTapCreateButton: Driver<Void>, ())
+    typealias RoutingAction = (voidRelay: PublishRelay<Void>, reportRelay: PublishRelay<Report>)
+    typealias Routing = (didTapCreateButton: Driver<Void>, editReport: Driver<Report>)
     
-    private let routingAction: RoutingAction = (PublishRelay(), ())
+    private let routingAction: RoutingAction = (PublishRelay(), PublishRelay())
     lazy var routing: Routing = (
         routingAction.voidRelay.asDriver(onErrorDriveWith: .empty()),
-        ()
+        routingAction.reportRelay.asDriver(onErrorDriveWith: .empty())
     )
                                  
     var input: ReportViewModelProtocol.Input
@@ -74,7 +69,6 @@ private extension ReportViewModel {
         input.didTapCreateButton
             .asObservable()
             .map { [dependencies] (tap) -> Void in
-                print("눌림")
                 try self.addReportToRealmAndRouting(dependencies)
                 routingAction.voidRelay.accept(tap)
                 return tap
@@ -82,6 +76,18 @@ private extension ReportViewModel {
             .asDriver(onErrorDriveWith: .empty())
             .drive()
             .disposed(by: bag)
+        
+        
+        input.didTapEditButton
+                .map { [dependencies, routingAction] (tap) in                    
+                    routingAction.reportRelay.accept(dependencies.report)
+                }
+                .drive()
+                .disposed(by: bag)
+        
+            
+            
+            
     }
     
     func addReportToRealmAndRouting(_ dependencies: ReportViewModelProtocol.Dependencies) throws {

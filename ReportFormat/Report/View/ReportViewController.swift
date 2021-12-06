@@ -34,9 +34,11 @@ class ReportViewController: UIViewController, StoryBoarded {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        
+        let rightBarButton = navigationItem.rightBarButtonItem!.customView as! UIButton
         viewModel = viewModelBuilder((
             createButton.rx.tap.asDriver(),
-            ()
+            rightBarButton.rx.tap.asDriver()
         ))
         binding()
     }
@@ -48,6 +50,7 @@ private extension ReportViewController {
     func setupUI() {
         self.tableView.register(UINib(nibName: "ReportCell", bundle: nil), forCellReuseIdentifier: Identifier.TableViewCellId.reportDataCell)
         self.tableView.register(UINib(nibName: Identifier.TableViewCellId.reportCommentCell, bundle: nil), forCellReuseIdentifier: Identifier.TableViewCellId.reportCommentCell)
+        self.navigationItem.rightBarButtonItem = createBarButton(with: "", title: "수정")
     }
     
     func binding() {
@@ -72,7 +75,7 @@ private extension ReportViewController {
                 }
             }
             .map { [weak self] (bool) -> Bool in
-                self?.navigationItem.rightBarButtonItem = bool ? UIBarButtonItem(title: "수정하기", style: .plain, target: self, action: nil) : nil
+                self?.navigationItem.rightBarButtonItem?.customView?.isHidden = bool ? false : true
                 return bool
             }
             .drive(self.createButton.rx.isHidden)

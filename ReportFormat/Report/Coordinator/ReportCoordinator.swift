@@ -44,6 +44,13 @@ class ReportCoordinator: BaseCoordinator {
                 .drive()
                 .disposed(by: bag)
             
+            viewModel.routing.editReport
+                .map { [weak self] (report) in
+                    self?.showFormEditting(with: report)
+                }
+                .drive()
+                .disposed(by: bag)
+            
             return viewModel
         }
         router.push(vc, isAnimated: true, onNavigationBack: isComplted)
@@ -53,6 +60,18 @@ class ReportCoordinator: BaseCoordinator {
 private extension ReportCoordinator {
     func popToRoot() {
         router.popToRoot(true)
+    }
+    
+    func showFormEditting(with report: Report) {
+        let coordinator = ReportFormCoordinator(router: router, sceneType: .editing, report: report)
+        coordinator.isComplted = { [weak self, weak coordinator] in
+            guard
+                let self = self,
+                let coordinator = coordinator
+            else { return }
+            self.remove(coordinator)
+        }
+        coordinator.start()
     }
 
 }

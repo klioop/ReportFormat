@@ -12,7 +12,8 @@ import RxDataSources
 
 struct CommentViewModel {
     let tapButton: PublishRelay<Void>
-    let commentText = BehaviorRelay<String>(value: "")
+    var commentText = BehaviorRelay<String>(value: "")
+    var commentTextFromEditting = BehaviorRelay<String>(value: "")
     private var bag = DisposeBag()
     
     init(tapButton: PublishRelay<Void>) {

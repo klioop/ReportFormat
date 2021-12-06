@@ -14,6 +14,7 @@ struct DatePickerViewModel {
     let dateString: PublishRelay<String> = PublishRelay()
     let date = PublishRelay<Date>()
     let tapButton: PublishRelay<Void>
+    var dateStringFromEditting = BehaviorRelay<String>(value: "")
     
     private let bag = DisposeBag()
     

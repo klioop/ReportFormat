@@ -13,7 +13,7 @@ import RxDataSources
 struct FieldViewModel {
     let title: String
     
-    let text = BehaviorRelay<String>(value: "")
+    var text = BehaviorRelay<String>(value: "")
     let focus = PublishRelay<Void>()
     var textForSearch = BehaviorRelay<String>(value: "")
     var isSearch = BehaviorRelay<Bool>(value: false)
@@ -37,24 +37,39 @@ extension FieldViewModel {
         self.title = ""
     }
     
-    static func date() -> FieldViewModel {
-        FieldViewModel(title: Constants.FieldTitle.date)
+    static func date(_ report: Report?) -> FieldViewModel {
+        var model = FieldViewModel(title: Constants.FieldTitle.date)
+        model.text = BehaviorRelay<String>(value: report?.reportDate ?? "")
+        
+        return model
     }
     
-    static func student() -> FieldViewModel {
-        FieldViewModel(title: Constants.FieldTitle.student)
+    static func student(_ report: Report?) -> FieldViewModel {
+        var model = FieldViewModel(title: Constants.FieldTitle.student)
+        model.text = BehaviorRelay<String>(value: report?.studentName ?? "")
+        
+        return model
     }
     
-    static func subject() -> FieldViewModel {
-        FieldViewModel(title: Constants.FieldTitle.subject)
+    static func subject(_ report: Report?) -> FieldViewModel {
+        var model = FieldViewModel(title: Constants.FieldTitle.subject)
+        model.text = BehaviorRelay<String>(value: report?.subject ?? "")
+        
+        return model
     }
     
-    static func book() -> FieldViewModel {
-        FieldViewModel(title: Constants.FieldTitle.book)
+    static func book(_ report: Report?) -> FieldViewModel {
+        var model = FieldViewModel(title: Constants.FieldTitle.book)
+        model.text = BehaviorRelay<String>(value: report?.bookTitle ?? "")
+        
+        return model
     }
     
-    static func range() -> FieldViewModel {
-        FieldViewModel(title: Constants.FieldTitle.range)
+    static func range(_ report: Report?) -> FieldViewModel {
+        var model = FieldViewModel(title: Constants.FieldTitle.range)
+        model.text = BehaviorRelay<String>(value: report?.range ?? "")
+        
+        return model
     }
     
     static func comment() -> FieldViewModel {

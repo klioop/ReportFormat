@@ -48,7 +48,7 @@ class ReportListCoordinator: BaseCoordinator {
 
 private extension ReportListCoordinator {
     func presentReportForm() {
-        let coordinator = ReportFormCoordinator(router: router)
+        let coordinator = ReportFormCoordinator(router: router, sceneType: .new)
         self.add(coordinator)
         coordinator.isComplted = { [weak self, weak coordinator] in
             guard

@@ -30,10 +30,12 @@ struct ReportFormViewModel{
     let buttonViewModel: ButtonViewModel
     let realmService: RealmServiceProtocol
     let bookService: NaverBookAPIProtocol
+    let sceneType: ReportFormSceneType
+    let report: Report?
     
     let fieldsShouldBeFilled: [FieldViewModel]
-    let datePickerViewModel: DatePickerViewModel
-    let commentViewModel: CommentViewModel
+    var datePickerViewModel: DatePickerViewModel
+    var commentViewModel: CommentViewModel
     
     let tapButtonFromDatePickerView = PublishRelay<Void>()
     let tapButton = PublishRelay<Void>()
@@ -52,7 +54,9 @@ struct ReportFormViewModel{
         comment: FieldViewModel,
         buttonViewModel: ButtonViewModel,
         realmService: RealmServiceProtocol,
-        bookService: NaverBookAPIProtocol
+        bookService: NaverBookAPIProtocol,
+        sceneType: ReportFormSceneType,
+        report: Report?
     ) {
         self.date = date
         self.student = student
@@ -63,9 +67,15 @@ struct ReportFormViewModel{
         self.buttonViewModel = buttonViewModel
         self.realmService = realmService
         self.bookService = bookService
+        self.sceneType = sceneType
+        self.report = report
+        
         self.fieldsShouldBeFilled = [date, student, comment]
         self.datePickerViewModel = DatePickerViewModel(tapButton: tapButton)
         self.commentViewModel = CommentViewModel(tapButton: tapButton)
+        
+        commentViewModel.commentTextFromEditting.accept(report?.comment ?? "")
+        datePickerViewModel.dateStringFromEditting.accept(report?.reportDate ?? "")
         
         self.process()
     }
@@ -110,6 +120,7 @@ private extension ReportFormViewModel {
             .asDriver(onErrorDriveWith: .empty())
             .drive()
             .disposed(by: bag)
+        
     }
     
     func createReport() -> Report {
@@ -238,6 +249,7 @@ private extension ReportFormViewModel {
     
     private func getSubjectFromRealm(for field: FieldViewModel) -> Observable<State> {
         field.text
+            .skip(1)
             .distinctUntilChanged()
             .skip(while: { $0.isEmpty })
             .flatMap { [realmService] (text) in

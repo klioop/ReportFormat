@@ -13,12 +13,16 @@ import RxCocoa
 class ReportFormCoordinator: BaseCoordinator {
     
     let router: RouterProtocol
+    let report: Report?
+    let sceneType: ReportFormSceneType
     
     private let bag = DisposeBag()
     private let didDismss = PublishRelay<Void>()
     
-    init(router: RouterProtocol) {
+    init(router: RouterProtocol, sceneType: ReportFormSceneType, report: Report? = nil) {
         self.router = router
+        self.report = report
+        self.sceneType = sceneType
     }
     
     override func start() {
@@ -26,17 +30,19 @@ class ReportFormCoordinator: BaseCoordinator {
         let apiService = BookAPIManager.shared
         let realmService = RealmService.shared
         
-        vc.viewModelBuilder = { [bag] in
+        vc.viewModelBuilder = { [sceneType, bag, report] in
             var viewModel = ReportFormViewModel(
-                date: .date(),
-                student: .student(),
-                subject: .subject(),
-                book: .book(),
-                range: .range(),
+                date: .date(report),
+                student: .student(report),
+                subject: .subject(report),
+                book: .book(report),
+                range: .range(report),
                 comment: .comment(),
                 buttonViewModel: ButtonViewModel(),
                 realmService: realmService,
-                bookService: apiService
+                bookService: apiService,
+                sceneType: sceneType,
+                report: report
             )
             
             viewModel.routing.report

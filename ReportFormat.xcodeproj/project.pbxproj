@@ -84,6 +84,9 @@
 		31D1B8EC27538B9E00F5ABF7 /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31D1B8E927538B9E00F5ABF7 /* CommentCell.xib */; };
 		31D2E2C3275D9EFD005B9BBF /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 31D2E2C2275D9EFD005B9BBF /* IQKeyboardManagerSwift */; };
 		31D2E2C6275DB703005B9BBF /* RxRealm in Frameworks */ = {isa = PBXBuildFile; productRef = 31D2E2C5275DB703005B9BBF /* RxRealm */; };
+		31D2E2C8275DDC2A005B9BBF /* ReportSceneType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D2E2C7275DDC2A005B9BBF /* ReportSceneType.swift */; };
+		31D2E2CA275DDF6A005B9BBF /* ReportFormSceneType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D2E2C9275DDF6A005B9BBF /* ReportFormSceneType.swift */; };
+		31D2E2CB275DEBEE005B9BBF /* ReportFormSceneType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D2E2C9275DDF6A005B9BBF /* ReportFormSceneType.swift */; };
 		31D428972750BD2A00C9D09E /* HttpService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D428962750BD2A00C9D09E /* HttpService.swift */; };
 		31D428992750BDC600C9D09E /* HttpRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D428982750BDC600C9D09E /* HttpRouter.swift */; };
 		31D4289B2750BF6400C9D09E /* CustomErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D4289A2750BF6400C9D09E /* CustomErrors.swift */; };
@@ -165,6 +168,8 @@
 		31D1B8E32753754200F5ABF7 /* DatePickerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DatePickerCell.xib; sourceTree = "<group>"; };
 		31D1B8E827538B9E00F5ABF7 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		31D1B8E927538B9E00F5ABF7 /* CommentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentCell.xib; sourceTree = "<group>"; };
+		31D2E2C7275DDC2A005B9BBF /* ReportSceneType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportSceneType.swift; sourceTree = "<group>"; };
+		31D2E2C9275DDF6A005B9BBF /* ReportFormSceneType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportFormSceneType.swift; sourceTree = "<group>"; };
 		31D428962750BD2A00C9D09E /* HttpService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpService.swift; sourceTree = "<group>"; };
 		31D428982750BDC600C9D09E /* HttpRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpRouter.swift; sourceTree = "<group>"; };
 		31D4289A2750BF6400C9D09E /* CustomErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomErrors.swift; sourceTree = "<group>"; };
@@ -334,6 +339,7 @@
 		31C9E14127588DCF00DC9787 /* Report */ = {
 			isa = PBXGroup;
 			children = (
+				31D2E2C7275DDC2A005B9BBF /* ReportSceneType.swift */,
 				31960A6D2758D9BD0076AAA7 /* Coordinator */,
 				31C9E1432758941000DC9787 /* ViewModel */,
 				31C9E1422758940700DC9787 /* View */,
@@ -374,6 +380,7 @@
 			isa = PBXGroup;
 			children = (
 				31D1B8BA2753613600F5ABF7 /* ReportFormState.swift */,
+				31D2E2C9275DDF6A005B9BBF /* ReportFormSceneType.swift */,
 				319F66DC2754C4780030C46C /* Coordinator */,
 				319899EC27525BFD0027234E /* ViewModel */,
 				31CC751B27510CB200A3F03D /* View */,
@@ -662,6 +669,7 @@
 				31960A652758B2000076AAA7 /* ReportCommentCell.swift in Sources */,
 				31D1B8C0275368B000F5ABF7 /* Coordinator.swift in Sources */,
 				31D5C41C275CB09B000FAD35 /* ReportListCell.swift in Sources */,
+				31D2E2CA275DDF6A005B9BBF /* ReportFormSceneType.swift in Sources */,
 				31CC751A2751064F00A3F03D /* BookSuggestionViewModel.swift in Sources */,
 				31D5C41F275CB621000FAD35 /* ReportListCoordinator.swift in Sources */,
 				31D5C416275C9CE3000FAD35 /* ReportListViewModel.swift in Sources */,
@@ -690,6 +698,7 @@
 				31A961BB2757A70900CCC297 /* Array+extension.swift in Sources */,
 				31D1B8AC27535F9E00F5ABF7 /* RealmService.swift in Sources */,
 				31A7AEE7274E564A006C087C /* SceneDelegate.swift in Sources */,
+				31D2E2C8275DDC2A005B9BBF /* ReportSceneType.swift in Sources */,
 				31CC750D2750F2F700A3F03D /* NaverAPIRouter.swift in Sources */,
 				31960A6A2758C1020076AAA7 /* Report.swift in Sources */,
 				31D428972750BD2A00C9D09E /* HttpService.swift in Sources */,
@@ -704,6 +713,7 @@
 			files = (
 				31D1B8B32753605100F5ABF7 /* StudentSuggestionViewModel.swift in Sources */,
 				319F66E72754F5030030C46C /* Objects.swift in Sources */,
+				31D2E2CB275DEBEE005B9BBF /* ReportFormSceneType.swift in Sources */,
 				31D1B8B9275360EE00F5ABF7 /* CommentViewModel.swift in Sources */,
 				31D1B8A627535E9E00F5ABF7 /* DatePickerViewModel.swift in Sources */,
 				319899EF27525C310027234E /* SuggestionViewModelProtocol.swift in Sources */,

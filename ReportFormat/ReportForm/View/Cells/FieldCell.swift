@@ -58,7 +58,8 @@ extension FieldCell {
             .disposed(by: bag)
         
         textFieldText
-            .map { [weak self, viewModel] text -> Void in
+            .skip(1) // 수정 폼 일 때 텍스트 필드가 바로 채워지기 때문에 to prevent from it to induce search
+            .map { [weak self, viewModel] (text) -> Void in
                 self?.injectTextToDifferentStream(on: viewModel, with: text)
             }
             .asDriver(onErrorJustReturn: ())

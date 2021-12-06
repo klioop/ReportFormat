@@ -57,6 +57,11 @@ class CommentCell: UITableViewCell {
             .drive(viewModel.commentText)
             .disposed(by: bag)
         
+        viewModel.commentTextFromEditting
+            .asDriver()
+            .drive(commentTextView.rx.text)
+            .disposed(by: bag)
+        
     }
 
         
