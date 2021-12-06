@@ -85,7 +85,6 @@ private extension ReportViewModel {
             .drive()
             .disposed(by: bag)
         
-        
         input.didTapEditButton
                 .map { [dependencies, routingAction] (tap) in
                     let report = reportFromForm.value.reportDate.isEmpty ? dependencies.report : reportFromForm.value

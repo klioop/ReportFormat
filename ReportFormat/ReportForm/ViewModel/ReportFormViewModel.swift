@@ -152,6 +152,7 @@ private extension ReportFormViewModel {
         report.comment = comment.text.value
         report.bookTitle = book.text.value
         report.bookImageUrl = book.bookImageUrl.value
+        report.range = range.text.value
         
         return report
     }
@@ -283,7 +284,7 @@ private extension ReportFormViewModel {
     private func getSubjectFromRealm(for field: FieldViewModel) -> Observable<State> {
         field.text
             .distinctUntilChanged()
-            .skip(1) // edit 일 때 field 채워짐 -> 검색 방지 위해 element 하나 skip            
+            .skip(1) // edit 일 때 field 채워짐 -> 검색 방지 위해 element 하나 skip
             .skip(while: { $0.isEmpty })
             .flatMap { [realmService] (text) in
                 realmService.getSubject(with: text)
