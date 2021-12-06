@@ -42,6 +42,7 @@ struct ReportFormViewModel{
     let select = PublishRelay<Void>()
     let selectedModel = PublishRelay<CellViewModel>()
     let tapWriteButton = PublishRelay<Void>()
+    let tapEditButton = PublishRelay<Void>()
     
     private let bag = DisposeBag()
     

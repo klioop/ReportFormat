@@ -133,7 +133,17 @@ extension ReportFormViewController {
             .disposed(by: bag)
         
         writeButton.rx.tap
-            .bind(to: viewModel.tapWriteButton)
+            .map { [viewModel] in
+                guard let viewModel = viewModel else { return }
+                switch viewModel.sceneType {
+                case .new:
+                    viewModel.tapWriteButton.accept(())
+                case .editing:
+                    viewModel.tapEditButton.accept(())
+                }
+            }
+            .asDriver(onErrorDriveWith: .empty())
+            .drive()
             .disposed(by: bag)
         
         viewModel.buttonViewModel.buttonTitle
@@ -142,7 +152,6 @@ extension ReportFormViewController {
             }
             .drive()
             .disposed(by: bag)
-        
         
     }
     
