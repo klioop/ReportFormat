@@ -13,34 +13,33 @@ class ReportCoordinator: BaseCoordinator {
     
     let router: RouterProtocol
     let report: Report
-//    let didDismiss: PublishRelay<Void>
+    let reportSceneType: ReportSceneType
     
     private var bag = DisposeBag()
     
     init(
         router: RouterProtocol,
-        report: Report
-//        didDismiss: PublishRelay<Void>
+        report: Report,
+        reportSceneType: ReportSceneType
     ) {
         self.router = router
         self.report = report
-//        self.didDismiss = didDismiss
+        self.reportSceneType = reportSceneType
     }
     
     override func start() {
         let vc = ReportViewController.instantiate()
         let realmService = RealmService.shared
     
-        vc.viewModelBuilder = { [report, realmService, bag] in
+        vc.viewModelBuilder = { [report, realmService, bag, reportSceneType] in
             var viewModel = ReportViewModel(
                 input: $0,
-                dependencies: (report, realmService)
+                dependencies: (report, realmService, reportSceneType)
             )
             
             viewModel.routing.didTapCreateButton
                 .map { [weak self] in
-//                    self.didDismiss.accept(())
-                    self?.dismiss()
+                    self?.popToRoot()
                 }
                 .drive()
                 .disposed(by: bag)
@@ -52,7 +51,7 @@ class ReportCoordinator: BaseCoordinator {
 }
 
 private extension ReportCoordinator {
-    func dismiss() {
+    func popToRoot() {
         router.popToRoot(true)
     }
 

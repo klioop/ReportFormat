@@ -28,7 +28,14 @@ class ReportListViewController: UIViewController, StoryBoarded {
         viewModel = viewModelBuilder(
             (
                 newReportButton.rx.tap.asDriver(),
-                ()
+                tableView.rx.modelSelected(ReportListCellViewModelType.self)
+                    .map { model in
+                        if case let .list(vm) = model {
+                            return vm.report
+                        }
+                        return Report.emptyReport()
+                    }
+                    .asDriver(onErrorDriveWith: .empty())
             )
         )
         binding()
@@ -55,9 +62,7 @@ private extension ReportListViewController {
         viewModel.output.sections
             .drive(self.tableView.rx.items(dataSource: dataSource))
             .disposed(by: bag)
-            
-        
-            
+
     }
         
 }

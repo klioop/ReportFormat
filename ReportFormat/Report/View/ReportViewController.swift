@@ -60,6 +60,19 @@ private extension ReportViewController {
             .sections
             .drive(self.tableView.rx.items(dataSource: dataSource))
             .disposed(by: bag)
+        
+        viewModel.output
+            .reportSceneType
+            .map {
+                switch $0 {
+                case .new:
+                    return false
+                case .editing:
+                    return true
+                }
+            }
+            .drive(self.createButton.rx.isHidden)
+            .disposed(by: bag)
     }
     
     func createBarButton(with sfSymbol: String, title: String) -> UIBarButtonItem {

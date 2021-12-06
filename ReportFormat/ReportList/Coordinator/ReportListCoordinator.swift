@@ -24,9 +24,17 @@ class ReportListCoordinator: BaseCoordinator {
         let vc = ReportListViewController.instantiate()
         vc.viewModelBuilder = { [bag] in
             var viewModel = ReportListViewModel(input: $0, dependencies: (realm, ()))
+            
             viewModel.routing.tap
                 .map { [weak self] in
                     self?.presentReportForm()
+                }
+                .drive()
+                .disposed(by: bag)
+            
+            viewModel.routing.report
+                .map { [weak self] in
+                    self?.showReport(with: $0)
                 }
                 .drive()
                 .disposed(by: bag)
@@ -41,6 +49,19 @@ class ReportListCoordinator: BaseCoordinator {
 private extension ReportListCoordinator {
     func presentReportForm() {
         let coordinator = ReportFormCoordinator(router: router)
+        self.add(coordinator)
+        coordinator.isComplted = { [weak self, weak coordinator] in
+            guard
+                let self = self,
+                let coordinator = coordinator
+            else { return }
+            self.remove(coordinator)
+        }
+        coordinator.start()
+    }
+    
+    func showReport(with report: Report) {
+        let coordinator = ReportCoordinator(router: router, report: report, reportSceneType: .editing)
         self.add(coordinator)
         coordinator.isComplted = { [weak self, weak coordinator] in
             guard

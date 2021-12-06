@@ -21,7 +21,7 @@ enum ReportListCellViewModelType {
 protocol ReportListViewModelProtocol {
     typealias Input = (
         didTapNewReport: Driver<Void>,
-        ()
+        reportSelected: Driver<Report>
     )
     typealias Output = (
         sections: Driver<[ReportListSection]>,
@@ -80,6 +80,13 @@ private extension ReportListViewModel {
             }
             .drive()
             .disposed(by: bag)
+        
+        input.reportSelected
+            .map {
+                routingAction.reportRelay.accept($0)
+            }
+            .drive()
+            .disposed(by: bag)
     }
     
     static func output(dependencies: ReportListViewModelProtocol.Dependencies) -> ReportListViewModelProtocol.Output{
@@ -102,27 +109,6 @@ private extension ReportListViewModel {
                 }
             }
             .asDriver(onErrorDriveWith: .empty())
-            
-           
-    
-//
-//        let sections = dependencies.realm.getAllReports()
-//            .asObservable()
-//            .map {
-//                Report.toReports(from: $0)
-//            }
-//            .map { (reports) -> [ReportListSection]  in
-//                if reports.isEmpty {
-//                    return [
-//                        ReportListSection(model: "empty", items: [.empty])
-//                    ]
-//                } else {
-//                    return [
-//                        ReportListSection(model: "reports", items: reports.map(ReportListCellViewModel.init).map(ReportListCellViewModelType.list))
-//                    ]
-//                }
-//            }
-//            .asDriver(onErrorDriveWith: .empty())
             
         
         return (sections, ())

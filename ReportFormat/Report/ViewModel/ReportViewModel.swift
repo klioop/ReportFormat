@@ -12,6 +12,11 @@ import RxDataSources
 
 typealias ReportItemSection = SectionModel<String, ReportCellModelCase>
 
+enum ReportSceneType: Int {
+    case new
+    case editing
+}
+
 protocol ReportViewModelProtocol {
     
     typealias Input = (
@@ -20,10 +25,11 @@ protocol ReportViewModelProtocol {
     )
     typealias Output = (
         title: Driver<String>,
-        sections: Driver<[ReportItemSection]>
+        sections: Driver<[ReportItemSection]>,
+        reportSceneType: Driver<ReportSceneType>
     )
     typealias ViewBuilder = (ReportViewModelProtocol.Input) -> ReportViewModelProtocol
-    typealias Dependencies = (report: Report, realmService: RealmServiceProtocol)
+    typealias Dependencies = (report: Report, realmService: RealmServiceProtocol, sceneType: ReportSceneType)
     
     var input: ReportViewModelProtocol.Input { get }
     var output: ReportViewModelProtocol.Output { get }
@@ -95,6 +101,8 @@ private extension ReportViewModel {
                     ReportItemSection(model: Constants.ModelName.comment, items: [.comment(viewModel)])
                 ]
             }
-        return (title, sections)
+        let sceneType = Driver.just(dependencies.sceneType)
+        
+        return (title, sections, sceneType)
     }
 }
