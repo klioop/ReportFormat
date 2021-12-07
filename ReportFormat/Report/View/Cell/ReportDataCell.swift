@@ -23,7 +23,11 @@ class ReportDataCell: UITableViewCell {
 
 extension ReportDataCell {
     func configure(with viewModel: ReportCellViewModel) {
-        bookImageVIew.kf.setImage(with: URL(string: viewModel.bookImageUrl ?? ""))
+        if viewModel.bookImageUrl!.isEmpty {
+            bookImageVIew.image = UIImage(systemName: "text.book.closed")
+        } else {
+            bookImageVIew.kf.setImage(with: URL(string: viewModel.bookImageUrl ?? ""))
+        }
         nameLabel.text = viewModel.studentName
         subjectLabel.text = viewModel.subject ?? ""
         rangeLabel.text = viewModel.range ?? ""

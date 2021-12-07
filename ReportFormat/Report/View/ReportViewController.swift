@@ -60,6 +60,7 @@ private extension ReportViewController {
         self.tableView.register(UINib(nibName: "ReportCell", bundle: nil), forCellReuseIdentifier: Identifier.TableViewCellId.reportDataCell)
         self.tableView.register(UINib(nibName: Identifier.TableViewCellId.reportCommentCell, bundle: nil), forCellReuseIdentifier: Identifier.TableViewCellId.reportCommentCell)
         self.navigationItem.rightBarButtonItem = createBarButton(with: "", title: "수정")
+        createButton.layer.cornerRadius = 6
     }
     
     func binding() {

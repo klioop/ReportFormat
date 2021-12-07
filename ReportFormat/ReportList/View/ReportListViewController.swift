@@ -23,7 +23,8 @@ class ReportListViewController: UIViewController, StoryBoarded {
     
     private lazy var dataSource = RxTableViewSectionedReloadDataSource<ReportListSection>(
         configureCell: configureCell,
-        canEditRowAtIndexPath: canEditRowAtIndexPath
+        canEditRowAtIndexPath: canEditRowAtIndexPath,
+        canMoveRowAtIndexPath: canMoveRowAtIndexPath
     )
     
     override func viewDidLoad() {
@@ -65,7 +66,17 @@ private extension ReportListViewController {
     func setupUI() {
         tableView.register(UINib(nibName: Identifier.TableViewCellId.reportListCell, bundle: nil), forCellReuseIdentifier: Identifier.TableViewCellId.reportListCell)
         tableView.register(UINib(nibName: Identifier.TableViewCellId.reportListEmptyCell, bundle: nil), forCellReuseIdentifier: Identifier.TableViewCellId.reportListEmptyCell)
+        tableView.rx.itemSelected
+            .map { [tableView] in
+                guard let tableView = tableView else { return }
+                tableView.deselectRow(at: $0, animated: true)
+            }
+            .asDriver(onErrorDriveWith: .empty())
+            .drive()
+            .disposed(by: bag)
+        
         barItemSettingUp()
+        
 
     }
     
@@ -155,6 +166,12 @@ private extension ReportListViewController {
                 let self = self,
                 let tableView = self.tableView else { return false }
             return tableView.isEditing ? true : false
+        }
+    }
+    
+    var canMoveRowAtIndexPath: RxTableViewSectionedReloadDataSource<ReportListSection>.CanMoveRowAtIndexPath {
+        return { _, _ in
+            return false
         }
     }
 }

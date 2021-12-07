@@ -8,10 +8,15 @@
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Cafe24SsurroundAir.ttf">
+            <string>Cafe24Ssurroundair</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReportCommentCell" rowHeight="427" id="KGk-i7-Jjw" customClass="ReportCommentCell" customModule="ReportFormat" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ReportCommentCell" rowHeight="427" id="KGk-i7-Jjw" customClass="ReportCommentCell" customModule="ReportFormat" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="303" height="427"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
@@ -19,40 +24,32 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wjh-DU-1Pb">
-                        <rect key="frame" x="5" y="5" width="293" height="417"/>
+                        <rect key="frame" x="0.0" y="5" width="303" height="417"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="코멘트" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dPV-iP-PGm">
-                                <rect key="frame" x="10" y="0.0" width="37" height="17"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Vmi-Pp-4Sf">
-                                <rect key="frame" x="0.0" y="25" width="293" height="332"/>
+                                <rect key="frame" x="10" y="0.0" width="283" height="337"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <color key="textColor" systemColor="labelColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="Cafe24Ssurroundair" family="Cafe24 Ssurround air" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="dPV-iP-PGm" firstAttribute="leading" secondItem="wjh-DU-1Pb" secondAttribute="leading" constant="10" id="8ur-8h-1HG"/>
-                            <constraint firstItem="Vmi-Pp-4Sf" firstAttribute="leading" secondItem="wjh-DU-1Pb" secondAttribute="leading" id="EvK-vs-pZP"/>
-                            <constraint firstAttribute="trailing" secondItem="Vmi-Pp-4Sf" secondAttribute="trailing" id="HmF-Gn-KEn"/>
+                            <constraint firstAttribute="trailing" secondItem="Vmi-Pp-4Sf" secondAttribute="trailing" constant="10" id="8pn-AF-lfe"/>
+                            <constraint firstItem="Vmi-Pp-4Sf" firstAttribute="leading" secondItem="wjh-DU-1Pb" secondAttribute="leading" constant="10" id="CNT-xr-nxM"/>
+                            <constraint firstAttribute="bottom" secondItem="Vmi-Pp-4Sf" secondAttribute="bottom" constant="80" id="R1S-wK-HeF"/>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="400" id="ZLz-dk-Zk8"/>
-                            <constraint firstAttribute="bottom" secondItem="Vmi-Pp-4Sf" secondAttribute="bottom" constant="60" id="eCY-7u-gy2"/>
-                            <constraint firstItem="dPV-iP-PGm" firstAttribute="top" secondItem="wjh-DU-1Pb" secondAttribute="top" id="gu3-fB-nhc"/>
-                            <constraint firstItem="Vmi-Pp-4Sf" firstAttribute="top" secondItem="dPV-iP-PGm" secondAttribute="bottom" constant="8" symbolic="YES" id="lYd-BD-3JJ"/>
+                            <constraint firstItem="Vmi-Pp-4Sf" firstAttribute="top" secondItem="wjh-DU-1Pb" secondAttribute="top" id="bUr-eL-NaI"/>
                         </constraints>
                     </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="wjh-DU-1Pb" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="6kV-L0-UgD"/>
-                    <constraint firstAttribute="trailing" secondItem="wjh-DU-1Pb" secondAttribute="trailing" constant="5" id="93i-cF-TH4"/>
-                    <constraint firstItem="wjh-DU-1Pb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="HXB-Rb-vdM"/>
+                    <constraint firstAttribute="trailing" secondItem="wjh-DU-1Pb" secondAttribute="trailing" id="93i-cF-TH4"/>
+                    <constraint firstItem="wjh-DU-1Pb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="HXB-Rb-vdM"/>
                     <constraint firstAttribute="bottom" secondItem="wjh-DU-1Pb" secondAttribute="bottom" constant="5" id="pWk-hh-Fve"/>
                 </constraints>
             </tableViewCellContentView>

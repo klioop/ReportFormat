@@ -13,6 +13,7 @@ class ReportCommentCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        setupUI()
     }
 
    
@@ -25,3 +26,11 @@ extension ReportCommentCell {
     }
 }
 
+private extension ReportCommentCell {
+    func setupUI() {
+        commentTextView.isEditable = false
+        commentTextView.layer.cornerRadius = 6
+        commentTextView.layer.borderWidth = 1
+        commentTextView.layer.borderColor = UIColor(named: ColorName.secondary)?.cgColor
+    }
+}

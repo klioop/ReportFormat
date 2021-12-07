@@ -33,6 +33,9 @@ struct Identifier {
 
 struct ColorName {
     static let main = "mainColor"
+    static let secondary = "secondaryColor"
+    static let teritary = "teritaryColoe"
+    static let etc = "etcColor"
 }
 
 struct Constants {

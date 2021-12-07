@@ -15,6 +15,7 @@
 		31960A6F2758D9CC0076AAA7 /* ReportCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31960A6E2758D9CC0076AAA7 /* ReportCoordinator.swift */; };
 		31960A712758E1D80076AAA7 /* ReportCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31960A702758E1D80076AAA7 /* ReportCellViewModel.swift */; };
 		3196BBD6275A41EB00751662 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 3196BBD5275A41EB00751662 /* Kingfisher */; };
+		3197B06A275F84FD0086DFD5 /* Cafe24SsurroundAir.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3197B069275F84FD0086DFD5 /* Cafe24SsurroundAir.ttf */; };
 		319899EA27525BDA0027234E /* BookSuggestionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CC75192751064F00A3F03D /* BookSuggestionViewModel.swift */; };
 		319899EE27525C170027234E /* SuggestionViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319899ED27525C170027234E /* SuggestionViewModelProtocol.swift */; };
 		319899EF27525C310027234E /* SuggestionViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319899ED27525C170027234E /* SuggestionViewModelProtocol.swift */; };
@@ -119,6 +120,7 @@
 		31960A6B2758D7F30076AAA7 /* ReportViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewModel.swift; sourceTree = "<group>"; };
 		31960A6E2758D9CC0076AAA7 /* ReportCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportCoordinator.swift; sourceTree = "<group>"; };
 		31960A702758E1D80076AAA7 /* ReportCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportCellViewModel.swift; sourceTree = "<group>"; };
+		3197B069275F84FD0086DFD5 /* Cafe24SsurroundAir.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Cafe24SsurroundAir.ttf; sourceTree = "<group>"; };
 		319899ED27525C170027234E /* SuggestionViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionViewModelProtocol.swift; sourceTree = "<group>"; };
 		319899F027525CDB0027234E /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		3198DEA82757106500E3A7B7 /* CellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellViewModel.swift; sourceTree = "<group>"; };
@@ -301,6 +303,7 @@
 				31A7AEE4274E564A006C087C /* AppDelegate.swift */,
 				31A7AEE6274E564A006C087C /* SceneDelegate.swift */,
 				31A7AEED274E564C006C087C /* Assets.xcassets */,
+				3197B069275F84FD0086DFD5 /* Cafe24SsurroundAir.ttf */,
 				31A7AEEF274E564C006C087C /* LaunchScreen.storyboard */,
 			);
 			path = Supportings;
@@ -622,6 +625,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3197B06A275F84FD0086DFD5 /* Cafe24SsurroundAir.ttf in Resources */,
 				31A7AEF1274E564C006C087C /* LaunchScreen.storyboard in Resources */,
 				31D5C41D275CB09B000FAD35 /* ReportListCell.xib in Resources */,
 				31A7AEEE274E564C006C087C /* Assets.xcassets in Resources */,
