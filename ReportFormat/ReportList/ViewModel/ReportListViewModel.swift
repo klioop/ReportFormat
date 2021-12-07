@@ -21,7 +21,8 @@ enum ReportListCellViewModelType {
 protocol ReportListViewModelProtocol {
     typealias Input = (
         didTapNewReport: Driver<Void>,
-        reportSelected: Driver<Report>
+        reportSelected: Driver<Report>,
+        reportIndex: Driver<Int>
     )
     typealias Output = (
         sections: Driver<[ReportListSection]>,
@@ -55,6 +56,7 @@ struct ReportListViewModel: ReportListViewModelProtocol {
     
     var input: ReportListViewModelProtocol.Input
     var output: ReportListViewModelProtocol.Output
+    let dependencies: ReportListViewModelProtocol.Dependencies
 
     
     init(
@@ -63,6 +65,7 @@ struct ReportListViewModel: ReportListViewModelProtocol {
     ) {
         self.input = input
         self.output = ReportListViewModel.output(dependencies: dependencies)
+        self.dependencies = dependencies
         
         self.process(input: input)
     }
@@ -85,6 +88,15 @@ private extension ReportListViewModel {
             .map {
                 routingAction.reportRelay.accept($0)
             }
+            .drive()
+            .disposed(by: bag)
+        
+        input.reportIndex
+            .asObservable()
+            .map {
+                try dependencies.realm.removeReport($0)
+            }
+            .asDriver(onErrorDriveWith: .empty())
             .drive()
             .disposed(by: bag)
     }

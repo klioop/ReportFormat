@@ -25,6 +25,20 @@ class RealmService {
 
 extension RealmService: RealmServiceProtocol {
     
+    func removeReport(_ index: Int) throws {
+        do {
+            try localRealm.write {
+                let reports = getReports()
+                let reportToDelete = reports[index]
+                localRealm.delete(reportToDelete)
+            }
+        } catch {
+            let error = RealmError.failedToDelete
+            print(error.errorMessage)
+            throw error
+        }
+    }
+    
     func editReport(_ report: Report) throws {
         do {
             try localRealm.write {

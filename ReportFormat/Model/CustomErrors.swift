@@ -24,6 +24,7 @@ enum APIError: Error {
 enum RealmError: Error {
     case failedToAddObject
     case failedToEdit
+    case failedToDelete
     
     var errorMessage: String {
         switch self {
@@ -31,6 +32,8 @@ enum RealmError: Error {
             return "Failed to add a new object"
         case .failedToEdit:
             return "Failed to edit the object"
+        case .failedToDelete:
+            return "Failed to delete the object"
         }
     }
 }

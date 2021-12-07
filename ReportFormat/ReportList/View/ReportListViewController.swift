@@ -51,7 +51,6 @@ class ReportListViewController: UIViewController, StoryBoarded {
             navCon.setToolbarHidden(false, animated: true)
         }
     }
-    
 }
 
 private extension ReportListViewController {
