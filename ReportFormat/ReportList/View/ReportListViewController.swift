@@ -20,7 +20,10 @@ class ReportListViewController: UIViewController, StoryBoarded {
     
     private var bag = DisposeBag()
     
-    private lazy var dataSource = RxTableViewSectionedReloadDataSource<ReportListSection>(configureCell: configureCell)
+    private lazy var dataSource = RxTableViewSectionedReloadDataSource<ReportListSection>(
+        configureCell: configureCell,
+        canEditRowAtIndexPath: canEditRowAtIndexPath
+    )
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,6 +74,7 @@ private extension ReportListViewController {
         
 }
 
+// MARK: - table dataSource related
 private extension ReportListViewController {
     
     private var configureCell: RxTableViewSectionedReloadDataSource<ReportListSection>.ConfigureCell {
@@ -84,6 +88,15 @@ private extension ReportListViewController {
                 cell.configure(with: vm)
                 return cell
             }
+        }
+    }
+    
+    private var canEditRowAtIndexPath: RxTableViewSectionedReloadDataSource<ReportListSection>.CanEditRowAtIndexPath {
+        return { [weak self] _, _ in
+            guard
+                let self = self,
+                let tableView = self.tableView else { return false }
+            return tableView.isEditing ? true : false
         }
     }
     
