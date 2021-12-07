@@ -151,6 +151,7 @@ private extension ReportListViewController {
             switch item {
             case .empty:
                 let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.TableViewCellId.reportListEmptyCell) as! ReportListEmptyCell
+                cell.isUserInteractionEnabled = false
                 return cell
             case let .list(vm):
                 let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.TableViewCellId.reportListCell) as! ReportListCell

@@ -102,7 +102,7 @@ private extension ReportListViewModel {
     }
     
     static func output(dependencies: ReportListViewModelProtocol.Dependencies) -> ReportListViewModelProtocol.Output{
-        let title = Driver.just("리포트")
+        let title = Driver.just("리포트 목록")
         let reports = dependencies.realm.getReports()
         let sections = Observable.arrayWithChangeset(from: reports)
             .map { (array, _) -> [Report] in

@@ -24,9 +24,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Up5-2h-O0c">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Up5-2h-O0c">
                                 <rect key="frame" x="0.0" y="54" width="390" height="707"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="40w-jG-Jgx">
                                 <rect key="frame" x="0.0" y="44" width="390" height="10"/>
@@ -37,7 +38,7 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" name="mainColor"/>
+                        <color key="backgroundColor" name="teritaryColor"/>
                         <constraints>
                             <constraint firstItem="40w-jG-Jgx" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="34h-W1-ybO"/>
                             <constraint firstItem="Up5-2h-O0c" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="8vx-dd-LhA"/>
@@ -74,7 +75,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="LTn-KP-0LY">
                                 <rect key="frame" x="0.0" y="44" width="390" height="671"/>
-                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fPq-Xn-2ra">
                                 <rect key="frame" x="10" y="720" width="370" height="50"/>
@@ -90,7 +91,7 @@
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="2Mi-Th-dJ6"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="teritaryColor"/>
                         <constraints>
                             <constraint firstItem="fPq-Xn-2ra" firstAttribute="trailing" secondItem="2Mi-Th-dJ6" secondAttribute="trailing" constant="-10" id="Fjl-kB-Aiw"/>
                             <constraint firstItem="fPq-Xn-2ra" firstAttribute="leading" secondItem="2Mi-Th-dJ6" secondAttribute="leading" constant="10" id="FxU-3H-GK5"/>
@@ -166,9 +167,9 @@
         <namedColor name="seconaryColor">
             <color red="0.99607843137254903" green="0.5607843137254902" blue="0.5607843137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="secondarySystemBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
+        <namedColor name="teritaryColor">
+            <color red="0.9882352941176471" green="0.82352941176470584" blue="0.81960784313725488" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

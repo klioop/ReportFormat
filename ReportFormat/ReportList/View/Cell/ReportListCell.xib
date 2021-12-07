@@ -16,33 +16,33 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReportListCell" rowHeight="100" id="KGk-i7-Jjw" customClass="ReportListCell" customModule="ReportFormat" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="390" height="100"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReportListCell" rowHeight="109" id="KGk-i7-Jjw" customClass="ReportListCell" customModule="ReportFormat" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="394" height="109"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="390" height="100"/>
+                <rect key="frame" x="0.0" y="0.0" width="394" height="109"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="riN-pq-58o">
-                        <rect key="frame" x="5" y="2" width="380" height="95"/>
+                        <rect key="frame" x="5" y="1" width="384" height="107"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="wfY-iW-tIC">
-                                <rect key="frame" x="20" y="19.5" width="340" height="56"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="wfY-iW-tIC">
+                                <rect key="frame" x="20" y="10" width="344" height="87"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="김새싹" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HYW-gE-sJA">
-                                        <rect key="frame" x="0.0" y="0.0" width="340" height="26"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="김새싹" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HYW-gE-sJA">
+                                        <rect key="frame" x="0.0" y="0.0" width="344" height="55"/>
                                         <fontDescription key="fontDescription" name="Cafe24Ssurroundair" family="Cafe24 Ssurround air" pointSize="22"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="수학" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Glv-bI-nm5">
-                                        <rect key="frame" x="0.0" y="26" width="340" height="18"/>
+                                        <rect key="frame" x="0.0" y="56" width="344" height="18"/>
                                         <fontDescription key="fontDescription" name="Cafe24Ssurroundair" family="Cafe24 Ssurround air" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2021년 10월 20일" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cXY-bZ-I9K">
-                                        <rect key="frame" x="0.0" y="44" width="340" height="12"/>
+                                        <rect key="frame" x="0.0" y="75" width="344" height="12"/>
                                         <fontDescription key="fontDescription" name="Cafe24Ssurroundair" family="Cafe24 Ssurround air" pointSize="10"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -55,14 +55,16 @@
                             <constraint firstItem="wfY-iW-tIC" firstAttribute="leading" secondItem="riN-pq-58o" secondAttribute="leading" constant="20" id="Jg5-Ht-ckb"/>
                             <constraint firstItem="wfY-iW-tIC" firstAttribute="centerY" secondItem="riN-pq-58o" secondAttribute="centerY" id="JtU-XB-4eb"/>
                             <constraint firstAttribute="trailing" secondItem="wfY-iW-tIC" secondAttribute="trailing" constant="20" id="MWB-1t-60v"/>
-                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="95" id="PUY-YQ-Wz8"/>
+                            <constraint firstItem="wfY-iW-tIC" firstAttribute="top" secondItem="riN-pq-58o" secondAttribute="top" constant="10" id="hyK-mH-2c7"/>
+                            <constraint firstAttribute="bottom" secondItem="wfY-iW-tIC" secondAttribute="bottom" constant="10" id="uOa-j8-kKC"/>
                         </constraints>
                     </view>
                 </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstItem="riN-pq-58o" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="2" id="L4Y-QW-8Sh"/>
+                    <constraint firstItem="riN-pq-58o" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="1" id="L4Y-QW-8Sh"/>
                     <constraint firstAttribute="trailing" secondItem="riN-pq-58o" secondAttribute="trailing" constant="5" id="neZ-e5-jPB"/>
-                    <constraint firstAttribute="bottom" secondItem="riN-pq-58o" secondAttribute="bottom" constant="3" id="s0C-o1-y2O"/>
+                    <constraint firstAttribute="bottom" secondItem="riN-pq-58o" secondAttribute="bottom" constant="1" id="s0C-o1-y2O"/>
                     <constraint firstItem="riN-pq-58o" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="z5q-ef-tCh"/>
                 </constraints>
             </tableViewCellContentView>
@@ -73,7 +75,7 @@
                 <outlet property="nameLabel" destination="HYW-gE-sJA" id="Ik1-Iq-LPc"/>
                 <outlet property="subjectLabel" destination="Glv-bI-nm5" id="Y97-TQ-JTk"/>
             </connections>
-            <point key="canvasLocation" x="182.60869565217394" y="166.74107142857142"/>
+            <point key="canvasLocation" x="185.50724637681162" y="169.75446428571428"/>
         </tableViewCell>
     </objects>
     <resources>

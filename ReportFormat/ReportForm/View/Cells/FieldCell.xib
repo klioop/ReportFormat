@@ -24,7 +24,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eWX-Lb-5K9">
-                        <rect key="frame" x="5" y="0.0" width="382" height="117"/>
+                        <rect key="frame" x="5" y="1" width="382" height="120"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="학생" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mqz-LV-HRT">
@@ -50,11 +50,11 @@
                     <constraint firstItem="mqz-LV-HRT" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="18" id="Sne-XM-73q"/>
                     <constraint firstItem="mqz-LV-HRT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" symbolic="YES" id="TAr-1e-ig2"/>
                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="mqz-LV-HRT" secondAttribute="trailing" constant="20" id="W4l-Gy-y6R"/>
-                    <constraint firstItem="eWX-Lb-5K9" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="iHo-pi-5ks"/>
+                    <constraint firstItem="eWX-Lb-5K9" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="1" id="iHo-pi-5ks"/>
                     <constraint firstItem="eWX-Lb-5K9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="kBG-Ov-s4c"/>
                     <constraint firstItem="yfb-4C-4lO" firstAttribute="top" secondItem="mqz-LV-HRT" secondAttribute="bottom" constant="5" id="qNx-rv-eEk"/>
                     <constraint firstAttribute="bottom" secondItem="yfb-4C-4lO" secondAttribute="bottom" constant="18" id="rHa-zR-pLN"/>
-                    <constraint firstAttribute="bottom" secondItem="eWX-Lb-5K9" secondAttribute="bottom" constant="5" id="rPx-y5-Gt3"/>
+                    <constraint firstAttribute="bottom" secondItem="eWX-Lb-5K9" secondAttribute="bottom" constant="1" id="rPx-y5-Gt3"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

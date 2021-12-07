@@ -9,10 +9,19 @@ import UIKit
 
 class ReportListEmptyCell: UITableViewCell {
 
+    @IBOutlet weak var emptyTextLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        setupUI()
     }
-
     
+}
+
+private extension ReportListEmptyCell {
+    func setupUI() {
+        emptyTextLabel.layer.cornerRadius = 6
+        emptyTextLabel.layer.masksToBounds = true
+        
+    }
 }
