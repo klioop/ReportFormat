@@ -19,6 +19,7 @@ class ReportListViewController: UIViewController, StoryBoarded {
     var viewModelBuilder: ReportListViewModelProtocol.ViewModelBuilder!
     
     private var bag = DisposeBag()
+    private let boolRelayForBarItem = PublishRelay<Bool>()
     
     private lazy var dataSource = RxTableViewSectionedReloadDataSource<ReportListSection>(
         configureCell: configureCell,
@@ -28,7 +29,8 @@ class ReportListViewController: UIViewController, StoryBoarded {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        viewModel = viewModelBuilder(
+        viewModel = viewModelBuilder( 
+            // input: (didTapNewReport, reportSelected, indexToDeleteReport)
             (
                 newReportButton.rx.tap.asDriver(),
                 tableView.rx.modelSelected(ReportListCellViewModelType.self)
@@ -38,7 +40,13 @@ class ReportListViewController: UIViewController, StoryBoarded {
                         }
                         return Report.emptyReport()
                     }
+                    .asDriver(onErrorDriveWith: .empty()),
+                tableView.rx.itemDeleted
+                    .map {
+                        $0.row
+                    }
                     .asDriver(onErrorDriveWith: .empty())
+                
             )
         )
         binding()
@@ -57,6 +65,7 @@ private extension ReportListViewController {
     func setupUI() {
         tableView.register(UINib(nibName: Identifier.TableViewCellId.reportListCell, bundle: nil), forCellReuseIdentifier: Identifier.TableViewCellId.reportListCell)
         tableView.register(UINib(nibName: Identifier.TableViewCellId.reportListEmptyCell, bundle: nil), forCellReuseIdentifier: Identifier.TableViewCellId.reportListEmptyCell)
+        barItemSettingUp()
 
     }
     
@@ -70,13 +79,63 @@ private extension ReportListViewController {
             .disposed(by: bag)
 
     }
+    
+    func barItemSettingUp() {
+        navigationItem.rightBarButtonItem = createMenuBarItem()
+        boolRelayForBarItem
+            .asDriver(onErrorDriveWith: .empty())
+            .drive(tableView.rx.isEditing)
+            .disposed(by: bag)
+        boolRelayForBarItem
+            .map { [weak self] in
+                guard let self = self else { return }
+                self.navigationItem.rightBarButtonItem = self.getBarButton(upon: $0)
+            }
+            .asDriver(onErrorDriveWith: .empty())
+            .drive()
+            .disposed(by: bag)
+        
+    }
+    
+    func getBarButton(upon boolValue: Bool) -> UIBarButtonItem {
+        let completedBarButton = UIBarButtonItem(title: "완료", style: .plain, target: self, action: nil)
+        completedBarButton.rx.tap
+            .map { [boolRelayForBarItem] in
+                boolRelayForBarItem.accept(false)
+            }
+            .asDriver(onErrorDriveWith: .empty())
+            .drive()
+            .disposed(by: bag)
+        
+        let menuBarButton = createMenuBarItem()
+        
+        return boolValue ? completedBarButton : menuBarButton
+    }
+    
+    func createMenuBarItem() -> UIBarButtonItem {
+        return UIBarButtonItem(
+            image: UIImage(systemName: "ellipsis.circle"),
+            menu: createMenus()
+        )
+    }
+    
+    func createMenus() -> UIMenu {
+        let menu = UIMenu(
+            options: .displayInline, children: [
+                UIAction(title: "편집", image: UIImage(systemName: "slider.horizontal.3")) { [boolRelayForBarItem] _ in
+                    boolRelayForBarItem.accept(true)
+                }
+            ]
+        )
+        return menu
+    }
         
 }
 
 // MARK: - table dataSource related
 private extension ReportListViewController {
     
-    private var configureCell: RxTableViewSectionedReloadDataSource<ReportListSection>.ConfigureCell {
+    var configureCell: RxTableViewSectionedReloadDataSource<ReportListSection>.ConfigureCell {
         return { (_, tableView, indexPath, item) -> UITableViewCell in
             switch item {
             case .empty:
@@ -90,7 +149,7 @@ private extension ReportListViewController {
         }
     }
     
-    private var canEditRowAtIndexPath: RxTableViewSectionedReloadDataSource<ReportListSection>.CanEditRowAtIndexPath {
+    var canEditRowAtIndexPath: RxTableViewSectionedReloadDataSource<ReportListSection>.CanEditRowAtIndexPath {
         return { [weak self] _, _ in
             guard
                 let self = self,
@@ -98,5 +157,4 @@ private extension ReportListViewController {
             return tableView.isEditing ? true : false
         }
     }
-    
 }

@@ -22,7 +22,7 @@ protocol ReportListViewModelProtocol {
     typealias Input = (
         didTapNewReport: Driver<Void>,
         reportSelected: Driver<Report>,
-        reportIndex: Driver<Int>
+        indexToDeleteReport: Driver<Int>
     )
     typealias Output = (
         sections: Driver<[ReportListSection]>,
@@ -91,7 +91,7 @@ private extension ReportListViewModel {
             .drive()
             .disposed(by: bag)
         
-        input.reportIndex
+        input.indexToDeleteReport
             .asObservable()
             .map {
                 try dependencies.realm.removeReport($0)
