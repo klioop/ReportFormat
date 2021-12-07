@@ -109,9 +109,8 @@ private extension ReportViewModel {
         let reports = dependencies.realmService.getReports()
         let sections = Observable.arrayWithChangeset(from: reports)
             .map { (array, _) -> Report in
-                guard let report = array.filter({ $0._id == (dependencies.report.objectId!) }).first
-                else { return Report.emptyReport() }
-                return Report.toReport(from: report)
+                let report = ReportViewModel.reportUponSceneType(with: array, dependencies)
+                return report
             }
             .asDriver(onErrorDriveWith: .empty())
             .map { report in
@@ -127,5 +126,15 @@ private extension ReportViewModel {
         let sceneType = Driver.just(dependencies.sceneType)
         
         return (title, sections, sceneType)
+    }
+    
+    static func reportUponSceneType(with array: [ReportObject], _ dependencies: ReportViewModelProtocol.Dependencies) -> Report {
+        switch dependencies.sceneType {
+        case .editing:
+            guard let report = array.filter({ $0._id == (dependencies.report.objectId!) }).first else { return Report.emptyReport() }
+            return Report.toReport(from: report)
+        case .new:
+            return dependencies.report
+        }
     }
 }
