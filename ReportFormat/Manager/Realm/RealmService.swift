@@ -14,7 +14,9 @@ class RealmService {
     private let localRealm = try! Realm()
     
     init() {
-        ["수학", "영어", "국어", "과학", "코딩"].forEach {
+        [
+            "수학", "영어", "국어", "과학", "사회", "역사", "경제", "제 2 외국어", "Swift", "Python", "JavaScript", "NodeJS", "React", "코딩"
+        ].forEach {
             if self.isSubjectExisted(with: $0) {
                 try! self.addSubject(with: $0)
             }
@@ -58,7 +60,7 @@ extension RealmService: RealmServiceProtocol {
     }
     
     func getReports() -> Results<ReportObject> {
-        localRealm.objects(ReportObject.self).sorted(byKeyPath: "reportDate")
+        localRealm.objects(ReportObject.self).sorted(byKeyPath: "reportDate", ascending: false)
     }
     
     func getAllReports() -> Single<[ReportObject]> {
