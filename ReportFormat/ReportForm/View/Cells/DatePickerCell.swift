@@ -38,13 +38,10 @@ class DatePickerCell: UITableViewCell {
             .bind(to: viewModel.date)
             .disposed(by: bag)
         
-        viewModel.dateStringFromEditting
-            .map { [weak self, datePicker] (dateString) -> Void in
-                guard
-                    let datePicker = datePicker,
-                    let self = self
-                else { return }
-                datePicker.date = self.createDateFrom(dateString: dateString)
+        viewModel.dateFromEditting
+            .map { [datePicker] (date) -> Void in
+                guard let datePicker = datePicker else { return }
+                datePicker.date = date
             }
             .asDriver(onErrorDriveWith: .empty())
             .drive()

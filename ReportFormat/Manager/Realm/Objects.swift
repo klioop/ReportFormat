@@ -23,7 +23,7 @@ class SubjectObject: Object {
 class ReportObject: Object {
     @Persisted(primaryKey: true) var _id: ObjectId
     @Persisted var studentName: String
-    @Persisted var reportDate: String
+    @Persisted var reportDate: Date
     @Persisted var comment: String
     @Persisted var bookTitle: String?
     @Persisted var bookImageUrl: String?

@@ -100,6 +100,7 @@
 		31D5C41F275CB621000FAD35 /* ReportListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D5C41E275CB621000FAD35 /* ReportListCoordinator.swift */; };
 		31D5C422275CC1C9000FAD35 /* ReportListEmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D5C420275CC1C9000FAD35 /* ReportListEmptyCell.swift */; };
 		31D5C423275CC1C9000FAD35 /* ReportListEmptyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31D5C421275CC1C9000FAD35 /* ReportListEmptyCell.xib */; };
+		31DE2F8F2760E98F005BB337 /* DateFormatter+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DE2F8E2760E98F005BB337 /* DateFormatter+extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -184,6 +185,7 @@
 		31D5C41E275CB621000FAD35 /* ReportListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportListCoordinator.swift; sourceTree = "<group>"; };
 		31D5C420275CC1C9000FAD35 /* ReportListEmptyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportListEmptyCell.swift; sourceTree = "<group>"; };
 		31D5C421275CC1C9000FAD35 /* ReportListEmptyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReportListEmptyCell.xib; sourceTree = "<group>"; };
+		31DE2F8E2760E98F005BB337 /* DateFormatter+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -335,6 +337,7 @@
 				31D1B8D227536CBD00F5ABF7 /* StoryBoarded.swift */,
 				31D1B8DF275372CC00F5ABF7 /* Constants.swift */,
 				31A961BA2757A70900CCC297 /* Array+extension.swift */,
+				31DE2F8E2760E98F005BB337 /* DateFormatter+extension.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -353,8 +356,8 @@
 		31C9E1422758940700DC9787 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				31C9E1452758942C00DC9787 /* Cell */,
 				31960A672758B58B0076AAA7 /* ReportViewController.swift */,
+				31C9E1452758942C00DC9787 /* Cell */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -394,8 +397,8 @@
 		31CC751B27510CB200A3F03D /* View */ = {
 			isa = PBXGroup;
 			children = (
-				31D1B8D82753721E00F5ABF7 /* Cells */,
 				31D1B8D5275371A900F5ABF7 /* ReportFormViewController.swift */,
+				31D1B8D82753721E00F5ABF7 /* Cells */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -498,8 +501,8 @@
 		31D5C413275C9562000FAD35 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				31D5C419275CB071000FAD35 /* Cell */,
 				31D5C410275C952F000FAD35 /* ReportListViewController.swift */,
+				31D5C419275CB071000FAD35 /* Cell */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -695,6 +698,7 @@
 				31D1B8BB2753613600F5ABF7 /* ReportFormState.swift in Sources */,
 				31D1B8D6275371A900F5ABF7 /* ReportFormViewController.swift in Sources */,
 				31D1B8B22753605100F5ABF7 /* StudentSuggestionViewModel.swift in Sources */,
+				31DE2F8F2760E98F005BB337 /* DateFormatter+extension.swift in Sources */,
 				31D1B8CC27536C7400F5ABF7 /* Router.swift in Sources */,
 				31D5C418275CA081000FAD35 /* ReportListCellViewModel.swift in Sources */,
 				31960A6F2758D9CC0076AAA7 /* ReportCoordinator.swift in Sources */,

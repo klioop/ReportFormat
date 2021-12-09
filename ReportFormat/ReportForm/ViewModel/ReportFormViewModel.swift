@@ -117,7 +117,7 @@ private extension ReportFormViewModel {
         // editting 일 때 comment and date 기본 값 stream
         if let report = report {
             commentViewModel.commentTextFromEditting.accept(report.comment)
-            datePickerViewModel.dateStringFromEditting.accept(report.reportDate)
+            datePickerViewModel.dateFromEditting.accept(report.reportDate)
         }
         
         datePickerViewModel.bind(to: date)
@@ -146,7 +146,7 @@ private extension ReportFormViewModel {
     
     func updateReport() -> Report {
         guard var report = self.report else { return Report.emptyReport() }
-        report.reportDate = date.text.value
+        report.reportDate = DateFormatter.shared.date(from: date.text.value) ?? Date()
         report.studentName = student.text.value
         report.subject = subject.text.value
         report.comment = comment.text.value
@@ -160,7 +160,7 @@ private extension ReportFormViewModel {
     func createReport() -> Report {
         Report(
             studentName: student.text.value,
-            reportDate: date.text.value,
+            reportDate: DateFormatter.shared.date(from: date.text.value) ?? Date(),
             comment: comment.text.value,
             bookTitle: book.text.value,
             bookImageUrl: book.bookImageUrl.value,

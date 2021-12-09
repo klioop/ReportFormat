@@ -41,7 +41,7 @@ class ReportCoordinator: BaseCoordinator {
             
             viewModel.routing.didTapCreateButton
                 .map { [weak self] in
-                    self?.popToRoot()
+                    self?.dismissModal()
                 }
                 .drive()
                 .disposed(by: bag)
@@ -55,12 +55,22 @@ class ReportCoordinator: BaseCoordinator {
             
             return viewModel
         }
+        switch reportSceneType {
+        case .new:
+            router.pushOnModal(vc, isAnimated: true, onNavigationBack: isComplted)
+        case .editing:
+            router.push(vc, isAnimated: true, onNavigationBack: isComplted)
+        }
         
-        router.push(vc, isAnimated: true, onNavigationBack: isComplted)
+        
     }
 }
 
 private extension ReportCoordinator {
+    func dismissModal() {
+        router.dismiss(true)
+    }
+    
     func popToRoot() {
         router.popToRoot(true)
     }

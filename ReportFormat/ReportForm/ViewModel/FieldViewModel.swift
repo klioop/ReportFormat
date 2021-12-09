@@ -39,7 +39,8 @@ extension FieldViewModel {
     
     static func date(_ report: Report?) -> FieldViewModel {
         var model = FieldViewModel(title: Constants.FieldTitle.date)
-        model.text = BehaviorRelay<String>(value: report?.reportDate ?? "")
+        let text = report == nil ? "" : DateFormatter.shared.string(from: report?.reportDate ?? Date())
+        model.text = BehaviorRelay<String>(value: text)
         
         return model
     }

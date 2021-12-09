@@ -10,7 +10,7 @@ import RealmSwift
 
 struct Report {
     var studentName: String
-    var reportDate: String
+    var reportDate: Date
     var comment: String
     var bookTitle: String?
     var bookImageUrl: String?
@@ -25,7 +25,7 @@ extension Report {
     }
     
     static func emptyReport() -> Report {
-        Report(studentName: "", reportDate: "", comment: "", bookTitle: "", bookImageUrl: "", subject: "", range: "")
+        Report(studentName: "", reportDate: Date(), comment: "", bookTitle: "", bookImageUrl: "", subject: "", range: "")
     }
     
     static func toReport(from object: ReportObject) -> Report {

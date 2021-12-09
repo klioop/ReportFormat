@@ -43,7 +43,7 @@
                             <constraint firstItem="uAS-c3-dL2" firstAttribute="leading" secondItem="lfI-Ar-IPK" secondAttribute="leading" constant="46" id="PZ8-qm-Ql3"/>
                             <constraint firstAttribute="trailing" secondItem="uAS-c3-dL2" secondAttribute="trailing" constant="46" id="Sk5-PM-zhF"/>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="500" id="qH0-iD-vTS"/>
-                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="370" id="ssC-cn-CCF"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="350" id="ssC-cn-CCF"/>
                         </constraints>
                     </view>
                 </subviews>

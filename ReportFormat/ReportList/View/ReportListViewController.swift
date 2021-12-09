@@ -75,9 +75,7 @@ private extension ReportListViewController {
             .drive()
             .disposed(by: bag)
         
-        barItemSettingUp()
-        
-
+        SettingUpBarItem()
     }
     
     func binding() {
@@ -91,7 +89,7 @@ private extension ReportListViewController {
 
     }
     
-    func barItemSettingUp() {
+    func SettingUpBarItem() {
         navigationItem.rightBarButtonItem = createMenuBarItem()
         boolRelayForBarItem
             .asDriver(onErrorDriveWith: .empty())
@@ -147,11 +145,12 @@ private extension ReportListViewController {
 private extension ReportListViewController {
     
     var configureCell: RxTableViewSectionedReloadDataSource<ReportListSection>.ConfigureCell {
-        return { (_, tableView, indexPath, item) -> UITableViewCell in
+        return { [boolRelayForBarItem] (_, tableView, indexPath, item) -> UITableViewCell in
             switch item {
             case .empty:
                 let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.TableViewCellId.reportListEmptyCell) as! ReportListEmptyCell
                 cell.isUserInteractionEnabled = false
+                boolRelayForBarItem.accept(false)
                 return cell
             case let .list(vm):
                 let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.TableViewCellId.reportListCell) as! ReportListCell

@@ -21,6 +21,8 @@ class ReportFormCoordinator: BaseCoordinator {
     private let bag = DisposeBag()
     private let didDismss = PublishRelay<Void>()
     
+    
+    
     init(
         router: RouterProtocol,
         sceneType: ReportFormSceneType,
@@ -72,7 +74,13 @@ class ReportFormCoordinator: BaseCoordinator {
             
             return viewModel
         }
-        router.push(vc, isAnimated: true, onNavigationBack: isComplted)
+        switch sceneType {
+        case .new:
+            let nav = createNav(with: vc)
+            router.present(nav, isAnimated: true, onDismiss: isComplted)
+        case .editing:
+            router.push(vc, isAnimated: true, onNavigationBack: isComplted)
+        }
     }
 }
 
@@ -93,5 +101,29 @@ private extension ReportFormCoordinator {
     func popTowardReport() {
         router.pop(true)
     }
+    
+    func createNav(with rootViewController: UIViewController) -> UINavigationController {
+        let nav: UINavigationController = {
+            let nav = UINavigationController(rootViewController: rootViewController)
+            let navBar = nav.navigationBar
+            let standardAppearnce = UINavigationBarAppearance()
+            
+            standardAppearnce.configureWithOpaqueBackground()
+            standardAppearnce.backgroundColor = UIColor(named: "mainColor")
+            standardAppearnce.titleTextAttributes = [
+                .font: UIFont(name: "Cafe24Ssurroundair", size: 25.0)!,
+                .foregroundColor: UIColor.white
+            ]
+            standardAppearnce.shadowColor = .clear
+            navBar.standardAppearance = standardAppearnce
+            navBar.scrollEdgeAppearance = standardAppearnce
+            navBar.tintColor = .white
+            navBar.isTranslucent = true
+            
+            return nav
+        }()
+        return nav
+    }
 }
+
 

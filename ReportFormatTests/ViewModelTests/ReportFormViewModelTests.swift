@@ -340,7 +340,7 @@
 //        }
 //
 //    }
-//
+//  
 //    class BookAPIManagerStub: NaverBookAPIProtocol {
 //
 //        let stub = (query: "book", books: [Book(), Book()])

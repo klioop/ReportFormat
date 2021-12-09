@@ -22,7 +22,7 @@ class ReportListCell: UITableViewCell {
     func configure(with viewModel: ReportListCellViewModel) {
         nameLabel.text = viewModel.report.studentName
         subjectLabel.text = viewModel.report.subject
-        dateLabel.text = viewModel.report.reportDate
+        dateLabel.text = DateFormatter.shared.string(from: viewModel.report.reportDate) 
     }
 }
 

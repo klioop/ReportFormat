@@ -24,6 +24,17 @@ final class Router: NSObject {
 
 extension Router: RouterProtocol {
     
+    func pushOnModal(_ drawable: Drawble, isAnimated: Bool, onNavigationBack closure: NavigationBackClosure?) {
+        guard let viewController = drawable.viewController else { return }
+        if let closure = closure {
+            closures.updateValue(closure, forKey: viewController.description)
+        }
+        if let temp = navigationController.presentedViewController as? UINavigationController {
+            temp.pushViewController(viewController, animated: isAnimated)
+        }
+        
+    }
+    
     func push(_ drawable: Drawble, isAnimated: Bool, onNavigationBack closure: NavigationBackClosure?) {
         guard let viewController = drawable.viewController else { return }
         if let closure = closure {

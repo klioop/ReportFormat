@@ -24,4 +24,6 @@ protocol RouterProtocol {
     func presentWithNav(_ nav: UINavigationController, isAnimated: Bool, onDismiss: NavigationBackClosure?)
     
     func dismissWithNav(_ isAnimated: Bool)
+    
+    func pushOnModal(_ drawable: Drawble, isAnimated: Bool, onNavigationBack closure: NavigationBackClosure?)
 }

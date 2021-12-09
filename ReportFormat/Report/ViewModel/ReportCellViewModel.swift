@@ -15,7 +15,7 @@ enum ReportCellModelCase {
 
 struct ReportCellViewModel {
     let studentName: String
-    let date: String
+    let date: Date
     let comment: String
     let subject: String?
     let bookTitle: String?

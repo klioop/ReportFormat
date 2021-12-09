@@ -87,7 +87,7 @@ private extension ReportViewModel {
         
         input.didTapEditButton
                 .map { [dependencies, routingAction] (tap) in
-                    let report = reportFromForm.value.reportDate.isEmpty ? dependencies.report : reportFromForm.value
+                    let report = reportFromForm.value.studentName.isEmpty ? dependencies.report : reportFromForm.value
                     routingAction.reportRelay.accept(report)
                 }
                 .drive()
@@ -105,7 +105,7 @@ private extension ReportViewModel {
     }
     
     static func output(_ dependencies: ReportViewModelProtocol.Dependencies) -> ReportViewModelProtocol.Output {
-        let title = Driver.just(dependencies.report.reportDate)
+        let title = Driver.just(DateFormatter.shared.string(from: dependencies.report.reportDate))
         let reports = dependencies.realmService.getReports()
         let sections = Observable.arrayWithChangeset(from: reports)
             .map { (array, _) -> Report in
